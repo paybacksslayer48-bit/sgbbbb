@@ -1,0 +1,8 @@
+{
+  "name": "Remix: SGB",
+  "description": "Класичний каталог одягу та аксесуарів SGB. Колекції чорного одягу, мінімалізм, кошик товарів та швидке оформлення замовлень.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

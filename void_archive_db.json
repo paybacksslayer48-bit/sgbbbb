@@ -1,0 +1,183 @@
+{
+  "products": [
+    {
+      "id": "prod-1",
+      "name": "SGB // ZIP-UP HOODIE SHIELD",
+      "description": "Об'ємне зіп-худі чорного кольору з масивним капюшоном, контрастними швами, кишенею-кенгуру та міцною металевою блискавкою.",
+      "price": 3400,
+      "image": "duster",
+      "category": "outerwear",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "tags": [
+        "y2k",
+        "hoodie",
+        "grunge"
+      ],
+      "stock": 9,
+      "riddickRating": "COLLECTION 2026",
+      "mannequinYOffset": -10,
+      "mannequinScale": 1.15
+    },
+    {
+      "id": "prod-2",
+      "name": "SGB // DISTRESSED SWEATER DECAY",
+      "description": "В'язаний светр вільного аутфіту зі спущеними петлями та фактурними порізами вздовж кантів у стилі нульових.",
+      "price": 2400,
+      "image": "sweater",
+      "category": "top",
+      "sizes": [
+        "M",
+        "L",
+        "XL"
+      ],
+      "tags": [
+        "distressed",
+        "knitwear",
+        "indie"
+      ],
+      "stock": 15,
+      "riddickRating": "COLLECTION 2026",
+      "mannequinYOffset": 15,
+      "mannequinScale": 1.05
+    },
+    {
+      "id": "prod-3",
+      "name": "SGB // LOW-RISE CARGO JEANS",
+      "description": "Широкі джинси мішкоподібного покрою з заниженою талією, накладними бічними кишенями та металевою фурнітурою.",
+      "price": 3600,
+      "image": "cargo",
+      "category": "bottom",
+      "sizes": [
+        "S",
+        "M",
+        "L"
+      ],
+      "tags": [
+        "denim",
+        "cargo",
+        "y2k"
+      ],
+      "stock": 7,
+      "riddickRating": "COLLECTION 2026",
+      "mannequinYOffset": 65,
+      "mannequinScale": 1
+    },
+    {
+      "id": "prod-4",
+      "name": "SGB // CHUNKY RETRO KICKS",
+      "description": "Важкі шкіряні кеди у стилі нульових років на посиленій амортизуючій підошві з широкими шнурками.",
+      "price": 4900,
+      "image": "boots",
+      "category": "shoes",
+      "sizes": [
+        "40",
+        "41",
+        "42",
+        "43",
+        "44"
+      ],
+      "tags": [
+        "shoes",
+        "chunky",
+        "indie"
+      ],
+      "stock": 6,
+      "riddickRating": "COLLECTION 2026",
+      "mannequinYOffset": 120,
+      "mannequinScale": 0.95
+    },
+    {
+      "id": "prod-5",
+      "name": "SGB // CHOKER CROSS COLLAR",
+      "description": "Чорний шкіряний матовий чокер з класичним срібним готичним хрестом.",
+      "price": 1200,
+      "image": "sunglasses",
+      "category": "accessories",
+      "sizes": [
+        "OS"
+      ],
+      "tags": [
+        "goth",
+        "accessories"
+      ],
+      "stock": 22,
+      "riddickRating": "COLLECTION 2026",
+      "mannequinYOffset": -25,
+      "mannequinScale": 0.4
+    },
+    {
+      "id": "prod-6",
+      "name": "SGB // GRAPHIC PRINT MESH",
+      "description": "Напівпрозора сітчаста кофта з абстрактним димчастим темним принтом та подовженими рукавами.",
+      "price": 1800,
+      "image": "outerwear",
+      "category": "top",
+      "sizes": [
+        "M",
+        "L",
+        "XL"
+      ],
+      "tags": [
+        "mesh",
+        "indie-sleaze"
+      ],
+      "stock": 11,
+      "riddickRating": "COLLECTION 2026",
+      "mannequinYOffset": -5,
+      "mannequinScale": 1.08
+    },
+    {
+      "id": "prod-7",
+      "name": "SGB // SKULL COTTON TSHIRT",
+      "description": "Футболка вільного крою із вицвілої важкої бавовни з великим графічним вінтажним принтом черепа.",
+      "price": 1900,
+      "image": "tee",
+      "category": "top",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "tags": [
+        "tshirt",
+        "skull",
+        "grunge"
+      ],
+      "stock": 18,
+      "riddickRating": "COLLECTION 2026",
+      "mannequinYOffset": 18,
+      "mannequinScale": 1
+    },
+    {
+      "id": "prod-8",
+      "name": "SGB // NYLON BODYPACK ZIP",
+      "description": "Ергономічна сумка на одне плече з широким регульованим лямочним ременем та кишенями на замках.",
+      "price": 2100,
+      "image": "bag",
+      "category": "accessories",
+      "sizes": [
+        "OS"
+      ],
+      "tags": [
+        "bag",
+        "tech"
+      ],
+      "stock": 8,
+      "riddickRating": "COLLECTION 2026",
+      "mannequinYOffset": 30,
+      "mannequinScale": 0.7
+    }
+  ],
+  "orders": [],
+  "telegramDrafts": [],
+  "telegramConfig": {
+    "token": "8692141325:AAFSPQsc26D8QNsxRzdqz-4L6C70FuBIfpQ",
+    "connected": true
+  }
+}

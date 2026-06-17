@@ -1,0 +1,101 @@
+{
+  "entities": {
+    "Product": {
+      "title": "Product",
+      "description": "A gothic gothic clothing product item",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique product ID" },
+        "name": { "type": "string", "description": "Name of the product in uppercase" },
+        "description": { "type": "string", "description": "Detailed description of the product" },
+        "price": { "type": "number", "description": "Price in UAH" },
+        "image": { "type": "string", "description": "Base64 string or public path of the item" },
+        "category": { "type": "string", "description": "Category: outerwear, top, bottom, shoes, accessories" },
+        "sizes": { "type": "array", "description": "Available clothing sizes" },
+        "tags": { "type": "array", "description": "Search tags" },
+        "stock": { "type": "number", "description": "Stock count" },
+        "riddickRating": { "type": "string", "description": "Riddick index rating" },
+        "mannequinYOffset": { "type": "number", "description": "Mannequin fitting vertical offset" },
+        "mannequinScale": { "type": "number", "description": "Mannequin fitting scale" }
+      },
+      "required": ["id", "name", "price", "category"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "An order placed by a visitor",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique order ID" },
+        "visitorNum": { "type": "number", "description": "Registered consecutive visitor ID" },
+        "name": { "type": "string", "description": "Customer full name" },
+        "phone": { "type": "string", "description": "Customer contact phone" },
+        "city": { "type": "string", "description": "Nova Poshta delivery city" },
+        "branch": { "type": "string", "description": "Nova Poshta branch details" },
+        "total": { "type": "number", "description": "Total order cost in UAH" },
+        "status": { "type": "string", "description": "Status of the order" },
+        "createdAt": { "type": "string", "description": "Order creation ISO timestamp" },
+        "items": { "type": "array", "description": "Items in the order" }
+      },
+      "required": ["id", "name", "phone", "city", "branch", "total"]
+    },
+    "TelegramDraft": {
+      "title": "TelegramDraft",
+      "description": "A scanned item draft waiting processing or publication",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique draft ID" },
+        "imageUrl": { "type": "string", "description": "Original draft image URL or local path" },
+        "scannedAt": { "type": "string", "description": "Scanning timestamp" },
+        "processed": { "type": "boolean", "description": "Has this draft been published or processed?" },
+        "caption": { "type": "string", "description": "Extracted original Telegram caption" },
+        "suggestedTitle": { "type": "string", "description": "AI-generated title suggestion" },
+        "suggestedPrice": { "type": "number", "description": "AI-generated price estimate in UAH" },
+        "suggestedDesc": { "type": "string", "description": "AI-generated descriptive pitch" },
+        "suggestedCategory": { "type": "string", "description": "AI-generated clothing category classification" }
+      },
+      "required": ["id", "imageUrl", "scannedAt"]
+    },
+    "TelegramConfig": {
+      "title": "TelegramConfig",
+      "description": "Configuration settings for the integrated Telegram Bot",
+      "type": "object",
+      "properties": {
+        "token": { "type": "string", "description": "Telegram bot API token" },
+        "connected": { "type": "boolean", "description": "Connection checklist status" },
+        "adminChatId": { "type": "number", "description": "Administrating chat ID for notifications" }
+      },
+      "required": ["token", "connected"]
+    },
+    "VisitorCounter": {
+      "title": "VisitorCounter",
+      "description": "Counter keeping track of sequential visitor count",
+      "type": "object",
+      "properties": {
+        "visitorCounter": { "type": "number", "description": "Sequential visitor ID number" }
+      },
+      "required": ["visitorCounter"]
+    }
+  },
+  "firestore": {
+    "products/{productId}": {
+      "schema": "Product",
+      "description": "Collection of available gothic clothing items in the catalog"
+    },
+    "orders/{orderId}": {
+      "schema": "Order",
+      "description": "Collection of client orders placed for shop administration CRM tracking"
+    },
+    "telegramDrafts/{draftId}": {
+      "schema": "TelegramDraft",
+      "description": "Collection of scanned clothing items from folder storage or telegram bot"
+    },
+    "config/telegramConfig": {
+      "schema": "TelegramConfig",
+      "description": "Single document representing config options or notifications receiver"
+    },
+    "config/visitorCounter": {
+      "schema": "VisitorCounter",
+      "description": "Document holding the master counter number for incoming visitor numbering"
+    }
+  }
+}

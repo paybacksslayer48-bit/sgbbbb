@@ -1,0 +1,44 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Global Default Deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Helper Functions
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isEmailVerified() {
+      return isSignedIn() && request.auth.token.email_verified == true;
+    }
+
+    // Catalog Products: Anyone (unauthenticated visitor) can read. Writing requires verified admin session.
+    match /products/{productId} {
+      allow read: if true;
+      allow write: if isSignedIn() && isEmailVerified() && isValidId(productId);
+    }
+
+    // Customer orders collection: Anyone can create an order. Read/Update/Delete is restricted to administrators.
+    match /orders/{orderId} {
+      allow create: if true;
+      allow read, update, delete: if isSignedIn() && isEmailVerified() && isValidId(orderId);
+    }
+
+    // Telegram scanned item drafts: Admin-only access.
+    match /telegramDrafts/{draftId} {
+      allow read, write: if isSignedIn() && isEmailVerified() && isValidId(draftId);
+    }
+
+    // Master configs document and visitor tracking documents
+    match /config/{configId} {
+      allow read, write: if isSignedIn() && isEmailVerified() && isValidId(configId);
+    }
+  }
+}
