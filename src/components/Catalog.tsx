@@ -90,6 +90,7 @@ export default function Catalog({
   const [selectedSize, setSelectedSize] = useState<string>('');
   const [activeDiscountTooltip, setActiveDiscountTooltip] = useState<string | null>(null);
   const [addedToCart, setAddedToCart] = useState<boolean>(false);
+  const [showDiscountInfo, setShowDiscountInfo] = useState<boolean>(false);
 
   const handleAddToCartWithFeedback = () => {
     if (!selectedProduct) return;
@@ -249,6 +250,34 @@ export default function Catalog({
                 </div>
               </div>
 
+              {/* Red Discount Ask Button */}
+              <div className="pt-3">
+                <button
+                  type="button"
+                  onClick={() => setShowDiscountInfo(!showDiscountInfo)}
+                  className="bg-red-600 hover:bg-red-700 text-white font-mono text-[10.5px] font-extrabold uppercase tracking-widest px-4 py-2 flex items-center justify-center gap-2 border border-red-500 rounded transition-all cursor-pointer shadow-lg active:scale-95 whitespace-nowrap"
+                >
+                  🔥 ХОЧУ СКИДКУ
+                </button>
+                {showDiscountInfo && (
+                  <div className="mt-2 border border-red-800 bg-red-950/15 p-3 rounded text-[11px] leading-relaxed text-zinc-300 uppercase font-mono tracking-wider">
+                    <p className="text-white font-bold mb-1">
+                      💥 Скинь в ТГ скриншот товару та розмір і отримай знижку!
+                    </p>
+                    <p className="text-zinc-400 text-[10px] mb-2 leading-snug">
+                      контактний менеджер зв'яжеться з вами та нарахує дисконт.
+                    </p>
+                    <a
+                      href="https://t.me/SGB_secum"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-block bg-red-600 hover:bg-red-500 text-white px-3 py-1.5 text-[9.5px] uppercase tracking-widest font-black transition-all rounded"
+                    >
+                      ✉ НАПИСАТИ @SGB_secum
+                    </a>
+                  </div>
+                )}
+              </div>
 
             </div>
 

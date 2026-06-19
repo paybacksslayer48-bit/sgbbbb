@@ -200,6 +200,7 @@ interface Database {
     adminChatId?: number;
   };
   visitorCounter?: number;
+  visitors?: any[];
 }
 
 // Ensure local persistence
@@ -207,7 +208,11 @@ function readDB(): Database {
   try {
     if (fs.existsSync(DB_FILE)) {
       const data = fs.readFileSync(DB_FILE, "utf-8");
-      return JSON.parse(data);
+      const parsed = JSON.parse(data);
+      if (!parsed.visitors) {
+        parsed.visitors = [];
+      }
+      return parsed;
     }
   } catch (err) {
     console.error("Error reading database file, using empty:", err);
@@ -218,6 +223,7 @@ function readDB(): Database {
     products: DEFAULT_PRODUCTS,
     orders: [],
     telegramDrafts: [],
+    visitors: [],
     telegramConfig: {
       token: "",
       connected: false
@@ -297,6 +303,22 @@ async function syncFromFirestore(db: Database): Promise<Database> {
       console.log("Loaded visitor counter from Firestore:", db.visitorCounter);
     } else if (typeof db.visitorCounter !== "undefined") {
       await firestoreDb.collection("config").doc("visitorCounter").set({ visitorCounter: db.visitorCounter });
+    }
+
+    // 6. Sync Visitors
+    const visitorsSnapshot = await firestoreDb.collection("visitors").get();
+    if (!visitorsSnapshot.empty) {
+      const dbVisitors: any[] = [];
+      visitorsSnapshot.forEach((doc: any) => {
+        dbVisitors.push(doc.data());
+      });
+      db.visitors = dbVisitors;
+      console.log(`Loaded ${dbVisitors.length} visitors from Firestore.`);
+    } else if (db.visitors && db.visitors.length > 0) {
+      console.log("Seeding existing local visitors to Firestore...");
+      for (const v of db.visitors) {
+        await firestoreDb.collection("visitors").doc(String(v.visitorNum)).set(v);
+      }
     }
 
     // Capture the state locally
@@ -478,6 +500,14 @@ async function syncToFirestore(db: Database) {
     // 5. Sync VisitorCounter
     if (typeof db.visitorCounter !== "undefined") {
       await firestoreDb.collection("config").doc("visitorCounter").set({ visitorCounter: db.visitorCounter });
+    }
+
+    // 6. Sync Visitors
+    if (db.visitors && Array.isArray(db.visitors)) {
+      const visitorPromises = db.visitors.map(v => {
+        return firestoreDb.collection("visitors").doc(String(v.visitorNum)).set(v);
+      });
+      await Promise.all(visitorPromises);
     }
 
     console.log("Successfully synchronized all entities to Google Cloud Firestore.");
@@ -1387,30 +1417,97 @@ async function startServer() {
     res.json({ success: true, message: "Product deleted" });
   });
 
+  function getClientIp(req: any): string {
+    const forwarded = req.headers['x-forwarded-for'];
+    if (forwarded) {
+      const list = typeof forwarded === 'string' ? forwarded.split(',') : forwarded;
+      return list[0].trim();
+    }
+    return req.ip || req.connection?.remoteAddress || "127.0.0.1";
+  }
+
+  function getOrCreateVisitorProfile(req: any): any {
+    if (!dbObj.visitors) {
+      dbObj.visitors = [];
+    }
+    const ip = getClientIp(req);
+    let visitor = dbObj.visitors.find((v: any) => v.ip === ip);
+    const nowStr = new Date().toLocaleDateString("uk-UA") + " " + new Date().toLocaleTimeString("uk-UA");
+    
+    if (!visitor) {
+      if (typeof dbObj.visitorCounter === "undefined") {
+        dbObj.visitorCounter = 0;
+      }
+      dbObj.visitorCounter += 1;
+      visitor = {
+        ip,
+        visitorNum: dbObj.visitorCounter,
+        firstSeen: nowStr,
+        lastSeen: nowStr,
+        visitsCount: 1,
+        actions: [],
+        orders: []
+      };
+      dbObj.visitors.push(visitor);
+    } else {
+      visitor.lastSeen = nowStr;
+    }
+    return visitor;
+  }
+
   // Register sequential visitor IDs (1, 2, 3...)
   app.post("/api/visitors/register", (req, res) => {
-    if (typeof dbObj.visitorCounter === "undefined") {
-      dbObj.visitorCounter = 0;
-    }
-    dbObj.visitorCounter += 1;
+    const visitor = getOrCreateVisitorProfile(req);
+    // Since this is a new actual session/registration event, count it as a visit
+    visitor.visitsCount += 1;
     writeDB(dbObj);
-    res.json({ visitorNum: dbObj.visitorCounter });
+    res.json({ visitorNum: visitor.visitorNum });
   });
 
   // Track product viewing with Visitor ID details
   app.post("/api/track/view-product", (req, res) => {
-    const { visitorNum, productName, price } = req.body;
-    const trackingMsg = `Захід №${visitorNum || 'unknown'}: Перегляд товару "${productName}" (${price} UAH)`;
+    const { productName, price } = req.body;
+    const visitor = getOrCreateVisitorProfile(req);
+    
+    const nowStr = new Date().toLocaleDateString("uk-UA") + " " + new Date().toLocaleTimeString("uk-UA");
+    const detailMsg = `Перегляд товару "${productName}" (${price} UAH)`;
+    
+    if (!visitor.actions) visitor.actions = [];
+    visitor.actions.unshift({
+      timestamp: nowStr,
+      details: detailMsg
+    });
+    
+    writeDB(dbObj);
+
+    const trackingMsg = `Захід №${visitor.visitorNum} (IP: ${visitor.ip}): ${detailMsg}`;
     sendTelegramNotification(trackingMsg);
     res.json({ success: true });
   });
 
   // Track category viewing with Visitor ID details
   app.post("/api/track/view-category", (req, res) => {
-    const { visitorNum, category } = req.body;
-    const trackingMsg = `Захід №${visitorNum || 'unknown'}: Перегляд категорії "${category}"`;
+    const { category } = req.body;
+    const visitor = getOrCreateVisitorProfile(req);
+    
+    const nowStr = new Date().toLocaleDateString("uk-UA") + " " + new Date().toLocaleTimeString("uk-UA");
+    const detailMsg = `Перегляд категорії "${category}"`;
+    
+    if (!visitor.actions) visitor.actions = [];
+    visitor.actions.unshift({
+      timestamp: nowStr,
+      details: detailMsg
+    });
+    
+    writeDB(dbObj);
+
+    const trackingMsg = `Захід №${visitor.visitorNum} (IP: ${visitor.ip}): ${detailMsg}`;
     sendTelegramNotification(trackingMsg);
     res.json({ success: true });
+  });
+
+  app.get("/api/visitors", (req, res) => {
+    res.json(dbObj.visitors || []);
   });
 
   // Backup compatibility route
@@ -1433,6 +1530,7 @@ async function startServer() {
     const orderNumber = "NP-" + Math.floor(100000 + Math.random() * 900000);
     const trackingNumber = "204" + Math.floor(50000000000 + Math.random() * 49999999999);
 
+    const clientIp = getClientIp(req);
     const newOrder = {
       id: "ord-" + Date.now(),
       orderNumber,
@@ -1442,6 +1540,7 @@ async function startServer() {
       shippingCost: Number(shippingCost) || 85,
       status: "new",
       trackingNumber,
+      clientIp,
       date: new Date().toLocaleDateString("uk-UA") + " " + new Date().toLocaleTimeString("uk-UA")
     };
 
@@ -1451,6 +1550,18 @@ async function startServer() {
       if (match) {
         match.stock = Math.max(0, match.stock - item.quantity);
       }
+    });
+
+    // Link this order to the visitor log profile
+    const visitor = getOrCreateVisitorProfile(req);
+    if (!visitor.orders) visitor.orders = [];
+    visitor.orders.unshift(orderNumber);
+    
+    const nowStr = new Date().toLocaleDateString("uk-UA") + " " + new Date().toLocaleTimeString("uk-UA");
+    if (!visitor.actions) visitor.actions = [];
+    visitor.actions.unshift({
+      timestamp: nowStr,
+      details: `Створено замовлення ${orderNumber} на суму ${totalPrice} UAH`
     });
 
     dbObj.orders.unshift(newOrder);

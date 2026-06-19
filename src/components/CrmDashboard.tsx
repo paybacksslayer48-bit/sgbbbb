@@ -48,7 +48,86 @@ export default function CrmDashboard({
 }: CrmDashboardProps) {
   
   // Tab within CRM
-  const [activeSubTab, setActiveSubTab] = useState<'orders' | 'inventory' | 'customers' | 'telegram' | 'drafts' | 'bulk_import'>('orders');
+  const [activeSubTab, setActiveSubTab] = useState<'orders' | 'inventory' | 'customers' | 'telegram' | 'drafts' | 'bulk_import' | 'visitors'>('orders');
+
+  // Visitor tracking states
+  const [visitors, setVisitors] = useState<any[]>([]);
+  const [isLoadingVisitors, setIsLoadingVisitors] = useState(false);
+
+  const fetchVisitors = async () => {
+    setIsLoadingVisitors(true);
+    try {
+      const res = await fetch("/api/visitors");
+      if (res.ok) {
+        const data = await res.json();
+        // Sort visitors descending by visitorNum
+        const sorted = Array.isArray(data) ? [...data].sort((a, b) => b.visitorNum - a.visitorNum) : [];
+        setVisitors(sorted);
+      }
+    } catch (err) {
+      console.error("Failed to fetch visitors:", err);
+    } finally {
+      setIsLoadingVisitors(false);
+    }
+  };
+
+  const downloadCSV = () => {
+    if (visitors.length === 0) {
+      triggerToast("⚠️ НЕМАЄ ДАНИХ ДЛЯ ЗАВАНТАЖЕННЯ.");
+      return;
+    }
+    
+    // Headers
+    const headers = ["Visitor #", "IP Address", "First Seen", "Last Seen", "Visits Count", "Connected Orders", "Actions Captured"];
+    
+    // Rows
+    const rows = visitors.map(v => {
+      const ordersStr = (v.orders && v.orders.length > 0) ? v.orders.join("; ") : "No Orders";
+      const actionsStr = (v.actions && v.actions.length > 0) 
+        ? v.actions.map((act: any) => `[${act.timestamp}] ${act.details}`).join(" | ") 
+        : "No Actions";
+        
+      return [
+        v.visitorNum,
+        v.ip,
+        v.firstSeen,
+        v.lastSeen,
+        v.visitsCount,
+        ordersStr,
+        actionsStr
+      ].map(field => `"${String(field).replace(/"/g, '""')}"`); // Escape quotes and wrap
+    });
+    
+    const csvContent = "\uFEFF" + [headers.join(","), ...rows.map(e => e.join(","))].join("\n");
+    
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.setAttribute("href", url);
+    link.setAttribute("download", `sgb_visitor_history_${Date.now()}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    triggerToast("✙ CSV ФАЙЛ УСПІШНО ЗАВАНТАЖЕНО!");
+  };
+
+  const downloadJSON = () => {
+    if (visitors.length === 0) {
+      triggerToast("⚠️ НЕМАЄ ДАНИХ ДЛЯ ЗАВАНТАЖЕННЯ.");
+      return;
+    }
+    
+    const jsonContent = JSON.stringify(visitors, null, 2);
+    const blob = new Blob([jsonContent], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.setAttribute("href", url);
+    link.setAttribute("download", `sgb_visitor_history_${Date.now()}.json`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    triggerToast("✙ JSON ФАЙЛ УСПІШНО ЗАВАНТАЖЕНО!");
+  };
 
   // States for BULK JSON IMPORT
   const [importJsonProducts, setImportJsonProducts] = useState<any[]>([]);
@@ -360,6 +439,14 @@ export default function CrmDashboard({
     if (activeSubTab === 'drafts') {
       loadTelegramData();
       const interval = setInterval(loadTelegramData, 3500);
+      return () => clearInterval(interval);
+    }
+  }, [activeSubTab]);
+
+  useEffect(() => {
+    if (activeSubTab === 'visitors') {
+      fetchVisitors();
+      const interval = setInterval(fetchVisitors, 8000);
       return () => clearInterval(interval);
     }
   }, [activeSubTab]);
@@ -813,6 +900,14 @@ export default function CrmDashboard({
         >
           ✙ ПАКЕТНИЙ ІМПОРТ
         </button>
+        <button
+          onClick={() => setActiveSubTab('visitors')}
+          className={`py-2 px-4 font-mono text-[11px] uppercase tracking-widest border-b-2 transition-all cursor-pointer ${
+            activeSubTab === 'visitors' ? 'border-[#3b82f6] text-blue-400 font-bold' : 'border-transparent text-zinc-500 hover:text-white'
+          }`}
+        >
+          👁 ТРЕКІНГ ТА ВІЗИТИ
+        </button>
 
       </div>
 
@@ -1244,6 +1339,165 @@ export default function CrmDashboard({
                     </div>
                   );
                 })}
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* SUBTAB: Visitor session tracking */}
+        {activeSubTab === 'visitors' && (
+          <div className="space-y-6 font-mono tracking-tight pb-16">
+            <div className="border-b border-[#222222] pb-5 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+              <div>
+                <h3 className="text-sm font-mono font-bold tracking-widest text-[#3b82f6] uppercase flex items-center gap-2">
+                  <Database size={15} />
+                  СИСТЕМА ТРЕКІНГУ ВІЗИТОРІВ // CLIENT IP AUDIT LOG
+                </h3>
+                <p className="text-[10px] text-zinc-500 mt-1 uppercase font-semibold leading-normal">
+                  Моніторинг активності потенційних покупців, згрупованих за IP-адресами. Відслідковуйте кліки, перегляди колекцій, і миттєво виявляйте джерела замовлений.
+                </p>
+              </div>
+              <div className="flex gap-2">
+                <button
+                  type="button"
+                  onClick={downloadCSV}
+                  className="bg-white hover:bg-zinc-200 text-black px-3 py-1.5 text-[9px] uppercase font-bold tracking-wider cursor-pointer font-mono flex items-center gap-1"
+                >
+                  Завантажити CSV
+                </button>
+                <button
+                  type="button"
+                  onClick={downloadJSON}
+                  className="bg-zinc-900 hover:bg-zinc-800 text-[#3b82f6] border border-[#3b82f6]/30 px-3 py-1.5 text-[9px] uppercase font-bold tracking-wider cursor-pointer font-mono flex items-center gap-1"
+                >
+                  Завантажити JSON
+                </button>
+              </div>
+            </div>
+
+            {/* Metrics cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div className="border border-[#222222] bg-[#070707] p-3 text-[10px]">
+                <span className="text-zinc-500 uppercase block font-bold">Загальна унікальних IP</span>
+                <span className="text-xl font-bold text-white mt-1 block">{visitors.length}</span>
+              </div>
+              <div className="border border-[#222222] bg-[#070707] p-3 text-[10px]">
+                <span className="text-zinc-500 uppercase block font-bold">Всього заходів / кліків</span>
+                <span className="text-xl font-bold text-[#3b82f6] mt-1 block">
+                  {visitors.reduce((acc, curr) => acc + (curr.visitsCount || 0), 0)}
+                </span>
+              </div>
+              <div className="border border-[#222222] bg-[#070707] p-3 text-[10px]">
+                <span className="text-zinc-500 uppercase block font-bold">Зв'язані замовлення з IP</span>
+                <span className="text-xl font-bold text-emerald-400 mt-1 block">
+                  {visitors.filter(v => v.orders && v.orders.length > 0).length} IP
+                </span>
+              </div>
+            </div>
+
+            {isLoadingVisitors ? (
+              <div className="text-center p-12 text-zinc-500 text-[11px] font-mono animate-pulse">
+                ЗАВАНТАЖЕННЯ ДАНИХ ТРЕКІНГУ ШЛЮЗУ...
+              </div>
+            ) : visitors.length === 0 ? (
+              <div className="text-center p-12 border border-dashed border-[#222222] text-zinc-500 text-[11px] font-mono animate-pulse">
+                АКТИВУЙТЕ ВІЗИТИ (ЗАЙДІТЬ НА ТОВАРИ ПОКУПЦЕМ), ЩОБ ПОБАЧИТИ ТРЕКІНГ ЛОГИ.
+              </div>
+            ) : (
+              <div className="space-y-4">
+                {visitors.map((v) => (
+                  <div key={v.visitorNum} className="border border-[#222222] bg-black p-4 text-[10.5px] font-mono hover:border-zinc-750 transition-all flex flex-col md:flex-row justify-between gap-4">
+                    
+                    {/* Visitor meta info details */}
+                    <div className="space-y-2 md:max-w-xs w-full">
+                      <div className="flex justify-between items-center bg-zinc-900/50 p-2 border border-zinc-800">
+                        <span className="text-[11px] font-bold text-[#3b82f6] uppercase">
+                          ВІЗИТОР #{v.visitorNum}
+                        </span>
+                        <span className="text-[9px] text-zinc-400 font-bold bg-black px-1.5 py-0.5 border border-[#333333] select-all cursor-pointer" title="Скопіювати IP" onClick={() => {
+                          navigator.clipboard.writeText(v.ip);
+                          triggerToast(`✙ Скопійовано: ${v.ip}`);
+                        }}>
+                          {v.ip}
+                        </span>
+                      </div>
+                      
+                      <div className="grid grid-cols-2 gap-1 text-[9px] text-zinc-500">
+                        <div>
+                          <span>ПЕРШИЙ ВІЗИТ:</span>
+                          <span className="text-zinc-300 block">{v.firstSeen || "Невідомо"}</span>
+                        </div>
+                        <div>
+                          <span>ОСТАННЯ ДІЯ:</span>
+                          <span className="text-zinc-300 block">{v.lastSeen || "Невідомо"}</span>
+                        </div>
+                      </div>
+
+                      <div className="flex justify-between items-center pt-1 border-t border-[#111111]">
+                        <span className="text-zinc-500 text-[8.5px]">КІЛЬКІСТЬ СЕСІЙ / ВІЗИТІВ:</span>
+                        <span className="text-white font-bold bg-[#1d4ed8]/20 text-[#60a5fa] px-2 py-0.5 rounded border border-[#2563eb]/25 text-[10px]">
+                          {v.visitsCount || 0}
+                        </span>
+                      </div>
+
+                      {/* Orders mapped list */}
+                      <div className="space-y-1 pt-2">
+                        <span className="text-[9px] text-zinc-500 font-bold uppercase block">ЗВ'ЯЗАНІ ЗАМОВЛЕННЯ З IP:</span>
+                        {v.orders && v.orders.length > 0 ? (
+                          <div className="flex flex-wrap gap-1">
+                            {v.orders.map((ordNo: string) => {
+                              const fullOrd = orders.find(o => o.orderNumber === ordNo);
+                              const orderStatus = fullOrd ? fullOrd.status : "unknown";
+                              const statusStyles: Record<string, string> = {
+                                'new': 'bg-red-950/40 text-red-400 border-red-900/40',
+                                'processing': 'bg-amber-950/40 text-amber-400 border-amber-900/40',
+                                'shipped': 'bg-cyan-950/40 text-cyan-400 border-cyan-900/40',
+                                'completed': 'bg-emerald-950/40 text-emerald-400 border-emerald-900/40',
+                                'cancelled': 'bg-zinc-900 text-zinc-500 border-zinc-800'
+                              };
+                              return (
+                                <span 
+                                  key={ordNo} 
+                                  className={`text-[9.5px] font-bold px-1.5 py-0.5 border ${statusStyles[orderStatus] || 'bg-zinc-900 text-zinc-400 border-zinc-800'}`}
+                                >
+                                  {ordNo} ({orderStatus})
+                                </span>
+                              );
+                            })}
+                          </div>
+                        ) : (
+                          <span className="text-zinc-600 text-[9px] italic">Немає замовлень</span>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Scrollable actions stream / timeline */}
+                    <div className="flex-1 space-y-1.5">
+                      <span className="text-[9.5px] text-[#3b82f6] font-bold uppercase block border-b border-[#222222] pb-1">
+                        ХРОНОЛОГІЯ АКТИВНОСТІ // ACTIVITY TRACKS
+                      </span>
+                      <div className="max-h-48 overflow-y-auto bg-[#030303] border border-zinc-900 p-2 space-y-1.5 rounded">
+                        {v.actions && v.actions.length > 0 ? (
+                          v.actions.map((act: any, aIdx: number) => (
+                            <div key={aIdx} className="flex justify-between items-start gap-3 border-b border-[#111111] pb-1 last:border-b-0 text-[10px]">
+                              <span className="text-zinc-300 flex-1">
+                                {act.details}
+                              </span>
+                              <span className="text-zinc-600 text-[8px] pt-0.5">
+                                {act.timestamp}
+                              </span>
+                            </div>
+                          ))
+                        ) : (
+                          <span className="text-zinc-600 text-[9px] italic block text-center py-2">
+                            Логи дій порожні (відвідувач ще не взаємодіяв з товарами).
+                          </span>
+                        )}
+                      </div>
+                    </div>
+
+                  </div>
+                ))}
               </div>
             )}
           </div>
