@@ -704,7 +704,10 @@ async function startServer() {
 
   app.get("/implants/:filename", (req, res) => {
     const filename = req.params.filename;
-    const filePath = path.join(process.cwd(), "implants", filename);
+    let filePath = path.join(process.cwd(), "public", "implants", filename);
+    if (!fs.existsSync(filePath)) {
+      filePath = path.join(process.cwd(), "implants", filename);
+    }
     if (fs.existsSync(filePath)) {
       res.sendFile(filePath);
     } else {
@@ -722,15 +725,6 @@ async function startServer() {
   dbObj.products = dbObj.products.filter(p => p && p.name && !p.name.startsWith("SGB //"));
   if (dbObj.products.length === 0) {
     dbObj.products = [...DEFAULT_PRODUCTS];
-  } else {
-    // Sync matching default products with the new 30-35% discounted prices
-    dbObj.products = dbObj.products.map(p => {
-      const match = DEFAULT_PRODUCTS.find(dp => dp.id === p.id);
-      if (match) {
-        return { ...p, price: match.price };
-      }
-      return p;
-    });
   }
   writeDB(dbObj);
 

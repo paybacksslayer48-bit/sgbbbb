@@ -44,7 +44,7 @@ export default function CartAndCheckout({
   const [deliveryDays, setDeliveryDays] = useState(1);
   const [loading, setLoading] = useState(false);
 
-  const cartTotal = cartItems.reduce((sum, item) => sum + Math.round(item.product.price * 0.8) * item.quantity, 0);
+  const cartTotal = cartItems.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
 
   // Search cities
   useEffect(() => {
@@ -230,9 +230,8 @@ export default function CartAndCheckout({
                         <h4 className="text-white font-bold tracking-wider truncate">{item.product.name}</h4>
                         <div className="flex flex-wrap gap-x-4 gap-y-1 text-[10px] text-zinc-400">
                           <span>РАЗМІР: <span className="text-white font-bold">{item.selectedSize}</span></span>
-                          <div className="flex items-center gap-1.5">
-                            <span className="line-through text-zinc-600">{item.product.price} UAH</span>
-                            <span className="text-white font-bold">{Math.round(item.product.price * 0.8)} UAH / од.</span>
+                          <div className="flex items-center gap-1.5 font-mono">
+                            <span className="text-white font-bold">{item.product.price} UAH / од.</span>
                           </div>
                         </div>
                       </div>

@@ -189,10 +189,10 @@ export default function App() {
         productId: item.product.id,
         productName: item.product.name,
         quantity: item.quantity,
-        price: Math.round(item.product.price * 0.8),
+        price: item.product.price,
         size: item.selectedSize
       })),
-      totalPrice: cart.reduce((sum, item) => sum + Math.round(item.product.price * 0.8) * item.quantity, 0),
+      totalPrice: cart.reduce((sum, item) => sum + item.product.price * item.quantity, 0),
       shippingCost
     };
 

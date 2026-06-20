@@ -112,7 +112,7 @@ export default function Catalog({
         visitorNum: visNum,
         productId: p.id,
         productName: p.name,
-        price: Math.round(p.price * 0.8)
+        price: p.price
       })
     }).catch(err => {
       console.error("View tracking error:", err);
@@ -224,31 +224,12 @@ export default function Catalog({
               <h1 className="text-3xl md:text-5xl font-sans tracking-tight text-white font-black uppercase leading-tight">
                 {selectedProduct.name}
               </h1>
-               <div className="flex flex-wrap items-center gap-3 pt-2">
-                <span className="text-zinc-500 line-through text-lg font-mono">
+              <div className="flex flex-wrap items-center gap-3 pt-2">
+                <span className="text-2xl text-white font-mono tracking-widest font-black">
                   {selectedProduct.price} UAH
                 </span>
-                <span className="text-2xl text-white font-mono tracking-widest font-black">
-                  {Math.round(selectedProduct.price * 0.8)} UAH
-                </span>
-                <div className="relative group/dt">
-                  <button 
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setActiveDiscountTooltip(activeDiscountTooltip === selectedProduct.id ? null : selectedProduct.id);
-                    }}
-                    className="bg-[#8a0303] text-white text-[10px] md:text-xs uppercase font-black px-2 py-1 rounded animate-pulse cursor-pointer select-none border border-[#8a0303]"
-                  >
-                    -20% TIKTOK OPENING
-                  </button>
-                  <div className={`absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 p-3 bg-black border border-[#8a0303] text-xs text-zinc-300 rounded shadow-2xl z-50 text-center leading-relaxed transition-all duration-300 pointer-events-none ${
-                    activeDiscountTooltip === selectedProduct.id ? 'opacity-100 scale-100 pointer-events-auto' : 'opacity-0 scale-95 group-hover/dt:opacity-100 group-hover/dt:scale-100'
-                  }`}>
-                    <div className="text-[#8a0303] font-black tracking-widest uppercase mb-1">🎁 TIKTOK DISCOUNT</div>
-                    Знижка 20% на весь асортимент в честь відкриття нашого нового TikTok акаунту!
-                  </div>
-                </div>
               </div>
+            </div>
 
               {/* Red Discount Ask Button */}
               <div className="pt-3">
@@ -278,8 +259,6 @@ export default function Catalog({
                   </div>
                 )}
               </div>
-
-            </div>
 
             {/* Spacious description */}
             <div className="space-y-4 text-zinc-150 leading-relaxed text-lg md:text-xl font-sans border-l-2 border-[#8a0303] pl-4 uppercase tracking-wider font-semibold">
@@ -425,30 +404,9 @@ export default function Catalog({
                   {p.name}
                 </h3>
                 <div className="flex flex-wrap items-center gap-2 font-mono text-xs md:text-sm">
-                  <span className="text-zinc-550 line-through text-xs font-semibold">
+                  <span className="text-zinc-350 font-black tracking-wider text-sm md:text-base">
                     {p.price} UAH
                   </span>
-                  <span className="text-zinc-350 font-black tracking-wider text-sm md:text-base">
-                    {Math.round(p.price * 0.8)} UAH
-                  </span>
-                  
-                  {/* Tooltip on grid item - hover & click toggles */}
-                  <div className="relative group/gt inline-block">
-                    <span 
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setActiveDiscountTooltip(activeDiscountTooltip === p.id ? null : p.id);
-                      }}
-                      className="bg-[#8a0303] text-white text-[9px] uppercase font-bold px-1 py-0.5 rounded animate-pulse cursor-help select-none"
-                    >
-                      -20%
-                    </span>
-                    <div className={`absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 p-2 bg-black border border-[#8a0303] text-[10px] text-zinc-300 rounded shadow-xl z-55 text-center leading-normal transition-all duration-300 pointer-events-none ${
-                      activeDiscountTooltip === p.id ? 'opacity-100 scale-100 pointer-events-auto' : 'opacity-0 scale-95 group-hover/gt:opacity-100 group-hover/gt:scale-100'
-                    }`}>
-                      Знижка 20% на весь асортимент в честь відкриття нашого нового TikTok акаунту!
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
