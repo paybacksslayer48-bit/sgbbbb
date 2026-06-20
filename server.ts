@@ -3,22 +3,27 @@ import path from "path";
 import fs from "fs";
 import { createServer as createViteServer } from "vite";
 import { GoogleGenAI, Type } from "@google/genai";
-import admin from "firebase-admin";
+import { initializeApp } from "firebase-admin/app";
+import { getFirestore } from "firebase-admin/firestore";
+import { getStorage } from "firebase-admin/storage";
+import { DEFAULT_PRODUCTS } from "./src/defaultProducts";
 
 const PORT = 3000;
 const DB_FILE = path.join(process.cwd(), "void_archive_db.json");
+let globalDbObj: any = null;
 
 // Initialize Firebase Admin SDK using firebase-applet-config.json
+let firebaseApp: any = null;
 let firestoreDb: any = null;
 try {
   const configPath = path.join(process.cwd(), "firebase-applet-config.json");
   if (fs.existsSync(configPath)) {
     const firebaseConfig = JSON.parse(fs.readFileSync(configPath, "utf-8"));
-    admin.initializeApp({
+    firebaseApp = initializeApp({
       projectId: firebaseConfig.projectId
     });
     const dbId = firebaseConfig.firestoreDatabaseId;
-    firestoreDb = dbId ? (admin as any).firestore(dbId) : (admin as any).firestore();
+    firestoreDb = dbId ? getFirestore(firebaseApp, dbId) : getFirestore(firebaseApp);
     console.log("Firebase Firestore initialized with Project ID:", firebaseConfig.projectId, "Database ID:", dbId || "default");
   } else {
     console.error("firebase-applet-config.json not found, skipping cloud persistence initialization.");
@@ -30,121 +35,7 @@ try {
 // Ensure old DB file is loaded and persistently stored to secure admin drafts and inventory
 // If the DB file does not exist, it will be automatically formatted and pre-seeded on first run.
 
-// Predefined set of clean Y2K indie/grunge alternative products
-const DEFAULT_PRODUCTS = [
-  {
-    id: "prod-1",
-    name: "SGB // ZIP-UP HOODIE SHIELD",
-    description: "Об'ємне зіп-худі чорного кольору з масивним капюшоном, контрастними швами, кишенею-кенгуру та міцною металевою блискавкою.",
-    price: 3400,
-    image: "duster",
-    category: "outerwear",
-    sizes: ["S", "M", "L", "XL"],
-    tags: ["y2k", "hoodie", "grunge"],
-    stock: 9,
-    riddickRating: "COLLECTION 2026",
-    mannequinYOffset: -10,
-    mannequinScale: 1.15
-  },
-  {
-    id: "prod-2",
-    name: "SGB // DISTRESSED SWEATER DECAY",
-    description: "В'язаний светр вільного аутфіту зі спущеними петлями та фактурними порізами вздовж кантів у стилі нульових.",
-    price: 2400,
-    image: "sweater",
-    category: "top",
-    sizes: ["M", "L", "XL"],
-    tags: ["distressed", "knitwear", "indie"],
-    stock: 15,
-    riddickRating: "COLLECTION 2026",
-    mannequinYOffset: 15,
-    mannequinScale: 1.05
-  },
-  {
-    id: "prod-3",
-    name: "SGB // LOW-RISE CARGO JEANS",
-    description: "Широкі джинси мішкоподібного покрою з заниженою талією, накладними бічними кишенями та металевою фурнітурою.",
-    price: 3600,
-    image: "cargo",
-    category: "bottom",
-    sizes: ["S", "M", "L"],
-    tags: ["denim", "cargo", "y2k"],
-    stock: 7,
-    riddickRating: "COLLECTION 2026",
-    mannequinYOffset: 65,
-    mannequinScale: 1.0
-  },
-  {
-    id: "prod-4",
-    name: "SGB // CHUNKY RETRO KICKS",
-    description: "Важкі шкіряні кеди у стилі нульових років на посиленій амортизуючій підошві з широкими шнурками.",
-    price: 4900,
-    image: "boots",
-    category: "shoes",
-    sizes: ["40", "41", "42", "43", "44"],
-    tags: ["shoes", "chunky", "indie"],
-    stock: 6,
-    riddickRating: "COLLECTION 2026",
-    mannequinYOffset: 120,
-    mannequinScale: 0.95
-  },
-  {
-    id: "prod-5",
-    name: "SGB // CHOKER CROSS COLLAR",
-    description: "Чорний шкіряний матовий чокер з класичним срібним готичним хрестом.",
-    price: 1200,
-    image: "sunglasses",
-    category: "accessories",
-    sizes: ["OS"],
-    tags: ["goth", "accessories"],
-    stock: 22,
-    riddickRating: "COLLECTION 2026",
-    mannequinYOffset: -25,
-    mannequinScale: 0.4
-  },
-  {
-    id: "prod-6",
-    name: "SGB // GRAPHIC PRINT MESH",
-    description: "Напівпрозора сітчаста кофта з абстрактним димчастим темним принтом та подовженими рукавами.",
-    price: 1800,
-    image: "outerwear",
-    category: "top",
-    sizes: ["M", "L", "XL"],
-    tags: ["mesh", "indie-sleaze"],
-    stock: 11,
-    riddickRating: "COLLECTION 2026",
-    mannequinYOffset: -5,
-    mannequinScale: 1.08
-  },
-  {
-    id: "prod-7",
-    name: "SGB // SKULL COTTON TSHIRT",
-    description: "Футболка вільного крою із вицвілої важкої бавовни з великим графічним вінтажним принтом черепа.",
-    price: 1900,
-    image: "tee",
-    category: "top",
-    sizes: ["S", "M", "L", "XL"],
-    tags: ["tshirt", "skull", "grunge"],
-    stock: 18,
-    riddickRating: "COLLECTION 2026",
-    mannequinYOffset: 18,
-    mannequinScale: 1.0
-  },
-  {
-    id: "prod-8",
-    name: "SGB // NYLON BODYPACK ZIP",
-    description: "Ергономічна сумка на одне плече з широким регульованим лямочним ременем та кишенями на замках.",
-    price: 2100,
-    image: "bag",
-    category: "accessories",
-    sizes: ["OS"],
-    tags: ["bag", "tech"],
-    stock: 8,
-    riddickRating: "COLLECTION 2026",
-    mannequinYOffset: 30,
-    mannequinScale: 0.7
-  }
-];
+// Predefined set of clean Y2K indie/grunge alternative products are imported from defaultProducts.ts above
 
 // Pre-seeded Ukrainian Cities for Nova Poshta & Ukrposhta calculations
 const UKRAINIAN_CITIES = [
@@ -197,7 +88,11 @@ interface Database {
   telegramConfig?: {
     token: string;
     connected: boolean;
-    adminChatId?: number;
+    adminChatId?: number | string;
+    botUsername?: string;
+    botName?: string;
+    channelChatId?: string;
+    webhookUrl?: string;
   };
   visitorCounter?: number;
   visitors?: any[];
@@ -323,8 +218,19 @@ async function syncFromFirestore(db: Database): Promise<Database> {
 
     // Capture the state locally
     fs.writeFileSync(DB_FILE, JSON.stringify(db, null, 2), "utf-8");
-  } catch (err) {
-    console.error("Error syncing from Firestore:", err);
+  } catch (err: any) {
+    const isPermissionError = err.message && (
+      err.message.includes("PERMISSION_DENIED") || 
+      err.message.includes("insufficient permissions") ||
+      err.message.includes("Unauthorized") ||
+      err.message.includes("unauthenticated")
+    );
+    if (isPermissionError) {
+      console.warn("⚠️ Google Cloud Firestore access is restricted. Temporarily disabling Cloud synchronization for this session. Relying on local JSON database.");
+      firestoreDb = null;
+    } else {
+      console.error("Error syncing from Firestore:", err);
+    }
   }
   return db;
 }
@@ -347,7 +253,11 @@ async function uploadToStorage(base64OrBuffer: string | Buffer, filename: string
       return "";
     }
 
-    const bucket = (admin as any).storage().bucket(bucketName);
+    if (!firebaseApp) {
+      console.warn("Storage upload skipped - Firebase app not initialized.");
+      return "";
+    }
+    const bucket = getStorage(firebaseApp).bucket(bucketName);
     const file = bucket.file(`uploaded_photos/${filename}`);
     
     let buffer: Buffer;
@@ -379,8 +289,19 @@ async function uploadToStorage(base64OrBuffer: string | Buffer, filename: string
     const publicUrl = `https://firebasestorage.googleapis.com/v0/b/${bucketName}/o/${encodedPath}?alt=media`;
     console.log("Uploaded successfully to Firebase Storage. URL:", publicUrl);
     return publicUrl;
-  } catch (err) {
-    console.error("Firebase Storage Upload Error:", err);
+  } catch (err: any) {
+    const errStr = String(err);
+    const isAuthError = errStr.includes("GaxiosError") || (err.message && (
+      err.message.includes("permission") ||
+      err.message.includes("Unauthorized") ||
+      err.message.includes("unauthenticated") ||
+      err.message.includes("forbidden")
+    ));
+    if (isAuthError) {
+      console.warn("⚠️ Google Cloud Storage write access is restricted/has Gaxios authorization constraints. Fallback to local Base64/relative asset URL.");
+    } else {
+      console.error("Firebase Storage Upload Error:", err);
+    }
     return "";
   }
 }
@@ -511,13 +432,25 @@ async function syncToFirestore(db: Database) {
     }
 
     console.log("Successfully synchronized all entities to Google Cloud Firestore.");
-  } catch (err) {
-    console.error("Error synchronizing to Firestore:", err);
+  } catch (err: any) {
+    const isPermissionError = err.message && (
+      err.message.includes("PERMISSION_DENIED") || 
+      err.message.includes("insufficient permissions") ||
+      err.message.includes("Unauthorized") ||
+      err.message.includes("unauthenticated")
+    );
+    if (isPermissionError) {
+      console.warn("⚠️ Background Google Cloud Firestore replication suspended: Access denied.");
+      firestoreDb = null;
+    } else {
+      console.error("Error synchronizing to Firestore:", err);
+    }
   }
 }
 
 function writeDB(db: Database) {
   try {
+    globalDbObj = db;
     fs.writeFileSync(DB_FILE, JSON.stringify(db, null, 2), "utf-8");
     // Background cloud replication
     syncToFirestore(db).catch(err => {
@@ -646,10 +579,10 @@ function moveGoodsFileToProcessed(imageUrl: string) {
 }
 
 async function sendTelegramNotification(text: string) {
-  const token = process.env.TELEGRAM_BOT_TOKEN;
-  const chatId = process.env.TELEGRAM_CHAT_ID;
+  const token = globalDbObj?.telegramConfig?.token || process.env.TELEGRAM_BOT_TOKEN;
+  const chatId = globalDbObj?.telegramConfig?.adminChatId || process.env.TELEGRAM_CHAT_ID;
   if (!token || !chatId) {
-    console.log(`[Telegram Simulation] Config not set in environment. Message content:\n${text}`);
+    console.log(`[Telegram Simulation] Config not set dynamically or in environment. Message content:\n${text}`);
     return;
   }
   try {
@@ -769,11 +702,66 @@ async function startServer() {
   app.get("/goods_processed/:filename", serveGoodsFile);
   app.get("/public/goods_processed/:filename", serveGoodsFile);
 
+  app.get("/implants/:filename", (req, res) => {
+    const filename = req.params.filename;
+    const filePath = path.join(process.cwd(), "implants", filename);
+    if (fs.existsSync(filePath)) {
+      res.sendFile(filePath);
+    } else {
+      res.status(404).send("File not found");
+    }
+  });
+
   // Initialize DB helper
   let dbObj = readDB();
 
   // Async load state from Google Cloud Firestore
   dbObj = await syncFromFirestore(dbObj);
+
+  // Filter out any products starting with "SGB //"
+  dbObj.products = dbObj.products.filter(p => p && p.name && !p.name.startsWith("SGB //"));
+  if (dbObj.products.length === 0) {
+    dbObj.products = [...DEFAULT_PRODUCTS];
+  } else {
+    // Sync matching default products with the new 30-35% discounted prices
+    dbObj.products = dbObj.products.map(p => {
+      const match = DEFAULT_PRODUCTS.find(dp => dp.id === p.id);
+      if (match) {
+        return { ...p, price: match.price };
+      }
+      return p;
+    });
+  }
+  writeDB(dbObj);
+
+  if (firestoreDb) {
+    try {
+      const pSnapshot = await firestoreDb.collection("products").get();
+      pSnapshot.forEach(async (doc: any) => {
+        const data = doc.data();
+        if (data && data.name && data.name.startsWith("SGB //")) {
+          await firestoreDb.collection("products").doc(doc.id).delete();
+          console.log(`Deleted SGB product from Firestore: ${data.name}`);
+        }
+      });
+      const correctRef = await firestoreDb.collection("products").get();
+      let hasCorrect = false;
+      correctRef.forEach((doc: any) => {
+        const data = doc.data();
+        if (data && data.name && !data.name.startsWith("SGB //")) {
+          hasCorrect = true;
+        }
+      });
+      if (!hasCorrect) {
+        console.log("Seeding correct default products to Firestore...");
+        for (const p of DEFAULT_PRODUCTS) {
+          await firestoreDb.collection("products").doc(p.id).set(p);
+        }
+      }
+    } catch (fsErr) {
+      console.error("Error cleaning/seeding Firestore products:", fsErr);
+    }
+  }
 
   // Convert local paths to Base64 after loading from local or Firestore
   convertLocalProductsAndDraftsToBase64(dbObj);
@@ -1184,6 +1172,233 @@ async function startServer() {
     }
   });
 
+  // ---------------------------------------------------------
+  // REAL TELEGRAM BOT CONNECTOR & WEBHOOK FLOW
+  // ---------------------------------------------------------
+
+  app.get("/api/telegram-config", (req, res) => {
+    res.json(dbObj.telegramConfig || { token: "", connected: false });
+  });
+
+  app.post("/api/telegram-config", async (req, res) => {
+    const { token, connected, botUsername, botName, adminChatId, channelChatId } = req.body;
+    
+    dbObj.telegramConfig = dbObj.telegramConfig || { token: "", connected: false };
+    if (token !== undefined) dbObj.telegramConfig.token = token;
+    if (connected !== undefined) dbObj.telegramConfig.connected = connected;
+    if (botUsername !== undefined) dbObj.telegramConfig.botUsername = botUsername;
+    if (botName !== undefined) dbObj.telegramConfig.botName = botName;
+    if (adminChatId !== undefined) dbObj.telegramConfig.adminChatId = adminChatId;
+    if (channelChatId !== undefined) dbObj.telegramConfig.channelChatId = channelChatId;
+
+    // Build the full host address for this container
+    const protocol = req.secure || req.headers['x-forwarded-proto'] === 'https' ? 'https' : 'http';
+    const host = req.get('host');
+    const webhookUrl = `${protocol}://${host}/api/telegram-webhook`;
+    dbObj.telegramConfig.webhookUrl = webhookUrl;
+
+    writeDB(dbObj);
+
+    // If active, automatically set webhook on Telegram API
+    if (dbObj.telegramConfig.token && dbObj.telegramConfig.connected) {
+      try {
+        const response = await fetch(`https://api.telegram.org/bot${dbObj.telegramConfig.token}/setWebhook`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ url: webhookUrl })
+        });
+        const d = await response.json();
+        console.log("Telegram setWebhook status:", d);
+      } catch (e) {
+        console.error("Error registering Telegram Webhook on save:", e);
+      }
+    }
+
+    res.json(dbObj.telegramConfig);
+  });
+
+  app.post("/api/telegram-config/reset", (req, res) => {
+    dbObj.telegramConfig = {
+      token: "",
+      connected: false,
+      botUsername: "SecumSgbArchiveBot",
+      botName: "Secum SGB Bot"
+    };
+    dbObj.telegramDrafts = [];
+    writeDB(dbObj);
+    res.json({ success: true });
+  });
+
+  app.post("/api/telegram-config/verify", async (req, res) => {
+    const { token } = req.body;
+    if (!token) {
+      return res.status(400).json({ error: "Missing bot API token" });
+    }
+
+    try {
+      // 1. Fetch bot details
+      const response = await fetch(`https://api.telegram.org/bot${token}/getMe`);
+      if (!response.ok) {
+        return res.status(400).json({ error: "Invalid bot token" });
+      }
+
+      const botInfo = await response.json();
+      if (!botInfo.ok || !botInfo.result) {
+        return res.status(400).json({ error: "BotFather rejected this token" });
+      }
+
+      const botUsername = botInfo.result.username;
+      const botName = botInfo.result.first_name;
+
+      // 2. Automatically register cloud webhook
+      const protocol = req.secure || req.headers['x-forwarded-proto'] === 'https' ? 'https' : 'http';
+      const host = req.get('host');
+      const webhookUrl = `${protocol}://${host}/api/telegram-webhook`;
+
+      const webhookResponse = await fetch(`https://api.telegram.org/bot${token}/setWebhook`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ url: webhookUrl })
+      });
+      const webhookData = await webhookResponse.json();
+      console.log("Real setWebhook result on verify:", webhookData);
+
+      // 3. Save state dynamically
+      dbObj.telegramConfig = {
+        token,
+        connected: true,
+        botUsername,
+        botName,
+        webhookUrl,
+        adminChatId: dbObj.telegramConfig?.adminChatId || "",
+        channelChatId: dbObj.telegramConfig?.channelChatId || ""
+      };
+      writeDB(dbObj);
+
+      res.json(dbObj.telegramConfig);
+    } catch (e: any) {
+      console.error("Failed to verify telegram bot:", e);
+      res.status(500).json({ error: e.message || "Endpoint error during verification" });
+    }
+  });
+
+  app.post("/api/telegram-webhook", async (req, res) => {
+    console.log("📥 RECEIVED REAL TELEGRAM WEBHOOK PAYLOAD:", JSON.stringify(req.body));
+    const token = dbObj?.telegramConfig?.token;
+    if (!token) {
+      return res.sendStatus(200); // end request without throwing
+    }
+
+    const { message } = req.body;
+    if (!message) {
+      return res.sendStatus(200);
+    }
+
+    const chatId = message.chat.id;
+
+    // Handle incoming photos to convert to drafts
+    if (message.photo && Array.isArray(message.photo) && message.photo.length > 0) {
+      try {
+        // Send typing indicator or friendly status
+        await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            chat_id: chatId,
+            text: "🔍 Отримано зображення! Запуск ШІ-індексатора за допомогою Gemini Комп'ютерного зору..."
+          })
+        });
+
+        // 1. Fetch file ID (use the high-res one which is the last item in array)
+        const fileId = message.photo[message.photo.length - 1].file_id;
+        const fileResponse = await fetch(`https://api.telegram.org/bot${token}/getFile?file_id=${fileId}`);
+        const fileData = await fileResponse.json();
+        
+        if (!fileData.ok || !fileData.result?.file_path) {
+          throw new Error("Failed to get file path from Telegram");
+        }
+
+        const filePath = fileData.result.file_path;
+        console.log(`Downloading Telegram photo path: ${filePath}`);
+
+        // 2. Download binary content
+        const downloadResponse = await fetch(`https://api.telegram.org/file/bot${token}/${filePath}`);
+        const arrayBuffer = await downloadResponse.arrayBuffer();
+        const buffer = Buffer.from(arrayBuffer);
+        const base64Data = buffer.toString("base64");
+        const mimeType = "image/jpeg";
+
+        // 3. Analyze content using Gemini AI compiler
+        const userCaption = message.caption || "";
+        const analysis = await analyzeImageWithGemini(base64Data, mimeType, userCaption);
+
+        // 4. Save to storage
+        const filename = `tg_bot_${Date.now()}.jpg`;
+        const storageUrl = await uploadToStorage(`data:${mimeType};base64,${base64Data}`, filename, mimeType);
+        const finalImgUrl = storageUrl || `data:${mimeType};base64,${base64Data}`;
+
+        // 5. Append draft
+        const draftId = "draft-" + Date.now();
+        const newDraft = {
+          id: draftId,
+          telegramChatId: chatId,
+          fileId: fileId,
+          name: analysis.name,
+          description: analysis.description,
+          price: Number(analysis.price) || 2800,
+          category: analysis.category || "outerwear",
+          sizes: analysis.sizes || ["S", "M", "L", "XL"],
+          tags: analysis.tags || ["telegram"],
+          imageUrl: finalImgUrl,
+          createdAt: new Date().toLocaleDateString("uk-UA") + " " + new Date().toLocaleTimeString("uk-UA")
+        };
+
+        dbObj.telegramDrafts = dbObj.telegramDrafts || [];
+        dbObj.telegramDrafts.unshift(newDraft);
+        writeDB(dbObj);
+
+        // Send confirmation back
+        const confirmText = `✙ ЧЕРНЕТКА ВИРОБУ СТВОРЕНА! ✙\n\n📌 Назва: ${newDraft.name}\n🏷 Опис: ${newDraft.description}\n💸 Ціна: ${newDraft.price} UAH\n\nЧернетку було успішно імпортовано у вашу Адмін-панель реального часу! Ви можете опублікувати її на сайт в один клік!`;
+        await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            chat_id: chatId,
+            text: confirmText
+          })
+        });
+
+      } catch (err: any) {
+        console.error("Failed to compile photo draft from webhook:", err);
+        await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            chat_id: chatId,
+            text: `❌ Помилка сервісу аналізу зображень: ${err.message || "ШІ-модуль тимчасово недоступний"}`
+          })
+        });
+      }
+    } else {
+      // Welcome message for normal messages
+      const helpText = `✙ Ласкаво просимо до SGB SECUM ШІ-індексатора! ✙\n\nНадішліть сюди якісне фото одягу (куртка, светр, кеди, маска), і наш комп'ютерний зір Gemini автоматично вилучить:\n- Стиль та характерний дизайн\n- Матеріал продукту\n- Опис у нашому фірмовому стилі нульових років\n- Рекомендовану ринкову ціну\n\nЧернетка з'явиться в адмінці моментально!`;
+      try {
+        await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            chat_id: chatId,
+            text: helpText
+          })
+        });
+      } catch (msgErr) {
+        console.error("Welcome send err:", msgErr);
+      }
+    }
+
+    res.sendStatus(200);
+  });
+
   app.get("/api/telegram-drafts", (req, res) => {
     res.json(dbObj.telegramDrafts || []);
   });
@@ -1444,6 +1659,7 @@ async function startServer() {
         visitorNum: dbObj.visitorCounter,
         firstSeen: nowStr,
         lastSeen: nowStr,
+        lastSeenTime: Date.now(),
         visitsCount: 1,
         actions: [],
         orders: []
@@ -1457,9 +1673,20 @@ async function startServer() {
 
   // Register sequential visitor IDs (1, 2, 3...)
   app.post("/api/visitors/register", (req, res) => {
+    const ip = getClientIp(req);
+    const existing = dbObj.visitors ? dbObj.visitors.find((v: any) => v.ip === ip) : null;
+    
     const visitor = getOrCreateVisitorProfile(req);
-    // Since this is a new actual session/registration event, count it as a visit
-    visitor.visitsCount += 1;
+    
+    // Cooldown duration (30 mins = 1800000 ms) to group consecutive requests under the same visit session
+    const cooldown = 30 * 60 * 1000;
+    const isNewSession = !existing || !existing.lastSeenTime || (Date.now() - existing.lastSeenTime > cooldown);
+    
+    if (isNewSession) {
+      visitor.visitsCount = (visitor.visitsCount || 0) + 1;
+    }
+    
+    visitor.lastSeenTime = Date.now();
     writeDB(dbObj);
     res.json({ visitorNum: visitor.visitorNum });
   });

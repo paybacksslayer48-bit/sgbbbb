@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Product, CartItem, Order, SavedLook, CustomerDetails } from './types';
+import { DEFAULT_PRODUCTS } from './defaultProducts';
 import Catalog from './components/Catalog';
 import FittingRoom from './components/FittingRoom';
 import CartAndCheckout from './components/CartAndCheckout';
@@ -64,7 +65,7 @@ export default function App() {
   }, []);
 
   // Unified State
-  const [products, setProducts] = useState<Product[]>([]);
+  const [products, setProducts] = useState<Product[]>(DEFAULT_PRODUCTS);
   const [cart, setCart] = useState<CartItem[]>([]);
   const [orders, setOrders] = useState<Order[]>([]);
   const [savedLooks, setSavedLooks] = useState<SavedLook[]>([]);
@@ -119,7 +120,18 @@ export default function App() {
       try {
         const pRes = await fetch('/api/products');
         const pData = await pRes.json();
-        setProducts(pData);
+        if (Array.isArray(pData) && pData.length > 0) {
+          // Keep the default static products always visible, and merge any server custom goods
+          const merged = [...pData];
+          for (const defProd of DEFAULT_PRODUCTS) {
+            if (!merged.some(p => p.id === defProd.id)) {
+              merged.push(defProd);
+            }
+          }
+          setProducts(merged);
+        } else {
+          setProducts(DEFAULT_PRODUCTS);
+        }
 
         const oRes = await fetch('/api/orders');
         const oData = await oRes.json();
@@ -128,6 +140,7 @@ export default function App() {
         setDbSynced(true);
       } catch (err) {
         console.warn("Backend loading offline, using local memory fallbacks", err);
+        setProducts(DEFAULT_PRODUCTS);
       }
     };
 

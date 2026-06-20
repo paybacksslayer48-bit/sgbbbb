@@ -302,6 +302,10 @@ export default function CrmDashboard({
   const [tgToken, setTgToken] = useState('');
   const [tgConnected, setTgConnected] = useState(false);
   const [tgBotUsername, setTgBotUsername] = useState('SecumSgbArchiveBot');
+  const [tgAdminChatId, setTgAdminChatId] = useState('');
+  const [tgBotName, setTgBotName] = useState('Secum SGB Bot');
+  const [tgChannelChatId, setTgChannelChatId] = useState('');
+  const [tgWebhookUrl, setTgWebhookUrl] = useState('');
 
   // New Telegram States
   const [telegramDrafts, setTelegramDrafts] = useState<TelegramDraft[]>([]);
@@ -423,6 +427,11 @@ export default function CrmDashboard({
         const configData = await configRes.json();
         setTgToken(configData.token || "");
         setTgConnected(configData.connected || false);
+        setTgBotUsername(configData.botUsername || "SecumSgbArchiveBot");
+        setTgAdminChatId(configData.adminChatId || "");
+        setTgBotName(configData.botName || "Secum SGB Bot");
+        setTgChannelChatId(configData.channelChatId || "");
+        setTgWebhookUrl(configData.webhookUrl || "");
       }
 
       const draftsRes = await fetch("/api/telegram-drafts");
@@ -436,7 +445,7 @@ export default function CrmDashboard({
   };
 
   useEffect(() => {
-    if (activeSubTab === 'drafts') {
+    if (activeSubTab === 'drafts' || activeSubTab === 'telegram') {
       loadTelegramData();
       const interval = setInterval(loadTelegramData, 3500);
       return () => clearInterval(interval);
@@ -457,21 +466,66 @@ export default function CrmDashboard({
     }
   }, [simMessages]);
 
+  const [isTestingTg, setIsTestingTg] = useState(false);
+  const handleTestAndRegisterBot = async () => {
+    if (!tgToken) {
+      triggerToast("❌ Спочатку введіть HTTP API токен ТГ-Бота");
+      return;
+    }
+    setIsTestingTg(true);
+    try {
+      const res = await fetch("/api/telegram-config/verify", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token: tgToken })
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setTgBotUsername(data.botUsername || "SecumSgbArchiveBot");
+        setTgBotName(data.botName || "Secum SGB Bot");
+        setTgWebhookUrl(data.webhookUrl || "");
+        setTgConnected(true);
+        triggerToast("✙ TELEGRAM БОТ УСПІШНО ПЕРЕВІРЕНО ТА ВЕРИФІКОВАНО В СИСТЕМІ!");
+      } else {
+        const err = await res.json();
+        triggerToast(`❌ Збій валідації: ${err.error || "Неправильний токен бота"}`);
+      }
+    } catch (e) {
+      console.error(e);
+      triggerToast("❌ Мережева помилка при верифікації бота.");
+    } finally {
+      setIsTestingTg(false);
+    }
+  };
+
   const handleSaveTgConfig = async (overrideConnected?: boolean) => {
     const targetConnected = overrideConnected !== undefined ? overrideConnected : tgConnected;
     try {
       const res = await fetch("/api/telegram-config", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ token: tgToken, connected: targetConnected })
+        body: JSON.stringify({ 
+          token: tgToken, 
+          connected: targetConnected,
+          botUsername: tgBotUsername,
+          botName: tgBotName,
+          adminChatId: tgAdminChatId,
+          channelChatId: tgChannelChatId,
+          webhookUrl: tgWebhookUrl
+        })
       });
       if (res.ok) {
         const data = await res.json();
-        setTgToken(data.token);
-        setTgConnected(data.connected);
+        setTgToken(data.token || "");
+        setTgConnected(data.connected || false);
+        setTgBotUsername(data.botUsername || "SecumSgbArchiveBot");
+        setTgAdminChatId(data.adminChatId || "");
+        setTgBotName(data.botName || "Secum SGB Bot");
+        setTgChannelChatId(data.channelChatId || "");
+        setTgWebhookUrl(data.webhookUrl || "");
         triggerToast(data.connected 
           ? "✙ ШЛЮЗ TELEGRAM БОТА АКТИВОВАНО" 
-          : "✙ ШЛЮЗ БОТА АВТОНОМНО ЗУПИНЕНО"
+          : "✙ КОНФІГУРАЦІЮ ЗБЕРЕЖЕНО // НАЛАШТУВАННЯ ОНОВЛЕНО"
         );
       }
     } catch (err) {
@@ -488,6 +542,11 @@ export default function CrmDashboard({
       if (res.ok) {
         setTgToken("");
         setTgConnected(false);
+        setTgBotUsername("SecumSgbArchiveBot");
+        setTgAdminChatId("");
+        setTgBotName("Secum SGB Bot");
+        setTgChannelChatId("");
+        setTgWebhookUrl("");
         setTelegramDrafts([]);
         triggerToast("✙ СИНХРОНІЗАЦІЮ БОТА ТА ЧЕРНЕТКИ СКИНУТО // СТАРТ З НУЛЯ");
       }
@@ -907,6 +966,14 @@ export default function CrmDashboard({
           }`}
         >
           👁 ТРЕКІНГ ТА ВІЗИТИ
+        </button>
+        <button
+          onClick={() => setActiveSubTab('telegram')}
+          className={`py-2 px-4 font-mono text-[11px] uppercase tracking-widest border-b-2 transition-all cursor-pointer ${
+            activeSubTab === 'telegram' ? 'border-indigo-500 text-indigo-400 font-bold' : 'border-transparent text-zinc-500 hover:text-white'
+          }`}
+        >
+          ✙ TELEGRAM ШЛЮЗ
         </button>
 
       </div>
@@ -2069,8 +2136,7 @@ export default function CrmDashboard({
         )}
 
         {/* SUBTAB: Telegram Integration parameters */}
-        {activeSubTab === 'telegram' && null}
-        {false && (
+        {activeSubTab === 'telegram' && (
           <div className="space-y-10 font-mono tracking-tight pb-16">
             
             {/* Main Header plaque */}
@@ -2086,8 +2152,8 @@ export default function CrmDashboard({
               </div>
               
               <div className="flex items-center gap-2 text-[9px] bg-zinc-950 border border-zinc-900 rounded-sm px-3 py-1 font-mono uppercase">
-                <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-ping" />
-                <span className="text-zinc-400 font-bold">ПОТОЧНИЙ СЕРВЕРНИЙ РЕЖИМ БОТА: СТЕНДБАЙ</span>
+                <span className={`w-1.5 h-1.5 rounded-full ${tgConnected ? 'bg-green-500 animate-ping' : 'bg-red-500'}`} />
+                <span className="text-zinc-400 font-bold">ПОТОЧНИЙ РЕЖИМ БОТА: {tgConnected ? 'АКТИВНИЙ ШЛЮЗ' : 'АРХІВ / СТЕНДБАЙ'}</span>
               </div>
             </div>
 
@@ -2104,45 +2170,74 @@ export default function CrmDashboard({
                   <div className="flex items-center justify-between border-b border-zinc-900 pb-2.5">
                     <span className="text-xs font-bold text-white uppercase tracking-wider flex items-center gap-1.5">
                       <Settings size={12} className="text-zinc-500" />
-                      1. Наш налаштований Telegram бот
+                      1. Налаштування Telegram-бота та каналу
                     </span>
                     <span className="text-[9px] text-zinc-500 uppercase">Void Server</span>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="text-[9px] text-zinc-400 block mb-1 uppercase font-bold">Ім'я ТГ-Бота:</label>
+                      <label className="text-[9px] text-zinc-400 block mb-1 uppercase font-bold">Тег бота (@username):</label>
                       <input 
                         type="text" 
                         value={tgBotUsername}
                         onChange={(e) => setTgBotUsername(e.target.value)}
-                        placeholder="e.g. SgbApparelBot"
+                        placeholder="e.g. SecumSgbArchiveBot"
                         className="w-full bg-zinc-950 border border-zinc-900 text-white font-mono text-xs px-2.5 py-1.5 focus:outline-none focus:border-zinc-500"
                       />
                     </div>
 
                     <div>
-                      <label className="text-[9px] text-zinc-400 block mb-1 uppercase font-bold">Статус з'єднання:</label>
-                      <button
-                        onClick={() => {
-                          const nextState = !tgConnected;
-                          setTgConnected(nextState);
-                          handleSaveTgConfig(nextState);
-                        }}
-                        className={`w-full py-1.5 text-[9.5px] font-mono font-bold tracking-widest uppercase transition-all duration-300 ${
-                          tgConnected 
-                            ? 'bg-neutral-100 hover:bg-neutral-300 text-black' 
-                            : 'bg-zinc-900 hover:bg-zinc-800 border-2 border-dashed border-zinc-800 text-zinc-400'
-                        }`}
-                      >
-                        {tgConnected ? '● ШЛЮЗ АКТИВНИЙ' : '✙ ЗАПУСТИТИ ПУЛІНГ GATEWAY'}
-                      </button>
+                      <label className="text-[9px] text-zinc-400 block mb-1 uppercase font-bold">Назва бота:</label>
+                      <input 
+                        type="text" 
+                        value={tgBotName}
+                        onChange={(e) => setTgBotName(e.target.value)}
+                        placeholder="e.g. Secum SGB Bot"
+                        className="w-full bg-zinc-950 border border-zinc-900 text-white font-mono text-xs px-2.5 py-1.5 focus:outline-none focus:border-zinc-500"
+                      />
                     </div>
                   </div>
 
-                  <div className="space-y-2 pt-1">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="text-[9px] text-zinc-400 block mb-1 uppercase font-bold">Чат ID Адміна для замовлень:</label>
+                      <input 
+                        type="text" 
+                        value={tgAdminChatId}
+                        onChange={(e) => setTgAdminChatId(e.target.value)}
+                        placeholder="e.g. 583193215"
+                        className="w-full bg-zinc-950 border border-zinc-900 text-white font-mono text-xs px-2.5 py-1.5 focus:outline-none focus:border-zinc-500"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="text-[9px] text-zinc-400 block mb-1 uppercase font-bold">Канал автопублікації (@channel чи ID):</label>
+                      <input 
+                        type="text" 
+                        value={tgChannelChatId}
+                        onChange={(e) => setTgChannelChatId(e.target.value)}
+                        placeholder="e.g. @sgb_highlights"
+                        className="w-full bg-zinc-950 border border-zinc-900 text-white font-mono text-xs px-2.5 py-1.5 focus:outline-none focus:border-zinc-500"
+                      />
+                    </div>
+                  </div>
+
+                  {tgWebhookUrl && (
+                    <div className="bg-zinc-950 border border-zinc-900 rounded-sm p-3 space-y-1 text-[9.5px]">
+                      <div className="flex justify-between font-bold text-zinc-300">
+                        <span>РЕЄСТРАЦІЯ WEBHOOK (У ХМАРІ):</span>
+                        <span className="text-green-400">ПІДКЛЮЧЕНО ✓</span>
+                      </div>
+                      <p className="text-zinc-550 break-all font-mono select-all">
+                        {tgWebhookUrl}
+                      </p>
+                    </div>
+                  )}
+
+                  <div className="space-y-3 pt-1">
                     <div className="flex justify-between items-center">
-                      <span className="text-[9px] text-zinc-400 uppercase font-extrabold">Токен ТГ-Бота (Token від @BotFather):</span>
+                      <span className="text-[9px] text-zinc-400 uppercase font-extrabold">Токен ТГ-Бота (від @BotFather):</span>
                       <span className="text-[8px] text-zinc-650 tracking-wide font-medium">Клієнт-серверна валідація</span>
                     </div>
 
@@ -2155,14 +2250,39 @@ export default function CrmDashboard({
                         className="flex-1 bg-zinc-950 border border-zinc-900 text-zinc-100 p-2 text-xs focus:outline-none font-mono tracking-widest"
                       />
                       <button
-                        onClick={() => handleSaveTgConfig()}
+                        onClick={handleTestAndRegisterBot}
+                        disabled={isTestingTg}
                         className="bg-white hover:bg-neutral-200 text-black font-extrabold px-3.5 text-[9.5px] uppercase font-mono transition-colors tracking-widest cursor-pointer whitespace-nowrap"
                       >
-                        Зберегти токен
+                        {isTestingTg ? "ПЕРЕВІРКА..." : "✙ ВЕРИФІКУВАТИ БОТА"}
                       </button>
                     </div>
+
+                    <div className="flex gap-2.5 pt-1">
+                      <button
+                        onClick={() => {
+                          const nextState = !tgConnected;
+                          setTgConnected(nextState);
+                          handleSaveTgConfig(nextState);
+                        }}
+                        className={`flex-1 py-1.5 text-[9.5px] font-mono font-bold tracking-widest uppercase transition-all duration-300 ${
+                          tgConnected 
+                            ? 'bg-neutral-100 hover:bg-neutral-300 text-black' 
+                            : 'bg-green-950 text-green-100 hover:bg-neutral-200 hover:text-black border border-green-800 font-extrabold'
+                        }`}
+                      >
+                        {tgConnected ? '● ШЛЮЗ БОТА ПОЗИТИВНО ЗАПУЩЕНО' : '✙ АКТИВУВАТИ ШЛЮЗ БОТА'}
+                      </button>
+                      <button
+                        onClick={() => handleSaveTgConfig()}
+                        className="bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 hover:border-zinc-500 text-zinc-300 px-3 py-1.5 text-[9.5px] uppercase font-mono transition-all tracking-wider font-bold"
+                      >
+                        Зберегти зміни
+                      </button>
+                    </div>
+
                     <p className="text-[8.5px] text-zinc-500 uppercase leading-normal tracking-wide">
-                      * Бот самостійно буде зчитувати фотографії одягу, відправляти їх на Gemini ШІ та створювати чернетки в кабінеті реального часу.
+                      * Бот автоматично буде приймати фотографії виробів, виконувати ШІ-індексацію матеріалів, фасону, кольорів і створювати заготовки-чернетки для миттєвої публікації.
                     </p>
                     
                     <div className="pt-3 border-t border-zinc-950 flex justify-end">
