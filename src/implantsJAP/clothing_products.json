@@ -1,12 +1,8 @@
-import { Product } from "./types";
-
-export const DEFAULT_PRODUCTS: Product[] = [
+[
   {
-    "id": "prod-1",
     "name": "Тигр з гібіскусом",
     "description": "Топ-майка з тигром та гібіскусами",
     "price": 550,
-    "image": "/implants/photo_18_2026-06-22_02-37-00.png",
     "category": "top",
     "sizes": [
       "S",
@@ -18,17 +14,12 @@ export const DEFAULT_PRODUCTS: Product[] = [
       "japanese",
       "y2k"
     ],
-    "stock": 10,
-    "riddickRating": "COLLECTION 2026",
-    "mannequinYOffset": 15,
-    "mannequinScale": 1.05
+    "image_filename": "photo_18_2026-06-22_02-37-00.png"
   },
   {
-    "id": "prod-2",
     "name": "Gothic Satte Longsleeve",
     "description": "Лонгслів з дівчиною та готичним принтом",
     "price": 750,
-    "image": "/implants/photo_19_2026-06-22_02-37-00.png",
     "category": "top",
     "sizes": [
       "S",
@@ -41,17 +32,12 @@ export const DEFAULT_PRODUCTS: Product[] = [
       "alt",
       "grunge"
     ],
-    "stock": 11,
-    "riddickRating": "COLLECTION 2026",
-    "mannequinYOffset": 15,
-    "mannequinScale": 1.05
+    "image_filename": "photo_19_2026-06-22_02-37-00.png"
   },
   {
-    "id": "prod-3",
     "name": "Gothic Satte Longsleeve",
     "description": "Лонгслів з дівчиною та готичним принтом",
     "price": 750,
-    "image": "/implants/photo_20_2026-06-22_02-37-00.png",
     "category": "top",
     "sizes": [
       "S",
@@ -64,17 +50,12 @@ export const DEFAULT_PRODUCTS: Product[] = [
       "alt",
       "grunge"
     ],
-    "stock": 12,
-    "riddickRating": "COLLECTION 2026",
-    "mannequinYOffset": 15,
-    "mannequinScale": 1.05
+    "image_filename": "photo_20_2026-06-22_02-37-00.png"
   },
   {
-    "id": "prod-4",
     "name": "Дівчина з тигром",
     "description": "Лонгслів з японським пейзажем та дівчиною з тигром",
     "price": 780,
-    "image": "/implants/photo_21_2026-06-22_02-37-00.png",
     "category": "top",
     "sizes": [
       "S",
@@ -86,17 +67,12 @@ export const DEFAULT_PRODUCTS: Product[] = [
       "gothic",
       "y2k"
     ],
-    "stock": 13,
-    "riddickRating": "COLLECTION 2026",
-    "mannequinYOffset": 15,
-    "mannequinScale": 1.05
+    "image_filename": "photo_21_2026-06-22_02-37-00.png"
   },
   {
-    "id": "prod-5",
     "name": "Cigarettes After What",
     "description": "Лонгслів з аніме-принтом та текстом",
     "price": 720,
-    "image": "/implants/photo_22_2026-06-22_02-37-00.png",
     "category": "top",
     "sizes": [
       "S",
@@ -109,17 +85,12 @@ export const DEFAULT_PRODUCTS: Product[] = [
       "alt",
       "anime"
     ],
-    "stock": 14,
-    "riddickRating": "COLLECTION 2026",
-    "mannequinYOffset": 15,
-    "mannequinScale": 1.05
+    "image_filename": "photo_22_2026-06-22_02-37-00.png"
   },
   {
-    "id": "prod-6",
     "name": "Death Grim Longsleeve",
     "description": "Лонгслів з дівчиною та готичним текстом",
     "price": 750,
-    "image": "/implants/photo_23_2026-06-22_02-37-00.png",
     "category": "top",
     "sizes": [
       "S",
@@ -131,17 +102,12 @@ export const DEFAULT_PRODUCTS: Product[] = [
       "grunge",
       "alt"
     ],
-    "stock": 15,
-    "riddickRating": "COLLECTION 2026",
-    "mannequinYOffset": 15,
-    "mannequinScale": 1.05
+    "image_filename": "photo_23_2026-06-22_02-37-00.png"
   },
   {
-    "id": "prod-7",
     "name": "Ketamin Longsleeve",
     "description": "Лонгслів з чорно-білим принтом та текстом Ketamin",
     "price": 770,
-    "image": "/implants/photo_24_2026-06-22_02-37-00.png",
     "category": "top",
     "sizes": [
       "S",
@@ -154,17 +120,12 @@ export const DEFAULT_PRODUCTS: Product[] = [
       "dark",
       "alt"
     ],
-    "stock": 16,
-    "riddickRating": "COLLECTION 2026",
-    "mannequinYOffset": 15,
-    "mannequinScale": 1.05
+    "image_filename": "photo_24_2026-06-22_02-37-00.png"
   },
   {
-    "id": "prod-8",
     "name": "Crimson Girls Longsleeve",
     "description": "Лонгслів з дівчиною та червоним принтом",
     "price": 740,
-    "image": "/implants/photo_25_2026-06-22_02-37-00.png",
     "category": "top",
     "sizes": [
       "S",
@@ -176,17 +137,12 @@ export const DEFAULT_PRODUCTS: Product[] = [
       "y2k",
       "alt"
     ],
-    "stock": 17,
-    "riddickRating": "COLLECTION 2026",
-    "mannequinYOffset": 15,
-    "mannequinScale": 1.05
+    "image_filename": "photo_25_2026-06-22_02-37-00.png"
   },
   {
-    "id": "prod-9",
     "name": "Anime Cross Longsleeve",
     "description": "Лонгслів з аніме-дівчатами та хрестом",
     "price": 760,
-    "image": "/implants/photo_26_2026-06-22_02-37-00.png",
     "category": "top",
     "sizes": [
       "S",
@@ -198,17 +154,12 @@ export const DEFAULT_PRODUCTS: Product[] = [
       "gothic",
       "alt"
     ],
-    "stock": 18,
-    "riddickRating": "COLLECTION 2026",
-    "mannequinYOffset": 15,
-    "mannequinScale": 1.05
+    "image_filename": "photo_26_2026-06-22_02-37-00.png"
   },
   {
-    "id": "prod-10",
     "name": "Skeleton Doll Longsleeve",
     "description": "Лонгслів з лялькою та скелетом",
     "price": 730,
-    "image": "/implants/photo_27_2026-06-22_02-37-00.png",
     "category": "top",
     "sizes": [
       "S",
@@ -220,17 +171,12 @@ export const DEFAULT_PRODUCTS: Product[] = [
       "alt",
       "grunge"
     ],
-    "stock": 19,
-    "riddickRating": "COLLECTION 2026",
-    "mannequinYOffset": 15,
-    "mannequinScale": 1.05
+    "image_filename": "photo_27_2026-06-22_02-37-00.png"
   },
   {
-    "id": "prod-11",
     "name": "Jean Paul Gaultier Print",
     "description": "Лонгслів з колажем та принтом Jean Paul Gaultier",
     "price": 780,
-    "image": "/implants/photo_28_2026-06-22_02-37-00.png",
     "category": "top",
     "sizes": [
       "S",
@@ -242,17 +188,12 @@ export const DEFAULT_PRODUCTS: Product[] = [
       "designer",
       "alt"
     ],
-    "stock": 10,
-    "riddickRating": "COLLECTION 2026",
-    "mannequinYOffset": 15,
-    "mannequinScale": 1.05
+    "image_filename": "photo_28_2026-06-22_02-37-00.png"
   },
   {
-    "id": "prod-12",
     "name": "Ri Dignity Longsleeve",
     "description": "Лонгслів з портретом та текстом Ri Dignity",
     "price": 750,
-    "image": "/implants/photo_29_2026-06-22_02-37-00.png",
     "category": "top",
     "sizes": [
       "S",
@@ -265,17 +206,12 @@ export const DEFAULT_PRODUCTS: Product[] = [
       "y2k",
       "alt"
     ],
-    "stock": 11,
-    "riddickRating": "COLLECTION 2026",
-    "mannequinYOffset": 15,
-    "mannequinScale": 1.05
+    "image_filename": "photo_29_2026-06-22_02-37-00.png"
   },
   {
-    "id": "prod-13",
     "name": "Trollface Anime Tee",
     "description": "Біла футболка з Trollface та аніме-дівчиною",
     "price": 580,
-    "image": "/implants/photo_30_2026-06-22_02-37-00.png",
     "category": "top",
     "sizes": [
       "S",
@@ -287,17 +223,12 @@ export const DEFAULT_PRODUCTS: Product[] = [
       "anime",
       "alt"
     ],
-    "stock": 12,
-    "riddickRating": "COLLECTION 2026",
-    "mannequinYOffset": 15,
-    "mannequinScale": 1.05
+    "image_filename": "photo_30_2026-06-22_02-37-00.png"
   },
   {
-    "id": "prod-14",
     "name": "Thorns Anime Longsleeve",
     "description": "Лонгслів з аніме-дівчиною та тернами",
     "price": 760,
-    "image": "/implants/photo_31_2026-06-22_02-37-00.png",
     "category": "top",
     "sizes": [
       "S",
@@ -309,34 +240,24 @@ export const DEFAULT_PRODUCTS: Product[] = [
       "gothic",
       "alt"
     ],
-    "stock": 13,
-    "riddickRating": "COLLECTION 2026",
-    "mannequinYOffset": 15,
-    "mannequinScale": 1.05
+    "image_filename": "photo_31_2026-06-22_02-37-00.png"
   },
   {
-    "id": "prod-15",
     "name": "Mercedes AMG Steering Wheel",
     "description": "Карбоновий руль Mercedes AMG",
     "price": 4600,
-    "image": "/implants/wheel17 $250.png",
     "category": "accessories",
     "sizes": [],
     "tags": [
       "car",
       "luxury"
     ],
-    "stock": 14,
-    "riddickRating": "COLLECTION 2026",
-    "mannequinYOffset": 0,
-    "mannequinScale": 0.7
+    "image_filename": "wheel17 $250.png"
   },
   {
-    "id": "prod-16",
     "name": "Phoenix Denim Shorts",
     "description": "Джинсові шорти з червоним феніксом та квітами",
     "price": 950,
-    "image": "/implants/photo_1_2026-06-22_02-37-00.png",
     "category": "bottom",
     "sizes": [
       "S",
@@ -348,17 +269,12 @@ export const DEFAULT_PRODUCTS: Product[] = [
       "street",
       "alt"
     ],
-    "stock": 15,
-    "riddickRating": "COLLECTION 2026",
-    "mannequinYOffset": -20,
-    "mannequinScale": 0.95
+    "image_filename": "photo_1_2026-06-22_02-37-00.png"
   },
   {
-    "id": "prod-17",
     "name": "Tiger Denim Shorts",
     "description": "Джинсові шорти з тигром та квітковим принтом",
     "price": 920,
-    "image": "/implants/photo_2_2026-06-22_02-37-00.png",
     "category": "bottom",
     "sizes": [
       "S",
@@ -370,17 +286,12 @@ export const DEFAULT_PRODUCTS: Product[] = [
       "street",
       "alt"
     ],
-    "stock": 16,
-    "riddickRating": "COLLECTION 2026",
-    "mannequinYOffset": -20,
-    "mannequinScale": 0.95
+    "image_filename": "photo_2_2026-06-22_02-37-00.png"
   },
   {
-    "id": "prod-18",
     "name": "Samurai Wave Shorts",
     "description": "Джинсові шорти з самураєм та хвилями",
     "price": 990,
-    "image": "/implants/photo_3_2026-06-22_02-37-00.png",
     "category": "bottom",
     "sizes": [
       "M",
@@ -391,17 +302,12 @@ export const DEFAULT_PRODUCTS: Product[] = [
       "gothic",
       "street"
     ],
-    "stock": 17,
-    "riddickRating": "COLLECTION 2026",
-    "mannequinYOffset": -20,
-    "mannequinScale": 0.95
+    "image_filename": "photo_3_2026-06-22_02-37-00.png"
   },
   {
-    "id": "prod-19",
     "name": "Samurai Wave Shorts",
     "description": "Джинсові шорти з самураєм та хвилями",
     "price": 990,
-    "image": "/implants/photo_4_2026-06-22_02-37-00.png",
     "category": "bottom",
     "sizes": [
       "M",
@@ -412,17 +318,12 @@ export const DEFAULT_PRODUCTS: Product[] = [
       "gothic",
       "street"
     ],
-    "stock": 18,
-    "riddickRating": "COLLECTION 2026",
-    "mannequinYOffset": -20,
-    "mannequinScale": 0.95
+    "image_filename": "photo_4_2026-06-22_02-37-00.png"
   },
   {
-    "id": "prod-20",
     "name": "Tiger Denim Shorts",
     "description": "Джинсові шорти з жовтим тигром",
     "price": 970,
-    "image": "/implants/photo_5_2026-06-22_02-37-00.png",
     "category": "bottom",
     "sizes": [
       "S",
@@ -434,17 +335,12 @@ export const DEFAULT_PRODUCTS: Product[] = [
       "japanese",
       "alt"
     ],
-    "stock": 19,
-    "riddickRating": "COLLECTION 2026",
-    "mannequinYOffset": -20,
-    "mannequinScale": 0.95
+    "image_filename": "photo_5_2026-06-22_02-37-00.png"
   },
   {
-    "id": "prod-21",
     "name": "Koi Fish Tank Top",
     "description": "Топ-майка з червоними кой-рибами",
     "price": 520,
-    "image": "/implants/photo_6_2026-06-22_02-37-00.png",
     "category": "top",
     "sizes": [
       "S",
@@ -455,17 +351,12 @@ export const DEFAULT_PRODUCTS: Product[] = [
       "japanese",
       "y2k"
     ],
-    "stock": 10,
-    "riddickRating": "COLLECTION 2026",
-    "mannequinYOffset": 15,
-    "mannequinScale": 1.05
+    "image_filename": "photo_6_2026-06-22_02-37-00.png"
   },
   {
-    "id": "prod-22",
     "name": "River Fish Tank Top",
     "description": "Топ-майка з різними річковими рибами",
     "price": 510,
-    "image": "/implants/photo_7_2026-06-22_02-37-00.png",
     "category": "top",
     "sizes": [
       "S",
@@ -476,17 +367,12 @@ export const DEFAULT_PRODUCTS: Product[] = [
       "y2k",
       "alt"
     ],
-    "stock": 11,
-    "riddickRating": "COLLECTION 2026",
-    "mannequinYOffset": 15,
-    "mannequinScale": 1.05
+    "image_filename": "photo_7_2026-06-22_02-37-00.png"
   },
   {
-    "id": "prod-23",
     "name": "Geisha Moon Tank",
     "description": "Топ-майка з гейшами в колі",
     "price": 530,
-    "image": "/implants/photo_8_2026-06-22_02-37-00.png",
     "category": "top",
     "sizes": [
       "S",
@@ -497,17 +383,12 @@ export const DEFAULT_PRODUCTS: Product[] = [
       "japanese",
       "y2k"
     ],
-    "stock": 12,
-    "riddickRating": "COLLECTION 2026",
-    "mannequinYOffset": 15,
-    "mannequinScale": 1.05
+    "image_filename": "photo_8_2026-06-22_02-37-00.png"
   },
   {
-    "id": "prod-24",
     "name": "Dragon Cami",
     "description": "Топ на бретелях з червоним драконом",
     "price": 580,
-    "image": "/implants/photo_9_2026-06-22_02-37-00.png",
     "category": "top",
     "sizes": [
       "S",
@@ -517,17 +398,12 @@ export const DEFAULT_PRODUCTS: Product[] = [
       "gothic",
       "japanese"
     ],
-    "stock": 13,
-    "riddickRating": "COLLECTION 2026",
-    "mannequinYOffset": 15,
-    "mannequinScale": 1.05
+    "image_filename": "photo_9_2026-06-22_02-37-00.png"
   },
   {
-    "id": "prod-25",
     "name": "Paisley Corset Top",
     "description": "Корсетний топ з пейслі принтом",
     "price": 650,
-    "image": "/implants/photo_10_2026-06-22_02-37-00.png",
     "category": "top",
     "sizes": [
       "S",
@@ -537,17 +413,12 @@ export const DEFAULT_PRODUCTS: Product[] = [
       "y2k",
       "alt"
     ],
-    "stock": 14,
-    "riddickRating": "COLLECTION 2026",
-    "mannequinYOffset": 15,
-    "mannequinScale": 1.05
+    "image_filename": "photo_10_2026-06-22_02-37-00.png"
   },
   {
-    "id": "prod-26",
     "name": "Japanese Geisha Cami",
     "description": "Топ на бретелях з японським принтом",
     "price": 560,
-    "image": "/implants/photo_11_2026-06-22_02-37-00.png",
     "category": "top",
     "sizes": [
       "S",
@@ -558,17 +429,12 @@ export const DEFAULT_PRODUCTS: Product[] = [
       "japanese",
       "y2k"
     ],
-    "stock": 15,
-    "riddickRating": "COLLECTION 2026",
-    "mannequinYOffset": 15,
-    "mannequinScale": 1.05
+    "image_filename": "photo_11_2026-06-22_02-37-00.png"
   },
   {
-    "id": "prod-27",
     "name": "Geisha Vest Top",
     "description": "Топ-жилет з гейшею та квітами",
     "price": 590,
-    "image": "/implants/photo_12_2026-06-22_02-37-00.png",
     "category": "top",
     "sizes": [
       "S",
@@ -578,17 +444,12 @@ export const DEFAULT_PRODUCTS: Product[] = [
       "japanese",
       "alt"
     ],
-    "stock": 16,
-    "riddickRating": "COLLECTION 2026",
-    "mannequinYOffset": 15,
-    "mannequinScale": 1.05
+    "image_filename": "photo_12_2026-06-22_02-37-00.png"
   },
   {
-    "id": "prod-28",
     "name": "Hustler Family Tank",
     "description": "Топ-майка з Hustler Family принтом",
     "price": 540,
-    "image": "/implants/photo_13_2026-06-22_02-37-00.png",
     "category": "top",
     "sizes": [
       "S",
@@ -599,17 +460,12 @@ export const DEFAULT_PRODUCTS: Product[] = [
       "grunge",
       "alt"
     ],
-    "stock": 17,
-    "riddickRating": "COLLECTION 2026",
-    "mannequinYOffset": 15,
-    "mannequinScale": 1.05
+    "image_filename": "photo_13_2026-06-22_02-37-00.png"
   },
   {
-    "id": "prod-29",
     "name": "Cowboy Girl Tank",
     "description": "Топ на бретелях з ковбой-дівчиною",
     "price": 570,
-    "image": "/implants/photo_14_2026-06-22_02-37-00.png",
     "category": "top",
     "sizes": [
       "S",
@@ -619,17 +475,12 @@ export const DEFAULT_PRODUCTS: Product[] = [
       "y2k",
       "alt"
     ],
-    "stock": 18,
-    "riddickRating": "COLLECTION 2026",
-    "mannequinYOffset": 15,
-    "mannequinScale": 1.05
+    "image_filename": "photo_14_2026-06-22_02-37-00.png"
   },
   {
-    "id": "prod-30",
     "name": "Fairy Heart Tank",
     "description": "Топ з феєю та серцем",
     "price": 550,
-    "image": "/implants/photo_15_2026-06-22_02-37-00.png",
     "category": "top",
     "sizes": [
       "S",
@@ -640,17 +491,12 @@ export const DEFAULT_PRODUCTS: Product[] = [
       "y2k",
       "romantic"
     ],
-    "stock": 19,
-    "riddickRating": "COLLECTION 2026",
-    "mannequinYOffset": 15,
-    "mannequinScale": 1.05
+    "image_filename": "photo_15_2026-06-22_02-37-00.png"
   },
   {
-    "id": "prod-31",
     "name": "Safe Sex Tank",
     "description": "Топ з готичним принтом Safe Sex Forever",
     "price": 560,
-    "image": "/implants/photo_16_2026-06-22_02-37-00.png",
     "category": "top",
     "sizes": [
       "S",
@@ -661,17 +507,12 @@ export const DEFAULT_PRODUCTS: Product[] = [
       "gothic",
       "alt"
     ],
-    "stock": 10,
-    "riddickRating": "COLLECTION 2026",
-    "mannequinYOffset": 15,
-    "mannequinScale": 1.05
+    "image_filename": "photo_16_2026-06-22_02-37-00.png"
   },
   {
-    "id": "prod-32",
     "name": "Ed Hardy Floral Tank",
     "description": "Топ-майка Ed Hardy з квітковим принтом",
     "price": 620,
-    "image": "/implants/photo_17_2026-06-22_02-37-00.png",
     "category": "top",
     "sizes": [
       "S",
@@ -683,39 +524,6 @@ export const DEFAULT_PRODUCTS: Product[] = [
       "edhardy",
       "alt"
     ],
-    "stock": 11,
-    "riddickRating": "COLLECTION 2026",
-    "mannequinYOffset": 15,
-    "mannequinScale": 1.05
-  },
-  {
-    "id": "prod-33",
-    "name": "Street Goth Bikini Set",
-    "description": "Стильний роздільний купальник чорного кольору з готичними карабінами та зав'язками",
-    "price": 1250,
-    "image": "/implants/photo_15_2026-06-22_02-37-00.png",
-    "category": "swimwear",
-    "color": "black",
-    "sizes": ["S", "M", "L"],
-    "tags": ["gothic", "swimwear", "beach"],
-    "stock": 5,
-    "riddickRating": "COLLECTION 2026",
-    "mannequinYOffset": 15,
-    "mannequinScale": 1.05
-  },
-  {
-    "id": "prod-34",
-    "name": "Secum Beach Monokini",
-    "description": "Білий суцільний купальник з вирізами та фірмовим принтом Secum Archive",
-    "price": 1400,
-    "image": "/implants/photo_14_2026-06-22_02-37-00.png",
-    "category": "swimwear",
-    "color": "white",
-    "sizes": ["S", "M", "L"],
-    "tags": ["alt", "swimwear", "beach"],
-    "stock": 8,
-    "riddickRating": "COLLECTION 2026",
-    "mannequinYOffset": 15,
-    "mannequinScale": 1.05
+    "image_filename": "photo_17_2026-06-22_02-37-00.png"
   }
-];
+]

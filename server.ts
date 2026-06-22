@@ -133,21 +133,19 @@ async function syncFromFirestore(db: Database): Promise<Database> {
   try {
     console.log("Syncing database tables from Google Cloud Firestore...");
 
-    // 1. Sync Products
+    // 1. Sync Products (Overwriting with current DEFAULT_PRODUCTS to ensure static fresh values)
+    console.log("Cleaning and seeding Firestore products collection with active DEFAULT_PRODUCTS...");
     const productsSnapshot = await firestoreDb.collection("products").get();
-    if (!productsSnapshot.empty) {
-      const dbProducts: any[] = [];
-      productsSnapshot.forEach((doc: any) => {
-        dbProducts.push(doc.data());
-      });
-      db.products = dbProducts;
-      console.log(`Loaded ${dbProducts.length} products from Firestore.`);
-    } else {
-      console.log("Firestore products collection is empty. Seeding defaults...");
-      for (const p of db.products) {
-        await firestoreDb.collection("products").doc(p.id).set(p);
-      }
+    for (const doc of productsSnapshot.docs) {
+      await doc.ref.delete();
     }
+    
+    // Use DEFAULT_PRODUCTS as the single static source of truth to prevent cache corruption
+    db.products = [...DEFAULT_PRODUCTS];
+    for (const p of db.products) {
+      await firestoreDb.collection("products").doc(p.id).set(p);
+    }
+    console.log(`Successfully synced ${db.products.length} products to Firestore.`);
 
     // 2. Sync Orders
     const ordersSnapshot = await firestoreDb.collection("orders").get();
@@ -704,7 +702,10 @@ async function startServer() {
 
   app.get("/implants/:filename", (req, res) => {
     const filename = req.params.filename;
-    let filePath = path.join(process.cwd(), "public", "implants", filename);
+    let filePath = path.join(process.cwd(), "src", "implantsJAP", filename);
+    if (!fs.existsSync(filePath)) {
+      filePath = path.join(process.cwd(), "public", "implants", filename);
+    }
     if (!fs.existsSync(filePath)) {
       filePath = path.join(process.cwd(), "implants", filename);
     }

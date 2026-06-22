@@ -289,7 +289,8 @@ export default function CrmDashboard({
   const [newProdName, setNewProdName] = useState('');
   const [newProdPrice, setNewProdPrice] = useState('');
   const [newProdDesc, setNewProdDesc] = useState('');
-  const [newProdCat, setNewProdCat] = useState<'outerwear' | 'top' | 'bottom' | 'shoes' | 'accessories'>('top');
+  const [newProdCat, setNewProdCat] = useState<'outerwear' | 'top' | 'bottom' | 'skirts' | 'shoes' | 'accessories' | 'swimwear'>('top');
+  const [newProdColor, setNewProdColor] = useState('white');
   const [newProdSizes, setNewProdSizes] = useState('S, M, L, XL');
   const [newProdTags, setNewProdTags] = useState('alt, grunge');
   const [newProdStock, setNewProdStock] = useState('10');
@@ -826,6 +827,7 @@ export default function CrmDashboard({
       description: newProdDesc,
       price: Number(newProdPrice),
       category: newProdCat,
+      color: newProdColor,
       sizes: newProdSizes.split(',').map(s => s.trim()),
       tags: newProdTags.split(',').map(t => t.trim()),
       stock: Number(newProdStock) || 10,
@@ -837,6 +839,7 @@ export default function CrmDashboard({
     setNewProdName('');
     setNewProdPrice('');
     setNewProdDesc('');
+    setNewProdColor('white');
     setNewProdSizes('S, M, L, XL');
     setNewProdTags('alt, grunge');
     setNewProdStock('10');
@@ -1280,6 +1283,8 @@ export default function CrmDashboard({
                       <option value="outerwear">Верхній одяг</option>
                       <option value="top">Топ / Лонг</option>
                       <option value="bottom">Карго штани</option>
+                      <option value="skirts">Спідниці</option>
+                      <option value="swimwear">Купальники / Пляж</option>
                       <option value="shoes">Взуття</option>
                       <option value="accessories">Аксесуари</option>
                     </select>
@@ -1335,6 +1340,28 @@ export default function CrmDashboard({
                       onChange={e => setNewProdRating(e.target.value)}
                       className="w-full bg-[#050505] border border-[#333333] text-white p-2 focus:border-white focus:outline-none"
                     />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-2">
+                  <div className="space-y-1">
+                    <label className="text-zinc-500 block">КОЛІР ТОВАРУ:</label>
+                    <select
+                      value={newProdColor}
+                      onChange={e => setNewProdColor(e.target.value)}
+                      className="w-full bg-[#050505] border border-[#333333] text-white p-2 focus:border-white focus:outline-none capitalize"
+                    >
+                      <option value="white">Білий (White)</option>
+                      <option value="blue">Синій (Blue)</option>
+                      <option value="black">Чорний (Black)</option>
+                      <option value="grey">Сірий (Grey)</option>
+                      <option value="red">Червоний (Red)</option>
+                      <option value="green">Зелений (Green)</option>
+                      <option value="beige">Бежевий (Beige)</option>
+                    </select>
+                  </div>
+                  <div className="space-y-1 flex items-end">
+                    <span className="text-[9px] text-zinc-500 italic leading-tight pb-1">Використовується покупцями для кольорового сортування.</span>
                   </div>
                 </div>
 
@@ -1606,7 +1633,8 @@ export default function CrmDashboard({
     "name": "Коротка назва товару",
     "description": "Конкретний, лаконічний опис (наприклад: буткат джинси темно сині з узором)",
     "price": 2400,
-    "category": "outerwear" або "top" або "bottom" або "shoes" або "accessories",
+    "category": "outerwear" або "top" або "bottom" або "skirts" або "swimwear" або "shoes" або "accessories",
+    "color": "white" або "blue" або "black" або "grey" або "red" або "green" або "beige" (обов'язково вкажи один із цих кольорів відповідно до кольору виробу),
     "sizes": ["S", "M", "L", "XL"],
     "tags": ["gothic", "alt", "grunge"],
     "image_filename": "Впиши точне оригінальне ім'я завантаженого файлу з розширенням (наприклад: photo1.jpg)"
@@ -1630,7 +1658,7 @@ export default function CrmDashboard({
 
 Поверни ПРАВИЛЬНИЙ JSON МАСИВ БЕЗ зайвого тексту за такою схемою:
 [`}
-                  <span className="text-zinc-500">{`\n  {\n    "name": "Butcut Jeans with Pattern",\n    "description": "буткат джинси темно сині з узором",\n    "price": 2400,\n    "category": "bottom",\n    "sizes": ["S", "M", "L"],\n    "tags": ["gothic", "alt"],\n    "image_filename": "photo_jean.jpg"\n  }\n`}</span>
+                  <span className="text-zinc-500">{`\n  {\n    "name": "Butcut Jeans with Pattern",\n    "description": "буткат джинси темно сині з узором",\n    "price": 2400,\n    "category": "bottom",\n    "color": "blue",\n    "sizes": ["S", "M", "L"],\n    "tags": ["gothic", "alt"],\n    "image_filename": "photo_jean.jpg"\n  }\n`}</span>
                   {`]`}
                 </div>
               </div>
@@ -2060,7 +2088,7 @@ export default function CrmDashboard({
             {/* List of drafts */}
             {telegramDrafts.length === 0 ? (
               <div className="py-16 text-center border-2 border-dashed border-zinc-900 bg-[#020202] space-y-4 max-w-3xl mx-auto rounded-sm">
-                <span className="text-[24px] block text-[#8a0303]">✙</span>
+                <span className="text-[24px] block text-[#ff3c3c]">●</span>
                 <p className="text-[11px] text-zinc-400 uppercase tracking-widest max-w-md mx-auto leading-relaxed font-bold">
                   Чернеток не виявлено в системі.<br />
                   <span className="text-zinc-650 block text-[9.5px] mt-1">Додайте нові фотографії (напр. .jpg, .png) у каталог <strong className="text-zinc-500 font-bold">public/goods/</strong> і завершіть сканування через червону кнопку вгорі.</span>
@@ -2697,6 +2725,7 @@ export default function CrmDashboard({
                         <option value="outerwear">Outerwear (🧥 Одяг)</option>
                         <option value="top">Top (👕 Верх)</option>
                         <option value="bottom">Bottom (👖 Низ)</option>
+                        <option value="skirts">Skirts (👗 Спідниці)</option>
                         <option value="shoes">Shoes (🥾 Взуття)</option>
                         <option value="accessories">Accessories (🕶 Аксесуари)</option>
                       </select>

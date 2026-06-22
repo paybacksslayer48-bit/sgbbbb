@@ -4,10 +4,13 @@ export interface Product {
   description: string;
   price: number;
   image: string;
-  category: 'outerwear' | 'top' | 'bottom' | 'shoes' | 'accessories';
+  images?: string[]; // Multiple photos support
+  collection?: string; // Series or Collection name
+  category: 'outerwear' | 'top' | 'bottom' | 'skirts' | 'shoes' | 'accessories' | 'swimwear';
   sizes: string[];
   tags: string[];
   stock: number;
+  color?: string; // Color of the product for filtering
   riddickRating?: string; // Retro cyber rating, e.g. "THERMAL_APPROVED", "VOID_RESISTANT"
   mannequinYOffset?: number; // Offset for virtual fitting room placement
   mannequinScale?: number; // Scale for virtual fitting room placement
@@ -22,7 +25,7 @@ export interface TelegramDraft {
   name: string;
   description: string;
   price: number;
-  category: 'outerwear' | 'top' | 'bottom' | 'shoes' | 'accessories';
+  category: 'outerwear' | 'top' | 'bottom' | 'skirts' | 'shoes' | 'accessories' | 'swimwear';
   sizes: string[];
   tags: string[];
   createdAt: string;

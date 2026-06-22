@@ -147,19 +147,19 @@ const headings = {
     title: "ВІДГУКИ КЛІЄНТІВ // REVIEWS",
     verified: "ВЕРИФІКОВАНЕ ЗАМОВЛЕННЯ",
     load_more: "ЗАВАНТАЖИТИ БІЛЬШЕ ВІДГУКІВ",
-    loading: "ЗАВАНТАЖЕННЯ ДАНИХ АРХІВУ...",
+    loading: "ЗАВАНТАЖЕННЯ...",
   },
   ru: {
     title: "ОТЗЫВЫ КЛИЕНТОВ // REVIEWS",
     verified: "ВЕРИФИЦИРОВАННЫЙ ЗАКАЗ",
     load_more: "ЗАГРУЗИТЬ БОЛЬШЕ ОТЗЫВОВ",
-    loading: "ЗАГРУЗКА ДАННЫХ АРХИВА...",
+    loading: "ЗАГРУЗКА...",
   },
   en: {
     title: "CUSTOMER FEEDBACK // REVIEWS",
     verified: "VERIFIED CUSTOMER PURCHASE",
     load_more: "LOAD MORE FEEDBACK",
-    loading: "CONNECTING TO ARCHIVE STATS...",
+    loading: "LOADING...",
   }
 };
 
@@ -177,8 +177,8 @@ export default function Reviews({ lang }: ReviewsProps) {
       
       {/* Title block with Subtitle line completely removed as requested */}
       <div className="text-center space-y-3 pb-8 border-b border-zinc-950">
-        <span className="text-[#8a0303] text-sm block">✙ ✙ ✙</span>
-        <h2 className="text-2xl md:text-5xl font-gothic tracking-[0.25em] font-black uppercase text-white">
+        <span className="text-zinc-650 text-xs block tracking-widest">● ● ●</span>
+        <h2 className="text-2xl md:text-5xl font-sans tracking-tight font-extrabold uppercase text-white">
           {labels.title}
         </h2>
       </div>
@@ -188,22 +188,22 @@ export default function Reviews({ lang }: ReviewsProps) {
         {currentReviews.map((rev, index) => {
           // Alternating offsets to build a picturesque "staircase / лесенка" effect on desktop screens
           const staggerClass = index % 2 === 1 
-            ? 'md:mt-16 border-l-2 border-[#8a0303] hover:translate-y-1' 
+            ? 'md:mt-16 border-l-2 border-[#ff3c3c] hover:translate-y-1' 
             : 'md:-mt-4 border-r-2 border-zinc-800 hover:-translate-y-1';
           
           return (
             <div 
               key={rev.id}
-              className={`w-full border border-zinc-950 bg-[#040404]/99 p-8 transition-all duration-500 shadow-[0_4px_30px_rgba(0,0,0,0.8)] ${staggerClass}`}
+              className={`w-full border border-zinc-900 bg-[#040404]/99 p-8 transition-all duration-500 shadow-xl ${staggerClass}`}
             >
               <div className="space-y-6">
                 
                 {/* Stars & Date Header */}
                 <div className="flex justify-between items-center pb-3.5 border-b border-zinc-900/80">
                   <div className="flex items-center gap-1.5">
-                    <span className="text-xs text-[#8a0303] font-mono font-black tracking-widest mr-2">{rev.number}</span>
+                    <span className="text-xs text-zinc-500 font-mono font-bold tracking-widest mr-2">{rev.number}</span>
                     {[...Array(rev.rating)].map((_, i) => (
-                      <Star key={i} size={13} className="fill-[#8a0303] text-[#8a0303]" />
+                      <Star key={i} size={13} className="fill-white text-white" />
                     ))}
                   </div>
                   <span className="text-xs font-mono text-zinc-200 bg-[#0f0f0f] border border-zinc-800 px-2.5 py-1 font-bold tracking-widest">{rev.date}</span>
@@ -219,13 +219,13 @@ export default function Reviews({ lang }: ReviewsProps) {
               {/* Custom Reviewer Footer */}
               <div className="mt-8 pt-4 border-t border-zinc-900/80 space-y-2">
                 <div className="flex justify-between items-center">
-                  <span className="font-serif text-xs sm:text-xs tracking-wide capitalize font-light italic text-zinc-100 bg-zinc-900/40 border border-zinc-850 px-3 py-1 hover:text-white hover:border-[#8a0303] hover:bg-[#8a0303]/10 transition-all duration-300">
-                    ✙ {rev.name}
+                  <span className="font-sans text-xs tracking-wide capitalize font-medium text-zinc-100 bg-zinc-900/40 border border-zinc-850 px-3 py-1 hover:text-white hover:border-[#ff3c3c] hover:bg-[#ff3c3c]/10 transition-all duration-300">
+                    ● {rev.name}
                   </span>
                   <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-widest">{rev.city}</span>
                 </div>
                 <div className="flex justify-between items-center text-[10px] font-mono text-zinc-500 pt-1">
-                  <span className="font-bold tracking-widest text-[#8a0303] bg-zinc-950 px-2 py-0.5 border border-zinc-900">{rev.fit}</span>
+                  <span className="font-bold tracking-widest text-[#ff3c3c] bg-zinc-950 px-2 py-0.5 border border-zinc-900">{rev.fit}</span>
                 </div>
               </div>
 
@@ -241,13 +241,13 @@ export default function Reviews({ lang }: ReviewsProps) {
           disabled={isLoadingMore}
           className={`px-12 py-5 border text-xs font-mono tracking-[0.3em] uppercase font-black flex items-center gap-4 cursor-pointer transition-all duration-500 active:scale-95 ${
             isLoadingMore
-              ? 'bg-neutral-950 text-[#8a0303] border-[#8a0303] cursor-not-allowed shadow-[0_0_25px_rgba(138,3,3,0.2)]'
-              : 'bg-white text-black border-white hover:bg-[#8a0303] hover:text-white hover:border-[#8a0303] shadow-3xl'
+              ? 'bg-neutral-950 text-[#ff3c3c] border-[#ff3c3c] cursor-not-allowed'
+              : 'bg-white text-black border-white hover:bg-zinc-200 hover:text-black shadow-lg'
           }`}
         >
           {isLoadingMore ? (
             <>
-              <RotateCw size={14} className="animate-spin text-[#8a0303]" />
+              <RotateCw size={14} className="animate-spin text-[#ff3c3c]" />
               {labels.loading}
             </>
           ) : (

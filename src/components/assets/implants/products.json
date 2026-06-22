@@ -1,0 +1,191 @@
+[
+  {
+    "name": "Червоні Vans Sk8-Hi",
+    "description": "Високі замшеві кеди Vans червоного кольору",
+    "price": 1890,
+    "category": "shoes",
+    "sizes": ["36", "37", "38", "39", "40"],
+    "tags": ["y2k", "street", "grunge"],
+    "image_filename": "photo_21_2026-06-17_12-43-23.jpg"
+  },
+  {
+    "name": "Синій лонгслів з коміром",
+    "description": "Облягаючий лонгслів синій з білим коміром",
+    "price": 890,
+    "category": "top",
+    "sizes": ["S", "M", "L"],
+    "tags": ["y2k", "alt", "preppy"],
+    "image_filename": "photo_1_2026-06-17_12-43-23.jpg"
+  },
+  {
+    "name": "Блакитні кльош джинси",
+    "description": "Світло-блакитні джинси кльош з низькою посадкою",
+    "price": 1450,
+    "category": "bottom",
+    "sizes": ["S", "M", "L"],
+    "tags": ["y2k", "grunge", "street"],
+    "image_filename": "photo_2_2026-06-17_12-43-23.jpg"
+  },
+  {
+    "name": "Червоний лонгслів з мереживом",
+    "description": "Облягаючий червоний лонгслів з мереживним коміром",
+    "price": 950,
+    "category": "top",
+    "sizes": ["S", "M", "L"],
+    "tags": ["gothic", "y2k", "alt"],
+    "image_filename": "photo_3_2026-06-17_12-43-23.jpg"
+  },
+  {
+    "name": "Бордовий Henley лонгслів",
+    "description": "Рубчастий лонгслів бордовий з ґудзиками",
+    "price": 920,
+    "category": "top",
+    "sizes": ["S", "M", "L"],
+    "tags": ["gothic", "y2k"],
+    "image_filename": "photo_4_2026-06-17_12-43-23.jpg"
+  },
+  {
+    "name": "Оливковий лонгслів з мереживом",
+    "description": "Облягаючий оливковий топ з подвійним мереживом",
+    "price": 980,
+    "category": "top",
+    "sizes": ["S", "M", "L"],
+    "tags": ["alt", "y2k", "grunge"],
+    "image_filename": "photo_5_2026-06-17_12-43-23.jpg"
+  },
+  {
+    "name": "Темно-синій Henley",
+    "description": "Облягаючий темно-синій лонгслів з ґудзиками",
+    "price": 890,
+    "category": "top",
+    "sizes": ["S", "M", "L"],
+    "tags": ["y2k", "street"],
+    "image_filename": "photo_6_2026-06-17_12-43-23.jpg"
+  },
+  {
+    "name": "Червона блуза з рюшами",
+    "description": "Коротка червона блуза з рюшами та коротким рукавом",
+    "price": 1150,
+    "category": "top",
+    "sizes": ["S", "M", "L"],
+    "tags": ["y2k", "alt"],
+    "image_filename": "photo_7_2026-06-17_12-43-23.jpg"
+  },
+  {
+    "name": "Темно-сині кльош джинси",
+    "description": "Темно-сині джинси кльош з декоративними блискавками",
+    "price": 1590,
+    "category": "bottom",
+    "sizes": ["S", "M", "L"],
+    "tags": ["y2k", "street", "grunge"],
+    "image_filename": "photo_8_2026-06-17_12-43-23.jpg"
+  },
+  {
+    "name": "Сині кльош джинси з потертостями",
+    "description": "Джинси кльош темно-сині з ефектом б/у",
+    "price": 1490,
+    "category": "bottom",
+    "sizes": ["S", "M", "L"],
+    "tags": ["y2k", "grunge"],
+    "image_filename": "photo_9_2026-06-17_12-43-23.jpg"
+  },
+  {
+    "name": "Джинси кльош з вишивкою",
+    "description": "Блакитні джинси кльош з золотою вишивкою на кишенях",
+    "price": 1650,
+    "category": "bottom",
+    "sizes": ["S", "M", "L"],
+    "tags": ["y2k", "street"],
+    "image_filename": "photo_10_2026-06-17_12-43-23.jpg"
+  },
+  {
+    "name": "Чорні Adidas Samba",
+    "description": "Класичні чорні кеди Adidas Samba",
+    "price": 2290,
+    "category": "shoes",
+    "sizes": ["37", "38", "39", "40", "41"],
+    "tags": ["street", "grunge"],
+    "image_filename": "photo_11_2026-06-17_12-43-23.jpg"
+  },
+  {
+    "name": "Джинсові шорти з низькою посадкою",
+    "description": "Темні джинсові мікрошорти з низькою талією",
+    "price": 890,
+    "category": "bottom",
+    "sizes": ["S", "M", "L"],
+    "tags": ["y2k", "grunge"],
+    "image_filename": "photo_12_2026-06-17_12-43-23.jpg"
+  },
+  {
+    "name": "Світлі джинсові шорти",
+    "description": "Джинсові шорти з потертостями та рваними краями",
+    "price": 850,
+    "category": "bottom",
+    "sizes": ["S", "M", "L"],
+    "tags": ["y2k", "street"],
+    "image_filename": "photo_13_2026-06-17_12-43-23.jpg"
+  },
+  {
+    "name": "Бордовий в'язаний светр",
+    "description": "В'язаний светр бордовий з косами та мереживом",
+    "price": 1350,
+    "category": "top",
+    "sizes": ["S", "M", "L"],
+    "tags": ["gothic", "grunge", "alt"],
+    "image_filename": "photo_14_2026-06-17_12-43-23.jpg"
+  },
+  {
+    "name": "Коричнева парка Abercrombie",
+    "description": "Парка з хутряним капюшоном Abercrombie & Fitch",
+    "price": 2890,
+    "category": "outerwear",
+    "sizes": ["S", "M", "L"],
+    "tags": ["grunge", "street"],
+    "image_filename": "photo_15_2026-06-17_12-43-23.jpg"
+  },
+  {
+    "name": "Чорні кльош штани",
+    "description": "Чорні штани кльош з низькою посадкою",
+    "price": 1390,
+    "category": "bottom",
+    "sizes": ["S", "M", "L"],
+    "tags": ["gothic", "street", "y2k"],
+    "image_filename": "photo_16_2026-06-17_12-43-23.jpg"
+  },
+  {
+    "name": "Чорна пуховка з хутром",
+    "description": "Чорна стьобана пуховка з великим хутряним капюшоном",
+    "price": 2650,
+    "category": "outerwear",
+    "sizes": ["S", "M", "L"],
+    "tags": ["gothic", "street"],
+    "image_filename": "photo_17_2026-06-17_12-43-23.jpg"
+  },
+  {
+    "name": "Смугастий худі Hollister",
+    "description": "В'язаний худі в сіро-чорну смужку з капюшоном",
+    "price": 1250,
+    "category": "top",
+    "sizes": ["S", "M", "L"],
+    "tags": ["y2k", "grunge"],
+    "image_filename": "photo_18_2026-06-17_12-43-23.jpg"
+  },
+  {
+    "name": "Коричневі Skechers",
+    "description": "Замшеві кросівки Skechers коричневого кольору",
+    "price": 1690,
+    "category": "shoes",
+    "sizes": ["36", "37", "38", "39", "40"],
+    "tags": ["street", "grunge"],
+    "image_filename": "photo_19_2026-06-17_12-43-23.jpg"
+  },
+  {
+    "name": "Коричневі платформні чоботи",
+    "description": "Чорні шкіряні чоботи на масивній платформі з блискавкою",
+    "price": 2790,
+    "category": "shoes",
+    "sizes": ["36", "37", "38", "39"],
+    "tags": ["gothic", "alt"],
+    "image_filename": "photo_20_2026-06-17_12-43-23.jpg"
+  }
+]
