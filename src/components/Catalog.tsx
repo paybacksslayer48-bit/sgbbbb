@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Product } from '../types';
+import { Product, parseProduct } from '../types';
 import { ShoppingCart, ArrowLeft, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Language, translations } from '../translations';
 
@@ -213,8 +213,21 @@ export default function Catalog({
     });
   };
 
+  // Helper to identify products from the Japanese Collection
+  const isJapaneseProduct = (p: Product) => {
+    return (
+      p.collection === 'JAPAN' ||
+      p.id?.startsWith('prod-jap-') ||
+      p.riddickRating === 'JAPANESE COLLECTION' ||
+      p.tags?.includes('japanese') || 
+      p.name.toLowerCase().includes('япон') ||
+      p.name.toLowerCase().includes('тигр') ||
+      p.description.toLowerCase().includes('япон')
+    );
+  };
+
   // Filter products based on selected category, collection, and color
-  let rawFiltered = products;
+  let rawFiltered = products.map(p => parseProduct(p));
   
   if (selectedCategory !== 'all') {
     rawFiltered = rawFiltered.filter(p => p.category === selectedCategory);
@@ -225,30 +238,37 @@ export default function Catalog({
   }
   
   if (selectedCollection === 'japanese') {
-    rawFiltered = rawFiltered.filter(p => 
-      p.tags?.includes('japanese') || 
-      p.name.toLowerCase().includes('япон') ||
-      p.name.toLowerCase().includes('тигр') ||
-      p.description.toLowerCase().includes('япон')
-    );
+    rawFiltered = rawFiltered.filter(p => isJapaneseProduct(p));
   } else if (selectedCollection === 'swiss') {
-    rawFiltered = rawFiltered.filter(p => 
-      !(p.tags?.includes('japanese') || 
-        p.name.toLowerCase().includes('япон') ||
-        p.name.toLowerCase().includes('тигр') ||
-        p.description.toLowerCase().includes('япон'))
-    );
+    rawFiltered = rawFiltered.filter(p => !isJapaneseProduct(p));
   }
 
   // Sort raw filtered items before routing to preprocessor
   let sortedProducts = [...rawFiltered];
   if (sortBy === 'price-asc') {
-    sortedProducts.sort((a, b) => a.price - b.price);
-  } else if (sortBy === 'price-desc') {
-    sortedProducts.sort((a, b) => b.price - a.price);
-  } else {
-    // sort by deterministic popularity
     sortedProducts.sort((a, b) => {
+      const isA = isJapaneseProduct(a);
+      const isB = isJapaneseProduct(b);
+      if (isA && !isB) return -1;
+      if (!isA && isB) return 1;
+      return a.price - b.price;
+    });
+  } else if (sortBy === 'price-desc') {
+    sortedProducts.sort((a, b) => {
+      const isA = isJapaneseProduct(a);
+      const isB = isJapaneseProduct(b);
+      if (isA && !isB) return -1;
+      if (!isA && isB) return 1;
+      return b.price - a.price;
+    });
+  } else {
+    // Sort default/popularity: Japanese products first, then deterministic popularity within groups
+    sortedProducts.sort((a, b) => {
+      const isA = isJapaneseProduct(a);
+      const isB = isJapaneseProduct(b);
+      if (isA && !isB) return -1;
+      if (!isA && isB) return 1;
+      
       const scoreA = (a.stock * 17) % 50;
       const scoreB = (b.stock * 17) % 50;
       return scoreB - scoreA;

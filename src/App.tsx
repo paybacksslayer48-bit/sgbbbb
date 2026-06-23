@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Product, CartItem, Order, SavedLook, CustomerDetails } from './types';
+import { Product, CartItem, Order, SavedLook, CustomerDetails, parseProducts } from './types';
 import { DEFAULT_PRODUCTS } from './defaultProducts';
 import Catalog from './components/Catalog';
 import FittingRoom from './components/FittingRoom';
@@ -70,7 +70,8 @@ export default function App() {
   }, []);
 
   // Unified State
-  const [products, setProducts] = useState<Product[]>(DEFAULT_PRODUCTS);
+  const [products, setProducts] = useState<Product[]>(() => parseProducts(DEFAULT_PRODUCTS));
+
   const [heroActiveIndex, setHeroActiveIndex] = useState(0);
   const [heroTheme, setHeroTheme] = useState<'swiss' | 'japanese'>('japanese');
 
@@ -145,9 +146,9 @@ export default function App() {
               merged.push(defProd);
             }
           }
-          setProducts(merged);
+          setProducts(parseProducts(merged));
         } else {
-          setProducts(DEFAULT_PRODUCTS);
+          setProducts(parseProducts(DEFAULT_PRODUCTS));
         }
 
         const oRes = await fetch('/api/orders');
@@ -157,7 +158,7 @@ export default function App() {
         setDbSynced(true);
       } catch (err) {
         console.warn("Backend loading offline, using local memory fallbacks", err);
-        setProducts(DEFAULT_PRODUCTS);
+        setProducts(parseProducts(DEFAULT_PRODUCTS));
       }
     };
 

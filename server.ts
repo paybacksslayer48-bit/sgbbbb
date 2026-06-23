@@ -7,6 +7,7 @@ import { initializeApp } from "firebase-admin/app";
 import { getFirestore } from "firebase-admin/firestore";
 import { getStorage } from "firebase-admin/storage";
 import { DEFAULT_PRODUCTS } from "./src/defaultProducts";
+import { parseProducts, parseProduct } from "./src/types";
 
 const PORT = 3000;
 const DB_FILE = path.join(process.cwd(), "void_archive_db.json");
@@ -131,19 +132,47 @@ function readDB(): Database {
 async function syncFromFirestore(db: Database): Promise<Database> {
   if (!firestoreDb) return db;
   try {
-    console.log("Syncing database tables from Google Cloud Firestore...");
+    console.log("Syncing database tables from Google Cloud Firestore with highly optimized batch operations...");
 
     // 1. Sync Products (Overwriting with current DEFAULT_PRODUCTS to ensure static fresh values)
     console.log("Cleaning and seeding Firestore products collection with active DEFAULT_PRODUCTS...");
     const productsSnapshot = await firestoreDb.collection("products").get();
-    for (const doc of productsSnapshot.docs) {
-      await doc.ref.delete();
+    
+    // Batch delete existing products
+    if (!productsSnapshot.empty) {
+      let deleteBatch = firestoreDb.batch();
+      let delCount = 0;
+      for (const doc of productsSnapshot.docs) {
+        deleteBatch.delete(doc.ref);
+        delCount++;
+        if (delCount >= 400) {
+          await deleteBatch.commit();
+          deleteBatch = firestoreDb.batch();
+          delCount = 0;
+        }
+      }
+      if (delCount > 0) {
+        await deleteBatch.commit();
+      }
     }
     
     // Use DEFAULT_PRODUCTS as the single static source of truth to prevent cache corruption
+    // Since products can contain large Base64 strings, we will batch write them in smaller safe chunks
     db.products = [...DEFAULT_PRODUCTS];
+    let writeBatch = firestoreDb.batch();
+    let writeCount = 0;
     for (const p of db.products) {
-      await firestoreDb.collection("products").doc(p.id).set(p);
+      const ref = firestoreDb.collection("products").doc(p.id);
+      writeBatch.set(ref, p);
+      writeCount++;
+      if (writeCount >= 80) { // Keep safe chunk size for base64 limits
+        await writeBatch.commit();
+        writeBatch = firestoreDb.batch();
+        writeCount = 0;
+      }
+    }
+    if (writeCount > 0) {
+      await writeBatch.commit();
     }
     console.log(`Successfully synced ${db.products.length} products to Firestore.`);
 
@@ -158,8 +187,20 @@ async function syncFromFirestore(db: Database): Promise<Database> {
       console.log(`Loaded ${dbOrders.length} orders from Firestore.`);
     } else if (db.orders && db.orders.length > 0) {
       console.log("Seeding existing local orders to Firestore...");
+      let batch = firestoreDb.batch();
+      let count = 0;
       for (const o of db.orders) {
-        await firestoreDb.collection("orders").doc(o.id).set(o);
+        const ref = firestoreDb.collection("orders").doc(o.id);
+        batch.set(ref, o);
+        count++;
+        if (count >= 200) {
+          await batch.commit();
+          batch = firestoreDb.batch();
+          count = 0;
+        }
+      }
+      if (count > 0) {
+        await batch.commit();
       }
     }
 
@@ -174,8 +215,20 @@ async function syncFromFirestore(db: Database): Promise<Database> {
       console.log(`Loaded ${dbDrafts.length} telegram drafts from Firestore.`);
     } else if (db.telegramDrafts && db.telegramDrafts.length > 0) {
       console.log("Seeding existing local telegram drafts to Firestore...");
+      let batch = firestoreDb.batch();
+      let count = 0;
       for (const d of db.telegramDrafts) {
-        await firestoreDb.collection("telegramDrafts").doc(d.id).set(d);
+        const ref = firestoreDb.collection("telegramDrafts").doc(d.id);
+        batch.set(ref, d);
+        count++;
+        if (count >= 200) {
+          await batch.commit();
+          batch = firestoreDb.batch();
+          count = 0;
+        }
+      }
+      if (count > 0) {
+        await batch.commit();
       }
     }
 
@@ -209,8 +262,20 @@ async function syncFromFirestore(db: Database): Promise<Database> {
       console.log(`Loaded ${dbVisitors.length} visitors from Firestore.`);
     } else if (db.visitors && db.visitors.length > 0) {
       console.log("Seeding existing local visitors to Firestore...");
+      let batch = firestoreDb.batch();
+      let count = 0;
       for (const v of db.visitors) {
-        await firestoreDb.collection("visitors").doc(String(v.visitorNum)).set(v);
+        const ref = firestoreDb.collection("visitors").doc(String(v.visitorNum));
+        batch.set(ref, v);
+        count++;
+        if (count >= 200) {
+          await batch.commit();
+          batch = firestoreDb.batch();
+          count = 0;
+        }
+      }
+      if (count > 0) {
+        await batch.commit();
       }
     }
 
@@ -719,47 +784,84 @@ async function startServer() {
   // Initialize DB helper
   let dbObj = readDB();
 
-  // Async load state from Google Cloud Firestore
-  dbObj = await syncFromFirestore(dbObj);
-
-  // Filter out any products starting with "SGB //"
-  dbObj.products = dbObj.products.filter(p => p && p.name && !p.name.startsWith("SGB //"));
-  if (dbObj.products.length === 0) {
-    dbObj.products = [...DEFAULT_PRODUCTS];
-  }
-  writeDB(dbObj);
-
-  if (firestoreDb) {
+  // Run database loading, remote synchronization, validation, and Base64 conversion asynchronously in the background.
+  // This allows the Express server to call app.listen() and start answering health checks immediately,
+  // preventing Cloud Run deployment timeouts while managing 100+ large items.
+  (async () => {
     try {
-      const pSnapshot = await firestoreDb.collection("products").get();
-      pSnapshot.forEach(async (doc: any) => {
-        const data = doc.data();
-        if (data && data.name && data.name.startsWith("SGB //")) {
-          await firestoreDb.collection("products").doc(doc.id).delete();
-          console.log(`Deleted SGB product from Firestore: ${data.name}`);
-        }
-      });
-      const correctRef = await firestoreDb.collection("products").get();
-      let hasCorrect = false;
-      correctRef.forEach((doc: any) => {
-        const data = doc.data();
-        if (data && data.name && !data.name.startsWith("SGB //")) {
-          hasCorrect = true;
-        }
-      });
-      if (!hasCorrect) {
-        console.log("Seeding correct default products to Firestore...");
-        for (const p of DEFAULT_PRODUCTS) {
-          await firestoreDb.collection("products").doc(p.id).set(p);
+      console.log("Starting background database synchronization, validation, and Base64 conversion...");
+      
+      // Async load state from Google Cloud Firestore
+      dbObj = await syncFromFirestore(dbObj);
+
+      // Filter out any products starting with "SGB //"
+      dbObj.products = dbObj.products.filter(p => p && p.name && !p.name.startsWith("SGB //"));
+      if (dbObj.products.length === 0) {
+        dbObj.products = [...DEFAULT_PRODUCTS];
+      }
+      writeDB(dbObj);
+
+      if (firestoreDb) {
+        try {
+          const pSnapshot = await firestoreDb.collection("products").get();
+          
+          // Delete any SGB prefix products in batches
+          let deleteSgbBatch = firestoreDb.batch();
+          let sgbCount = 0;
+          for (const doc of pSnapshot.docs) {
+            const data = doc.data();
+            if (data && data.name && data.name.startsWith("SGB //")) {
+              deleteSgbBatch.delete(doc.ref);
+              sgbCount++;
+              if (sgbCount >= 200) {
+                await deleteSgbBatch.commit();
+                deleteSgbBatch = firestoreDb.batch();
+                sgbCount = 0;
+              }
+            }
+          }
+          if (sgbCount > 0) {
+            await deleteSgbBatch.commit();
+          }
+
+          const correctRef = await firestoreDb.collection("products").get();
+          let hasCorrect = false;
+          correctRef.forEach((doc: any) => {
+            const data = doc.data();
+            if (data && data.name && !data.name.startsWith("SGB //")) {
+              hasCorrect = true;
+            }
+          });
+          if (!hasCorrect) {
+            console.log("Seeding correct default products to Firestore in parallel chunks...");
+            let seedBatch = firestoreDb.batch();
+            let seedCount = 0;
+            for (const p of DEFAULT_PRODUCTS) {
+              const ref = firestoreDb.collection("products").doc(p.id);
+              seedBatch.set(ref, p);
+              seedCount++;
+              if (seedCount >= 80) {
+                await seedBatch.commit();
+                seedBatch = firestoreDb.batch();
+                seedCount = 0;
+              }
+            }
+            if (seedCount > 0) {
+              await seedBatch.commit();
+            }
+          }
+        } catch (fsErr) {
+          console.error("Error cleaning/seeding Firestore products in background:", fsErr);
         }
       }
-    } catch (fsErr) {
-      console.error("Error cleaning/seeding Firestore products:", fsErr);
-    }
-  }
 
-  // Convert local paths to Base64 after loading from local or Firestore
-  convertLocalProductsAndDraftsToBase64(dbObj);
+      // Convert local paths to Base64 after loading from local or Firestore
+      convertLocalProductsAndDraftsToBase64(dbObj);
+      console.log("Background database synchronization and Base64 conversion completed successfully!");
+    } catch (bgErr) {
+      console.error("Error in background database init/sync task:", bgErr);
+    }
+  })();
 
   // Shared Gemini client setup using recommended structure and User-Agent
   let ai: GoogleGenAI | null = null;
@@ -1505,7 +1607,7 @@ async function startServer() {
 
   // API Endpoints: Products
   app.get("/api/products", (req, res) => {
-    res.json(dbObj.products);
+    res.json(parseProducts(dbObj.products));
   });
 
   app.post("/api/products", async (req, res) => {

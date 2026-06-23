@@ -1,22 +1,36 @@
 import fs from 'fs';
 import path from 'path';
 
-const srcDir = path.join(process.cwd(), 'implants');
 const destDir = path.join(process.cwd(), 'public', 'implants');
 
-if (fs.existsSync(srcDir)) {
-  if (!fs.existsSync(destDir)) {
-    fs.mkdirSync(destDir, { recursive: true });
-  }
-  const files = fs.readdirSync(srcDir);
+if (!fs.existsSync(destDir)) {
+  fs.mkdirSync(destDir, { recursive: true });
+}
+
+// 1. Copy JAP implants
+const srcDirJap = path.join(process.cwd(), 'src', 'implantsJAP');
+if (fs.existsSync(srcDirJap)) {
+  const files = fs.readdirSync(srcDirJap);
   for (const file of files) {
-    const srcFile = path.join(srcDir, file);
+    const srcFile = path.join(srcDirJap, file);
     const destFile = path.join(destDir, file);
     if (fs.statSync(srcFile).isFile()) {
       fs.copyFileSync(srcFile, destFile);
-      console.log(`Copied ${file} to public/implants/`);
+      console.log(`Copied from implantsJAP: ${file} to public/implants/`);
     }
   }
-} else {
-  console.log('No implants directory found.');
+}
+
+// 2. Copy assets implants
+const srcDirAssets = path.join(process.cwd(), 'src', 'components', 'assets', 'implants');
+if (fs.existsSync(srcDirAssets)) {
+  const files = fs.readdirSync(srcDirAssets);
+  for (const file of files) {
+    const srcFile = path.join(srcDirAssets, file);
+    const destFile = path.join(destDir, file);
+    if (fs.statSync(srcFile).isFile()) {
+      fs.copyFileSync(srcFile, destFile);
+      console.log(`Copied from assets/implants: ${file} to public/implants/`);
+    }
+  }
 }

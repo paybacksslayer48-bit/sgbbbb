@@ -77,3 +77,49 @@ export interface SavedLook {
   tags: string[];
   productIds: string[];
 }
+
+export function parseProduct(p: any): Product {
+  if (!p) return p;
+  
+  // Resolve image_filename if present
+  let rawImage = p.image || p.image_filename || '';
+  let parsedImages = p.images || [];
+
+  if (typeof rawImage === 'string' && rawImage.includes(',')) {
+    const parts = rawImage.split(',').map((s: string) => s.trim()).filter(Boolean);
+    rawImage = parts[0] || '';
+    parsedImages = Array.from(new Set([...parts, ...parsedImages]));
+  } else if (typeof rawImage === 'string' && rawImage) {
+    if (parsedImages.length === 0) {
+      parsedImages = [rawImage];
+    }
+  }
+
+  // Ensure absolute or correct folder prefix like /implants/ if it's just a filename
+  const ensurePathPrefix = (img: string): string => {
+    if (!img) return '';
+    if (img.startsWith('data:') || img.startsWith('http') || img.startsWith('/')) {
+      return img;
+    }
+    return `/implants/${img}`;
+  };
+
+  const finalImage = ensurePathPrefix(rawImage);
+  const finalImages = parsedImages.map(img => ensurePathPrefix(img));
+
+  return {
+    ...p,
+    id: p.id || `prod-${Math.random().toString(36).substring(2, 11)}`,
+    image: finalImage,
+    images: finalImages,
+    category: p.category || 'top',
+    sizes: p.sizes || ['S', 'M', 'L'],
+    tags: p.tags || [],
+    stock: typeof p.stock === 'number' ? p.stock : 10
+  };
+}
+
+export function parseProducts(items: any[]): Product[] {
+  if (!Array.isArray(items)) return [];
+  return items.map(p => parseProduct(p));
+}
