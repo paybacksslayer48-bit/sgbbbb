@@ -1,0 +1,3034 @@
+[
+  {
+    "id": "prod-jap-1",
+    "name": "Тигр з гібіскусом",
+    "description": "Топ-майка з тигром та гібіскусами",
+    "price": 550,
+    "image": "/implants/photo_18_2026-06-22_02-37-00.png",
+    "images": [
+      "/implants/photo_18_2026-06-22_02-37-00.png"
+    ],
+    "category": "top",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "gothic",
+      "japanese",
+      "y2k"
+    ],
+    "stock": 10,
+    "collection": "JAPAN",
+    "riddickRating": "JAPANESE COLLECTION",
+    "mannequinYOffset": 15,
+    "mannequinScale": 1.05
+  },
+  {
+    "id": "prod-jap-2",
+    "name": "Gothic Satte Longsleeve",
+    "description": "Лонгслів з дівчиною та готичним принтом",
+    "price": 750,
+    "image": "/implants/photo_19_2026-06-22_02-37-00.png",
+    "images": [
+      "/implants/photo_19_2026-06-22_02-37-00.png"
+    ],
+    "category": "top",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "tags": [
+      "gothic",
+      "alt",
+      "grunge"
+    ],
+    "stock": 10,
+    "collection": "JAPAN",
+    "riddickRating": "JAPANESE COLLECTION",
+    "mannequinYOffset": 15,
+    "mannequinScale": 1.05
+  },
+  {
+    "id": "prod-jap-3",
+    "name": "Gothic Satte Longsleeve",
+    "description": "Лонгслів з дівчиною та готичним принтом",
+    "price": 750,
+    "image": "/implants/photo_20_2026-06-22_02-37-00.png",
+    "images": [
+      "/implants/photo_20_2026-06-22_02-37-00.png"
+    ],
+    "category": "top",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "tags": [
+      "gothic",
+      "alt",
+      "grunge"
+    ],
+    "stock": 10,
+    "collection": "JAPAN",
+    "riddickRating": "JAPANESE COLLECTION",
+    "mannequinYOffset": 15,
+    "mannequinScale": 1.05
+  },
+  {
+    "id": "prod-jap-4",
+    "name": "Дівчина з тигром",
+    "description": "Лонгслів з японським пейзажем та дівчиною з тигром",
+    "price": 780,
+    "image": "/implants/photo_21_2026-06-22_02-37-00.png",
+    "images": [
+      "/implants/photo_21_2026-06-22_02-37-00.png"
+    ],
+    "category": "top",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "japanese",
+      "gothic",
+      "y2k"
+    ],
+    "stock": 10,
+    "collection": "JAPAN",
+    "riddickRating": "JAPANESE COLLECTION",
+    "mannequinYOffset": 15,
+    "mannequinScale": 1.05
+  },
+  {
+    "id": "prod-jap-5",
+    "name": "Cigarettes After What",
+    "description": "Лонгслів з аніме-принтом та текстом",
+    "price": 720,
+    "image": "/implants/photo_22_2026-06-22_02-37-00.png",
+    "images": [
+      "/implants/photo_22_2026-06-22_02-37-00.png"
+    ],
+    "category": "top",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "tags": [
+      "y2k",
+      "alt",
+      "anime"
+    ],
+    "stock": 10,
+    "collection": "JAPAN",
+    "riddickRating": "JAPANESE COLLECTION",
+    "mannequinYOffset": 15,
+    "mannequinScale": 1.05
+  },
+  {
+    "id": "prod-jap-6",
+    "name": "Death Grim Longsleeve",
+    "description": "Лонгслів з дівчиною та готичним текстом",
+    "price": 750,
+    "image": "/implants/photo_23_2026-06-22_02-37-00.png",
+    "images": [
+      "/implants/photo_23_2026-06-22_02-37-00.png"
+    ],
+    "category": "top",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "gothic",
+      "grunge",
+      "alt"
+    ],
+    "stock": 10,
+    "collection": "JAPAN",
+    "riddickRating": "JAPANESE COLLECTION",
+    "mannequinYOffset": 15,
+    "mannequinScale": 1.05
+  },
+  {
+    "id": "prod-jap-7",
+    "name": "Ketamin Longsleeve",
+    "description": "Лонгслів з чорно-білим принтом та текстом Ketamin",
+    "price": 770,
+    "image": "/implants/photo_24_2026-06-22_02-37-00.png",
+    "images": [
+      "/implants/photo_24_2026-06-22_02-37-00.png"
+    ],
+    "category": "top",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "tags": [
+      "gothic",
+      "dark",
+      "alt"
+    ],
+    "stock": 10,
+    "collection": "JAPAN",
+    "riddickRating": "JAPANESE COLLECTION",
+    "mannequinYOffset": 15,
+    "mannequinScale": 1.05
+  },
+  {
+    "id": "prod-jap-8",
+    "name": "Crimson Girls Longsleeve",
+    "description": "Лонгслів з дівчиною та червоним принтом",
+    "price": 740,
+    "image": "/implants/photo_25_2026-06-22_02-37-00.png",
+    "images": [
+      "/implants/photo_25_2026-06-22_02-37-00.png"
+    ],
+    "category": "top",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "gothic",
+      "y2k",
+      "alt"
+    ],
+    "stock": 10,
+    "collection": "JAPAN",
+    "riddickRating": "JAPANESE COLLECTION",
+    "mannequinYOffset": 15,
+    "mannequinScale": 1.05
+  },
+  {
+    "id": "prod-jap-9",
+    "name": "Anime Cross Longsleeve",
+    "description": "Лонгслів з аніме-дівчатами та хрестом",
+    "price": 760,
+    "image": "/implants/photo_26_2026-06-22_02-37-00.png",
+    "images": [
+      "/implants/photo_26_2026-06-22_02-37-00.png"
+    ],
+    "category": "top",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "anime",
+      "gothic",
+      "alt"
+    ],
+    "stock": 10,
+    "collection": "JAPAN",
+    "riddickRating": "JAPANESE COLLECTION",
+    "mannequinYOffset": 15,
+    "mannequinScale": 1.05
+  },
+  {
+    "id": "prod-jap-10",
+    "name": "Skeleton Doll Longsleeve",
+    "description": "Лонгслів з лялькою та скелетом",
+    "price": 730,
+    "image": "/implants/photo_27_2026-06-22_02-37-00.png",
+    "images": [
+      "/implants/photo_27_2026-06-22_02-37-00.png"
+    ],
+    "category": "top",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "gothic",
+      "alt",
+      "grunge"
+    ],
+    "stock": 10,
+    "collection": "JAPAN",
+    "riddickRating": "JAPANESE COLLECTION",
+    "mannequinYOffset": 15,
+    "mannequinScale": 1.05
+  },
+  {
+    "id": "prod-jap-11",
+    "name": "Jean Paul Gaultier Print",
+    "description": "Лонгслів з колажем та принтом Jean Paul Gaultier",
+    "price": 780,
+    "image": "/implants/photo_28_2026-06-22_02-37-00.png",
+    "images": [
+      "/implants/photo_28_2026-06-22_02-37-00.png"
+    ],
+    "category": "top",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "y2k",
+      "designer",
+      "alt"
+    ],
+    "stock": 10,
+    "collection": "JAPAN",
+    "riddickRating": "JAPANESE COLLECTION",
+    "mannequinYOffset": 15,
+    "mannequinScale": 1.05
+  },
+  {
+    "id": "prod-jap-12",
+    "name": "Ri Dignity Longsleeve",
+    "description": "Лонгслів з портретом та текстом Ri Dignity",
+    "price": 750,
+    "image": "/implants/photo_29_2026-06-22_02-37-00.png",
+    "images": [
+      "/implants/photo_29_2026-06-22_02-37-00.png"
+    ],
+    "category": "top",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "tags": [
+      "gothic",
+      "y2k",
+      "alt"
+    ],
+    "stock": 10,
+    "collection": "JAPAN",
+    "riddickRating": "JAPANESE COLLECTION",
+    "mannequinYOffset": 15,
+    "mannequinScale": 1.05
+  },
+  {
+    "id": "prod-jap-13",
+    "name": "Trollface Anime Tee",
+    "description": "Біла футболка з Trollface та аніме-дівчиною",
+    "price": 580,
+    "image": "/implants/photo_30_2026-06-22_02-37-00.png",
+    "images": [
+      "/implants/photo_30_2026-06-22_02-37-00.png"
+    ],
+    "category": "top",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "meme",
+      "anime",
+      "alt"
+    ],
+    "stock": 10,
+    "collection": "JAPAN",
+    "riddickRating": "JAPANESE COLLECTION",
+    "mannequinYOffset": 15,
+    "mannequinScale": 1.05
+  },
+  {
+    "id": "prod-jap-14",
+    "name": "Thorns Anime Longsleeve",
+    "description": "Лонгслів з аніме-дівчиною та тернами",
+    "price": 760,
+    "image": "/implants/photo_31_2026-06-22_02-37-00.png",
+    "images": [
+      "/implants/photo_31_2026-06-22_02-37-00.png"
+    ],
+    "category": "top",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "anime",
+      "gothic",
+      "alt"
+    ],
+    "stock": 10,
+    "collection": "JAPAN",
+    "riddickRating": "JAPANESE COLLECTION",
+    "mannequinYOffset": 15,
+    "mannequinScale": 1.05
+  },
+  {
+    "id": "prod-jap-15",
+    "name": "Mercedes AMG Steering Wheel",
+    "description": "Карбоновий руль Mercedes AMG",
+    "price": 4600,
+    "image": "/implants/wheel17 $250.png",
+    "images": [
+      "/implants/wheel17 $250.png"
+    ],
+    "category": "accessories",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "car",
+      "luxury"
+    ],
+    "stock": 10,
+    "collection": "JAPAN",
+    "riddickRating": "JAPANESE COLLECTION",
+    "mannequinYOffset": 0,
+    "mannequinScale": 0.7
+  },
+  {
+    "id": "prod-jap-16",
+    "name": "Phoenix Denim Shorts",
+    "description": "Джинсові шорти з червоним феніксом та квітами",
+    "price": 950,
+    "image": "/implants/photo_1_2026-06-22_02-37-00.png",
+    "images": [
+      "/implants/photo_1_2026-06-22_02-37-00.png"
+    ],
+    "category": "bottom",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "japanese",
+      "street",
+      "alt"
+    ],
+    "stock": 10,
+    "collection": "JAPAN",
+    "riddickRating": "JAPANESE COLLECTION",
+    "mannequinYOffset": -20,
+    "mannequinScale": 0.95
+  },
+  {
+    "id": "prod-jap-17",
+    "name": "Tiger Denim Shorts",
+    "description": "Джинсові шорти з тигром та квітковим принтом",
+    "price": 920,
+    "image": "/implants/photo_2_2026-06-22_02-37-00.png",
+    "images": [
+      "/implants/photo_2_2026-06-22_02-37-00.png"
+    ],
+    "category": "bottom",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "japanese",
+      "street",
+      "alt"
+    ],
+    "stock": 10,
+    "collection": "JAPAN",
+    "riddickRating": "JAPANESE COLLECTION",
+    "mannequinYOffset": -20,
+    "mannequinScale": 0.95
+  },
+  {
+    "id": "prod-jap-18",
+    "name": "Samurai Wave Shorts",
+    "description": "Джинсові шорти з самураєм та хвилями",
+    "price": 990,
+    "image": "/implants/photo_3_2026-06-22_02-37-00.png",
+    "images": [
+      "/implants/photo_3_2026-06-22_02-37-00.png"
+    ],
+    "category": "bottom",
+    "sizes": [
+      "M",
+      "L"
+    ],
+    "tags": [
+      "japanese",
+      "gothic",
+      "street"
+    ],
+    "stock": 10,
+    "collection": "JAPAN",
+    "riddickRating": "JAPANESE COLLECTION",
+    "mannequinYOffset": -20,
+    "mannequinScale": 0.95
+  },
+  {
+    "id": "prod-jap-19",
+    "name": "Samurai Wave Shorts",
+    "description": "Джинсові шорти з самураєм та хвилями",
+    "price": 990,
+    "image": "/implants/photo_4_2026-06-22_02-37-00.png",
+    "images": [
+      "/implants/photo_4_2026-06-22_02-37-00.png"
+    ],
+    "category": "bottom",
+    "sizes": [
+      "M",
+      "L"
+    ],
+    "tags": [
+      "japanese",
+      "gothic",
+      "street"
+    ],
+    "stock": 10,
+    "collection": "JAPAN",
+    "riddickRating": "JAPANESE COLLECTION",
+    "mannequinYOffset": -20,
+    "mannequinScale": 0.95
+  },
+  {
+    "id": "prod-jap-20",
+    "name": "Tiger Denim Shorts",
+    "description": "Джинсові шорти з жовтим тигром",
+    "price": 970,
+    "image": "/implants/photo_5_2026-06-22_02-37-00.png",
+    "images": [
+      "/implants/photo_5_2026-06-22_02-37-00.png"
+    ],
+    "category": "bottom",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "street",
+      "japanese",
+      "alt"
+    ],
+    "stock": 10,
+    "collection": "JAPAN",
+    "riddickRating": "JAPANESE COLLECTION",
+    "mannequinYOffset": -20,
+    "mannequinScale": 0.95
+  },
+  {
+    "id": "prod-jap-21",
+    "name": "Koi Fish Tank Top",
+    "description": "Топ-майка з червоними кой-рибами",
+    "price": 520,
+    "image": "/implants/photo_6_2026-06-22_02-37-00.png",
+    "images": [
+      "/implants/photo_6_2026-06-22_02-37-00.png"
+    ],
+    "category": "top",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "japanese",
+      "y2k"
+    ],
+    "stock": 10,
+    "collection": "JAPAN",
+    "riddickRating": "JAPANESE COLLECTION",
+    "mannequinYOffset": 15,
+    "mannequinScale": 1.05
+  },
+  {
+    "id": "prod-jap-22",
+    "name": "River Fish Tank Top",
+    "description": "Топ-майка з різними річковими рибами",
+    "price": 510,
+    "image": "/implants/photo_7_2026-06-22_02-37-00.png",
+    "images": [
+      "/implants/photo_7_2026-06-22_02-37-00.png"
+    ],
+    "category": "top",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "y2k",
+      "alt"
+    ],
+    "stock": 10,
+    "collection": "JAPAN",
+    "riddickRating": "JAPANESE COLLECTION",
+    "mannequinYOffset": 15,
+    "mannequinScale": 1.05
+  },
+  {
+    "id": "prod-jap-23",
+    "name": "Geisha Moon Tank",
+    "description": "Топ-майка з гейшами в колі",
+    "price": 530,
+    "image": "/implants/photo_8_2026-06-22_02-37-00.png",
+    "images": [
+      "/implants/photo_8_2026-06-22_02-37-00.png"
+    ],
+    "category": "top",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "japanese",
+      "y2k"
+    ],
+    "stock": 10,
+    "collection": "JAPAN",
+    "riddickRating": "JAPANESE COLLECTION",
+    "mannequinYOffset": 15,
+    "mannequinScale": 1.05
+  },
+  {
+    "id": "prod-jap-24",
+    "name": "Dragon Cami",
+    "description": "Топ на бретелях з червоним драконом",
+    "price": 580,
+    "image": "/implants/photo_9_2026-06-22_02-37-00.png",
+    "images": [
+      "/implants/photo_9_2026-06-22_02-37-00.png"
+    ],
+    "category": "top",
+    "sizes": [
+      "S",
+      "M"
+    ],
+    "tags": [
+      "gothic",
+      "japanese"
+    ],
+    "stock": 10,
+    "collection": "JAPAN",
+    "riddickRating": "JAPANESE COLLECTION",
+    "mannequinYOffset": 15,
+    "mannequinScale": 1.05
+  },
+  {
+    "id": "prod-jap-25",
+    "name": "Paisley Corset Top",
+    "description": "Корсетний топ з пейслі принтом",
+    "price": 650,
+    "image": "/implants/photo_10_2026-06-22_02-37-00.png",
+    "images": [
+      "/implants/photo_10_2026-06-22_02-37-00.png"
+    ],
+    "category": "top",
+    "sizes": [
+      "S",
+      "M"
+    ],
+    "tags": [
+      "y2k",
+      "alt"
+    ],
+    "stock": 10,
+    "collection": "JAPAN",
+    "riddickRating": "JAPANESE COLLECTION",
+    "mannequinYOffset": 15,
+    "mannequinScale": 1.05
+  },
+  {
+    "id": "prod-jap-26",
+    "name": "Japanese Geisha Cami",
+    "description": "Топ на бретелях з японським принтом",
+    "price": 560,
+    "image": "/implants/photo_11_2026-06-22_02-37-00.png",
+    "images": [
+      "/implants/photo_11_2026-06-22_02-37-00.png"
+    ],
+    "category": "top",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "japanese",
+      "y2k"
+    ],
+    "stock": 10,
+    "collection": "JAPAN",
+    "riddickRating": "JAPANESE COLLECTION",
+    "mannequinYOffset": 15,
+    "mannequinScale": 1.05
+  },
+  {
+    "id": "prod-jap-27",
+    "name": "Geisha Vest Top",
+    "description": "Топ-жилет з гейшею та квітами",
+    "price": 590,
+    "image": "/implants/photo_12_2026-06-22_02-37-00.png",
+    "images": [
+      "/implants/photo_12_2026-06-22_02-37-00.png"
+    ],
+    "category": "top",
+    "sizes": [
+      "S",
+      "M"
+    ],
+    "tags": [
+      "japanese",
+      "alt"
+    ],
+    "stock": 10,
+    "collection": "JAPAN",
+    "riddickRating": "JAPANESE COLLECTION",
+    "mannequinYOffset": 15,
+    "mannequinScale": 1.05
+  },
+  {
+    "id": "prod-jap-28",
+    "name": "Hustler Family Tank",
+    "description": "Топ-майка з Hustler Family принтом",
+    "price": 540,
+    "image": "/implants/photo_13_2026-06-22_02-37-00.png",
+    "images": [
+      "/implants/photo_13_2026-06-22_02-37-00.png"
+    ],
+    "category": "top",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "grunge",
+      "alt"
+    ],
+    "stock": 10,
+    "collection": "JAPAN",
+    "riddickRating": "JAPANESE COLLECTION",
+    "mannequinYOffset": 15,
+    "mannequinScale": 1.05
+  },
+  {
+    "id": "prod-jap-29",
+    "name": "Cowboy Girl Tank",
+    "description": "Топ на бретелях з ковбой-дівчиною",
+    "price": 570,
+    "image": "/implants/photo_14_2026-06-22_02-37-00.png",
+    "images": [
+      "/implants/photo_14_2026-06-22_02-37-00.png"
+    ],
+    "category": "top",
+    "sizes": [
+      "S",
+      "M"
+    ],
+    "tags": [
+      "y2k",
+      "alt"
+    ],
+    "stock": 10,
+    "collection": "JAPAN",
+    "riddickRating": "JAPANESE COLLECTION",
+    "mannequinYOffset": 15,
+    "mannequinScale": 1.05
+  },
+  {
+    "id": "prod-jap-30",
+    "name": "Fairy Heart Tank",
+    "description": "Топ з феєю та серцем",
+    "price": 550,
+    "image": "/implants/photo_15_2026-06-22_02-37-00.png",
+    "images": [
+      "/implants/photo_15_2026-06-22_02-37-00.png"
+    ],
+    "category": "top",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "y2k",
+      "romantic"
+    ],
+    "stock": 10,
+    "collection": "JAPAN",
+    "riddickRating": "JAPANESE COLLECTION",
+    "mannequinYOffset": 15,
+    "mannequinScale": 1.05
+  },
+  {
+    "id": "prod-jap-31",
+    "name": "Safe Sex Tank",
+    "description": "Топ з готичним принтом Safe Sex Forever",
+    "price": 560,
+    "image": "/implants/photo_16_2026-06-22_02-37-00.png",
+    "images": [
+      "/implants/photo_16_2026-06-22_02-37-00.png"
+    ],
+    "category": "top",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "gothic",
+      "alt"
+    ],
+    "stock": 10,
+    "collection": "JAPAN",
+    "riddickRating": "JAPANESE COLLECTION",
+    "mannequinYOffset": 15,
+    "mannequinScale": 1.05
+  },
+  {
+    "id": "prod-jap-32",
+    "name": "Ed Hardy Floral Tank",
+    "description": "Топ-майка Ed Hardy з квітковим принтом",
+    "price": 620,
+    "image": "/implants/photo_17_2026-06-22_02-37-00.png",
+    "images": [
+      "/implants/photo_17_2026-06-22_02-37-00.png"
+    ],
+    "category": "top",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "y2k",
+      "edhardy",
+      "alt"
+    ],
+    "stock": 10,
+    "collection": "JAPAN",
+    "riddickRating": "JAPANESE COLLECTION",
+    "mannequinYOffset": 15,
+    "mannequinScale": 1.05
+  },
+  {
+    "id": "prod-ms-1",
+    "name": "Камуфляжний ремінь Realtree",
+    "description": "Камуфляжний ремінь RealTree з металевою пряжкою. Міцний текстиль. Підходить для стріт та військового стилю. Регулюється.",
+    "price": 450,
+    "image": "/minishorts/photo_92_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_92_2026-06-22_14-35-41.png",
+      "/minishorts/photo_94_2026-06-22_14-35-41.png"
+    ],
+    "category": "accessories",
+    "sizes": [
+      "One Size"
+    ],
+    "tags": [
+      "camo",
+      "street",
+      "alt"
+    ],
+    "stock": 15,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": 0,
+    "mannequinScale": 0.7
+  },
+  {
+    "id": "prod-ms-2",
+    "name": "Чорний шипований ремінь",
+    "description": "Чорний ремінь з великою кількістю металевих заклепок. Дистрес ефект. Міцна шкіра. Готичний аксесуар.",
+    "price": 520,
+    "image": "/minishorts/photo_93_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_93_2026-06-22_14-35-41.png"
+    ],
+    "category": "accessories",
+    "sizes": [
+      "One Size"
+    ],
+    "tags": [
+      "gothic",
+      "grunge",
+      "punk"
+    ],
+    "stock": 12,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": 0,
+    "mannequinScale": 0.7
+  },
+  {
+    "id": "prod-ms-3",
+    "name": "Крокодилячий ремінь",
+    "description": "Ремінь з фактурою під крокодилову шкіру в темних тонах. Орнаментована металева пряжка додає статусності. Міцний і довговічний матеріал. Класичний аксесуар для готичного та стріт образу.",
+    "price": 480,
+    "image": "/minishorts/photo_95_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_95_2026-06-22_14-35-41.png"
+    ],
+    "category": "accessories",
+    "sizes": [
+      "One Size"
+    ],
+    "tags": [
+      "gothic",
+      "alt",
+      "punk"
+    ],
+    "stock": 14,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": 0,
+    "mannequinScale": 0.7
+  },
+  {
+    "id": "prod-ms-4",
+    "name": "Червоний ремінь з заклепками",
+    "description": "Яскраво-червоний ремінь з численними металевими заклепками. По всій довжині нанесений текстовий принт. Міцна пряжка забезпечує надійну фіксацію. Яскравий акцент для y2k та гранж образів.",
+    "price": 420,
+    "image": "/minishorts/photo_96_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_96_2026-06-22_14-35-41.png"
+    ],
+    "category": "accessories",
+    "sizes": [
+      "One Size"
+    ],
+    "tags": [
+      "y2k",
+      "punk",
+      "alt"
+    ],
+    "stock": 10,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": 0,
+    "mannequinScale": 0.7
+  },
+  {
+    "id": "prod-ms-5",
+    "name": "Чорна вельветова кепка",
+    "description": "Кепка в стилі newsboy з кордурової тканини. Декорована косичкою та металевою кнопкою. Має щільну посадку. Універсальний головний убір для стріт-стилі.",
+    "price": 380,
+    "image": "/minishorts/photo_2026-06-22_14-39-34.png",
+    "images": [
+      "/minishorts/photo_2026-06-22_14-39-34.png"
+    ],
+    "category": "accessories",
+    "sizes": [
+      "One Size"
+    ],
+    "tags": [
+      "gothic",
+      "street"
+    ],
+    "stock": 18,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": 0,
+    "mannequinScale": 0.7
+  },
+  {
+    "id": "prod-ms-6",
+    "name": "Джинсова мініспідниця з вишивкою та шнурівкою",
+    "description": "Темно-синя джинсова спідниця з бічною шнурівкою на металевих люверсах. Біла вишивка квітів і птахів на передній частині. Плісирована нижня частина додає об’єму. Довжина міні.",
+    "price": 650,
+    "image": "/minishorts/photo_1_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_1_2026-06-22_14-35-41.png"
+    ],
+    "category": "skirts",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "y2k",
+      "gothic",
+      "denim"
+    ],
+    "stock": 8,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": -20,
+    "mannequinScale": 0.95
+  },
+  {
+    "id": "prod-ms-7",
+    "name": "Світла джинсова плісирована спідниця з шнурівкою",
+    "description": "Світло-синя джинсова спідниця з плісе по всій довжині. Дві симетричні бічні шнурівки з білими стрічками. Класичний крій з високою посадкою. Добре поєднується з різними топами.",
+    "price": 620,
+    "image": "/minishorts/photo_2_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_2_2026-06-22_14-35-41.png"
+    ],
+    "category": "skirts",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "y2k",
+      "denim",
+      "alt"
+    ],
+    "stock": 9,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": -20,
+    "mannequinScale": 0.95
+  },
+  {
+    "id": "prod-ms-8",
+    "name": "Джинсова мініспідниця з рюшами",
+    "description": "Темно-синя міні-спідниця з рюшами по нижньому краю. Еластичний пояс для комфортної посадки. Проста модель для щоденного носіння. Легко комбінується з кросівками або чоботами.",
+    "price": 580,
+    "image": "/minishorts/photo_3_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_3_2026-06-22_14-35-41.png"
+    ],
+    "category": "skirts",
+    "sizes": [
+      "S",
+      "M"
+    ],
+    "tags": [
+      "y2k",
+      "denim",
+      "cute"
+    ],
+    "stock": 11,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": -20,
+    "mannequinScale": 0.95
+  },
+  {
+    "id": "prod-ms-9",
+    "name": "Чорна шкіряна плісирована спідниця",
+    "description": "Чорна плісирована спідниця з екошкіри. Декоративні металеві елементи на поясі. Готичний силует з високою посадкою. Ідеально підходить для альтернативних образів.",
+    "price": 680,
+    "image": "/minishorts/photo_4_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_4_2026-06-22_14-35-41.png"
+    ],
+    "category": "skirts",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "gothic",
+      "leather",
+      "alt"
+    ],
+    "stock": 10,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": -20,
+    "mannequinScale": 0.95
+  },
+  {
+    "id": "prod-ms-10",
+    "name": "Червона шкіряна плісирована спідниця",
+    "description": "Червона плісирована спідниця з екошкіри. Металеві елементи на кишенях додають характеру. Яскравий колір привертає увагу. Підходить для вечірніх та y2k образів.",
+    "price": 670,
+    "image": "/minishorts/photo_5_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_5_2026-06-22_14-35-41.png"
+    ],
+    "category": "skirts",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "y2k",
+      "gothic",
+      "leather"
+    ],
+    "stock": 12,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": -20,
+    "mannequinScale": 0.95
+  },
+  {
+    "id": "prod-ms-11",
+    "name": "Джинсова спідниця з мереживом D563",
+    "description": "Джинсова спідниця з плісе та мереживною аплікацією з перлинами. Кнопки на поясі. Декоративні елементи на передній частині. Жіночна модель з характером.",
+    "price": 590,
+    "image": "/minishorts/photo_6_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_6_2026-06-22_14-35-41.png"
+    ],
+    "category": "skirts",
+    "sizes": [
+      "S",
+      "M"
+    ],
+    "tags": [
+      "y2k",
+      "denim",
+      "alt"
+    ],
+    "stock": 14,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": -20,
+    "mannequinScale": 0.95
+  },
+  {
+    "id": "prod-ms-12",
+    "name": "Джинсова мініспідниця з паском D558",
+    "description": "Джинсова спідниця з плісе. Пояс з декоративним візерунком. Дві великі ґудзики на передній частині. Класичний крій для повсякденного носіння.",
+    "price": 610,
+    "image": "/minishorts/photo_7_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_7_2026-06-22_14-35-41.png"
+    ],
+    "category": "skirts",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "y2k",
+      "denim"
+    ],
+    "stock": 13,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": -20,
+    "mannequinScale": 0.95
+  },
+  {
+    "id": "prod-ms-13",
+    "name": "Джинсова плісирована спідниця D561",
+    "description": "Класична джинсова спідниця з плісе. Металеві кнопки по низу пояса. Прямий крій з середньою посадкою. Базова модель для багатьох образів.",
+    "price": 550,
+    "image": "/minishorts/photo_8_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_8_2026-06-22_14-35-41.png"
+    ],
+    "category": "skirts",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "y2k",
+      "denim",
+      "alt"
+    ],
+    "stock": 15,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": -20,
+    "mannequinScale": 0.95
+  },
+  {
+    "id": "prod-ms-14",
+    "name": "Світла джинсова спідниця з кишенями",
+    "description": "Світло-синя джинсова спідниця з плісе. Декоративні кишені з ремінцями. Багатошаровий дизайн додає об’єму. Сучасний стріт варіант.",
+    "price": 630,
+    "image": "/minishorts/photo_9_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_9_2026-06-22_14-35-41.png"
+    ],
+    "category": "skirts",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "grunge",
+      "y2k",
+      "denim"
+    ],
+    "stock": 10,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": -20,
+    "mannequinScale": 0.95
+  },
+  {
+    "id": "prod-ms-15",
+    "name": "Чорна джинсова спідниця з ременями",
+    "description": "Чорна джинсова плісирована спідниця з декоративними ременями та пряжками. Готичний стиль з високою посадкою. Багато функціональних елементів. Ідеально для альтернативного гардеробу.",
+    "price": 680,
+    "image": "/minishorts/photo_10_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_10_2026-06-22_14-35-41.png"
+    ],
+    "category": "skirts",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "gothic",
+      "street"
+    ],
+    "stock": 11,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": -20,
+    "mannequinScale": 0.95
+  },
+  {
+    "id": "prod-ms-16",
+    "name": "Джинсова рюшна спідниця з бантами",
+    "description": "Джинсова спідниця з багатошаровими рюшами. Рожеві бантики на поясі. Дівчачий крій з легким настроєм. Добре підходить для y2k стилю.",
+    "price": 590,
+    "image": "/minishorts/photo_11_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_11_2026-06-22_14-35-41.png"
+    ],
+    "category": "skirts",
+    "sizes": [
+      "S",
+      "M"
+    ],
+    "tags": [
+      "y2k",
+      "cute",
+      "denim"
+    ],
+    "stock": 9,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": -20,
+    "mannequinScale": 0.95
+  },
+  {
+    "id": "prod-ms-17",
+    "name": "Джинсова спідниця з кріпленнями",
+    "description": "Джинсова спідниця з декоративними ременями та пряжками. Асиметричний дизайн додає динаміки. Висока посадка. Цікавий акцент для стріт-гардеробу.",
+    "price": 640,
+    "image": "/minishorts/photo_12_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_12_2026-06-22_14-35-41.png"
+    ],
+    "category": "skirts",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "alt",
+      "street"
+    ],
+    "stock": 12,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": -20,
+    "mannequinScale": 0.95
+  },
+  {
+    "id": "prod-ms-18",
+    "name": "Чорна рюшна мініспідниця з серцем",
+    "description": "Чорна спідниця з рюшами та серцем на поясі. Еластичний верх для комфортної посадки. Міні-довжина. Готичний та романтичний варіант.",
+    "price": 520,
+    "image": "/minishorts/photo_13_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_13_2026-06-22_14-35-41.png"
+    ],
+    "category": "skirts",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "gothic",
+      "y2k"
+    ],
+    "stock": 14,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": -20,
+    "mannequinScale": 0.95
+  },
+  {
+    "id": "prod-ms-19",
+    "name": "Рожева рюшна мініспідниця з серцем",
+    "description": "Яскраво-рожева спідниця з рюшами. Металеве серце на поясі. Солодкий y2k силует. Легка та повітряна тканина.",
+    "price": 550,
+    "image": "/minishorts/photo_14_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_14_2026-06-22_14-35-41.png"
+    ],
+    "category": "skirts",
+    "sizes": [
+      "S",
+      "M"
+    ],
+    "tags": [
+      "y2k",
+      "cute",
+      "alt"
+    ],
+    "stock": 15,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": -20,
+    "mannequinScale": 0.95
+  },
+  {
+    "id": "prod-ms-20",
+    "name": "Леопардова спідниця з хутром та ременем",
+    "description": "Джинсова спідниця з леопардовим рюшем та білим хутром. Декоративний ремінь з метеликом. Яскравий y2k акцент. Багатошарова модель.",
+    "price": 680,
+    "image": "/minishorts/photo_15_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_15_2026-06-22_14-35-41.png",
+      "/minishorts/photo_18_2026-06-22_14-35-41.png"
+    ],
+    "category": "skirts",
+    "sizes": [
+      "S",
+      "M"
+    ],
+    "tags": [
+      "y2k",
+      "leopard",
+      "gothic"
+    ],
+    "stock": 10,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": -20,
+    "mannequinScale": 0.95
+  },
+  {
+    "id": "prod-ms-21",
+    "name": "Леопардовий топ з бантом",
+    "description": "Рожевий топ з леопардовими вставками та великим бантом спереду. Зав’язки на спині. Y2k дизайн з оголеними плечима. Легка тканина.",
+    "price": 480,
+    "image": "/minishorts/photo_16_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_16_2026-06-22_14-35-41.png"
+    ],
+    "category": "top",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "y2k",
+      "leopard",
+      "alt"
+    ],
+    "stock": 14,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": 15,
+    "mannequinScale": 1.05
+  },
+  {
+    "id": "prod-ms-22",
+    "name": "Смугастий off-shoulder лонгслів",
+    "description": "Лонгслів у широку сіро-чорну смужку. Асиметричний крій з відкритим плечем. Готичний базовий топ. М’яка трикотажна тканина.",
+    "price": 520,
+    "image": "/minishorts/photo_19_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_19_2026-06-22_14-35-41.png"
+    ],
+    "category": "top",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "gothic",
+      "grunge"
+    ],
+    "stock": 12,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": 15,
+    "mannequinScale": 1.05
+  },
+  {
+    "id": "prod-ms-23",
+    "name": "Принтований лонгслів з серцем",
+    "description": "Лонгслів зі смугастими рукавами та великим центральним принтом серця. Багато тексту та графіки в стилі гранж. Яскравий акцент. Універсальна модель.",
+    "price": 550,
+    "image": "/minishorts/photo_20_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_20_2026-06-22_14-35-41.png",
+      "/minishorts/photo_21_2026-06-22_14-35-41.png"
+    ],
+    "category": "top",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "y2k",
+      "gothic",
+      "alt"
+    ],
+    "stock": 11,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": 15,
+    "mannequinScale": 1.05
+  },
+  {
+    "id": "prod-ms-24",
+    "name": "Рожевий топ з трояндою",
+    "description": "Рожевий топ з великим принтом троянди та стрічками True Love. Корсетний силует з фігурним низом. Романтично-готичний дизайн. Легка тканина.",
+    "price": 490,
+    "image": "/minishorts/photo_23_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_23_2026-06-22_14-35-41.png"
+    ],
+    "category": "top",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "gothic",
+      "y2k"
+    ],
+    "stock": 13,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": 15,
+    "mannequinScale": 1.05
+  },
+  {
+    "id": "prod-ms-25",
+    "name": "Білий топ з хутром та принтом",
+    "description": "Білий топ-халтер з хутряною обробкою по верху. Принт з текстом та хрестом. Y2k крій з відкритою спиною. Ефектний акцент.",
+    "price": 470,
+    "image": "/minishorts/photo_24_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_24_2026-06-22_14-35-41.png"
+    ],
+    "category": "top",
+    "sizes": [
+      "S",
+      "M"
+    ],
+    "tags": [
+      "street",
+      "alt"
+    ],
+    "stock": 15,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": 15,
+    "mannequinScale": 1.05
+  },
+  {
+    "id": "prod-ms-26",
+    "name": "Бордові мінішорти з леопардом",
+    "description": "Бордові джинсові шорти з леопардовими вставками на кишенях. Декоративні ремінці та металеві елементи. Висока посадка. Яскравий y2k варіант.",
+    "price": 580,
+    "image": "/minishorts/photo_25_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_25_2026-06-22_14-35-41.png"
+    ],
+    "category": "bottom",
+    "sizes": [
+      "S",
+      "M"
+    ],
+    "tags": [
+      "y2k",
+      "leopard"
+    ],
+    "stock": 10,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": -20,
+    "mannequinScale": 0.95
+  },
+  {
+    "id": "prod-ms-27",
+    "name": "Рожева тигрова мінісукня",
+    "description": "Облягаюча міні-сукня в рожеву зебру. Металевий ремінь з заклепками. Тонкі бретелі. Сексуальний y2k вайб.",
+    "price": 650,
+    "image": "/minishorts/photo_26_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_26_2026-06-22_14-35-41.png",
+      "/minishorts/photo_35_2026-06-22_14-35-41.png"
+    ],
+    "category": "top",
+    "sizes": [
+      "S",
+      "M"
+    ],
+    "tags": [
+      "gothic",
+      "y2k",
+      "zebra"
+    ],
+    "stock": 8,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": 15,
+    "mannequinScale": 1.05
+  },
+  {
+    "id": "prod-ms-28",
+    "name": "Чорні леопардові мінішорти",
+    "description": "Чорні джинсові шорти з леопардовою облямівкою по низу. Потертості та декоративні елементи. Зручна посадка. Гранж стиль.",
+    "price": 550,
+    "image": "/minishorts/photo_27_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_27_2026-06-22_14-35-41.png"
+    ],
+    "category": "bottom",
+    "sizes": [
+      "S",
+      "M"
+    ],
+    "tags": [
+      "y2k",
+      "leopard",
+      "grunge"
+    ],
+    "stock": 12,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": -20,
+    "mannequinScale": 0.95
+  },
+  {
+    "id": "prod-ms-29",
+    "name": "Чорний сатиновий топ з бантом",
+    "description": "Чорний сатиновий топ з великим бантом і хрестом. Відкриті плечі. Елегантний готичний дизайн. М’яка блискуча тканина.",
+    "price": 460,
+    "image": "/minishorts/photo_28_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_28_2026-06-22_14-35-41.png"
+    ],
+    "category": "top",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "gothic",
+      "y2k"
+    ],
+    "stock": 14,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": 15,
+    "mannequinScale": 1.05
+  },
+  {
+    "id": "prod-ms-30",
+    "name": "Чорна рюшна мініспідниця з шнурівкою",
+    "description": "Чорна спідниця з рюшами та шнурівкою на спині. Готичний дизайн з багатошаровим низом. Еластичні елементи. Mini-довжина.",
+    "price": 590,
+    "image": "/minishorts/photo_29_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_29_2026-06-22_14-35-41.png"
+    ],
+    "category": "skirts",
+    "sizes": [
+      "S",
+      "M"
+    ],
+    "tags": [
+      "gothic"
+    ],
+    "stock": 10,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": -20,
+    "mannequinScale": 0.95
+  },
+  {
+    "id": "prod-ms-31",
+    "name": "Леопардовий топ",
+    "description": "Леопардовий топ з чорною нижньою частиною. Легкий та повітряний силует. Y2k крій. Зручний для літа.",
+    "price": 480,
+    "image": "/minishorts/photo_30_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_30_2026-06-22_14-35-41.png",
+      "/minishorts/photo_31_2026-06-22_14-35-41.png",
+      "/minishorts/photo_32_2026-06-22_14-35-41.png",
+      "/minishorts/photo_33_2026-06-22_14-35-41.png"
+    ],
+    "category": "top",
+    "sizes": [
+      "S",
+      "M"
+    ],
+    "tags": [
+      "y2k",
+      "leopard",
+      "alt"
+    ],
+    "stock": 16,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": 15,
+    "mannequinScale": 1.05
+  },
+  {
+    "id": "prod-ms-32",
+    "name": "Рожевий принтований топ з птахом",
+    "description": "Яскраво-рожева футболка з великим принтом птаха та орнаменту. V-подібний виріз. Легка тканина. Яскравий літній топ.",
+    "price": 480,
+    "image": "/minishorts/photo_36_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_36_2026-06-22_14-35-41.png"
+    ],
+    "category": "top",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "y2k",
+      "alt"
+    ],
+    "stock": 13,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": 15,
+    "mannequinScale": 1.05
+  },
+  {
+    "id": "prod-ms-33",
+    "name": "Чорний сатиновий топ з квітами",
+    "description": "Чорний сатиновий топ з квітковою вишивкою та заклепками. Асиметричний крій. Блискуча тканина. Готичний вечірній варіант.",
+    "price": 470,
+    "image": "/minishorts/photo_37_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_37_2026-06-22_14-35-41.png"
+    ],
+    "category": "top",
+    "sizes": [
+      "S",
+      "M"
+    ],
+    "tags": [
+      "gothic",
+      "y2k"
+    ],
+    "stock": 14,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": 15,
+    "mannequinScale": 1.05
+  },
+  {
+    "id": "prod-ms-34",
+    "name": "Смугаста рюшна мініспідниця",
+    "description": "Чорно-біла смугаста спідниця з рюшами. Коротка модель. Еластичний пояс. Альтернативний базовий елемент.",
+    "price": 540,
+    "image": "/minishorts/photo_38_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_38_2026-06-22_14-35-41.png"
+    ],
+    "category": "skirts",
+    "sizes": [
+      "S",
+      "M"
+    ],
+    "tags": [
+      "grunge",
+      "alt"
+    ],
+    "stock": 11,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": -20,
+    "mannequinScale": 0.95
+  },
+  {
+    "id": "prod-ms-35",
+    "name": "Леопардова спідниця з черепом та хутром",
+    "description": "Леопардова спідниця з білим хутром, черепом та заклепками. Яскравий гранж дизайн. Багатошарова модель. Ідеально для y2k.",
+    "price": 680,
+    "image": "/minishorts/photo_39_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_39_2026-06-22_14-35-41.png"
+    ],
+    "category": "skirts",
+    "sizes": [
+      "S",
+      "M"
+    ],
+    "tags": [
+      "gothic",
+      "y2k",
+      "leopard"
+    ],
+    "stock": 10,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": -20,
+    "mannequinScale": 0.95
+  },
+  {
+    "id": "prod-ms-36",
+    "name": "Чорний топ з шипованими хрестами",
+    "description": "Чорний топ з великими заклепковими хрестами. Зав’язки на спині. Готичний дизайн. Базовий елемент для альтернативного стилю.",
+    "price": 420,
+    "image": "/minishorts/photo_40_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_40_2026-06-22_14-35-41.png"
+    ],
+    "category": "top",
+    "sizes": [
+      "S",
+      "M"
+    ],
+    "tags": [
+      "gothic",
+      "punk"
+    ],
+    "stock": 12,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": 15,
+    "mannequinScale": 1.05
+  },
+  {
+    "id": "prod-ms-37",
+    "name": "Бікіні з черепами",
+    "description": "Чорний топ з блискучим черепом зі стразів. Бікіні-стиль. Легка модель. Яскравий аксесуар для пляжу або вечірки.",
+    "price": 410,
+    "image": "/minishorts/photo_41_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_41_2026-06-22_14-35-41.png",
+      "/minishorts/photo_42_2026-06-22_14-35-41.png"
+    ],
+    "category": "swimwear",
+    "sizes": [
+      "One Size"
+    ],
+    "tags": [
+      "gothic",
+      "y2k"
+    ],
+    "stock": 15,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": 0,
+    "mannequinScale": 0.7
+  },
+  {
+    "id": "prod-ms-38",
+    "name": "Смугастий бікіні",
+    "description": "Чорно-білий смугастий бікіні. Класичний крій з зав’язками. Універсальна модель для пляжу. Стильний альтернативний варіант.",
+    "price": 380,
+    "image": "/minishorts/photo_43_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_43_2026-06-22_14-35-41.png"
+    ],
+    "category": "swimwear",
+    "sizes": [
+      "One Size"
+    ],
+    "tags": [
+      "alt"
+    ],
+    "stock": 18,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": 0,
+    "mannequinScale": 0.7
+  },
+  {
+    "id": "prod-ms-39",
+    "name": "Чорний бікіні з принтом",
+    "description": "Чорний бікіні з білим графічним принтом. Металеві кільця. Сучасний дизайн. Підходить для пляжного відпочинку.",
+    "price": 400,
+    "image": "/minishorts/photo_44_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_44_2026-06-22_14-35-41.png"
+    ],
+    "category": "swimwear",
+    "sizes": [
+      "One Size"
+    ],
+    "tags": [
+      "gothic",
+      "y2k"
+    ],
+    "stock": 16,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": 0,
+    "mannequinScale": 0.7
+  },
+  {
+    "id": "prod-ms-40",
+    "name": "Чорний танкіні з квітами",
+    "description": "Чорний танкіні з рожевими квітами. Комплект з шортами. Зручний пляжний варіант. Прикриває більше тіла.",
+    "price": 450,
+    "image": "/minishorts/photo_45_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_45_2026-06-22_14-35-41.png"
+    ],
+    "category": "swimwear",
+    "sizes": [
+      "One Size"
+    ],
+    "tags": [
+      "alt"
+    ],
+    "stock": 12,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": 0,
+    "mannequinScale": 0.7
+  },
+  {
+    "id": "prod-ms-41",
+    "name": "Бікіні UK Flag",
+    "description": "Бікіні з британським прапором. Класичний крій з білими зав’язками. Патріотичний акцент. Яскрава пляжна модель.",
+    "price": 390,
+    "image": "/minishorts/photo_46_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_46_2026-06-22_14-35-41.png"
+    ],
+    "category": "swimwear",
+    "sizes": [
+      "One Size"
+    ],
+    "tags": [
+      "y2k",
+      "street"
+    ],
+    "stock": 14,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": 0,
+    "mannequinScale": 0.7
+  },
+  {
+    "id": "prod-ms-42",
+    "name": "Леопардовий US Flag бікіні",
+    "description": "Бікіні з леопардовим американським прапором. Регулювальні зав’язки. Y2k пляжний стиль. Яскравий принт.",
+    "price": 410,
+    "image": "/minishorts/photo_47_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_47_2026-06-22_14-35-41.png"
+    ],
+    "category": "swimwear",
+    "sizes": [
+      "One Size"
+    ],
+    "tags": [
+      "y2k",
+      "alt"
+    ],
+    "stock": 15,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": 0,
+    "mannequinScale": 0.7
+  },
+  {
+    "id": "prod-ms-43",
+    "name": "Білий бікіні з автоматом",
+    "description": "Білий бікіні з заклепками та принтом автомата. Зав’язки. Гранж-пляжний варіант. Провокаційний дизайн.",
+    "price": 430,
+    "image": "/minishorts/photo_48_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_48_2026-06-22_14-35-41.png"
+    ],
+    "category": "swimwear",
+    "sizes": [
+      "One Size"
+    ],
+    "tags": [
+      "punk",
+      "gothic"
+    ],
+    "stock": 10,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": 0,
+    "mannequinScale": 0.7
+  },
+  {
+    "id": "prod-ms-44",
+    "name": "Чорна футболка з Буддою та лотосом",
+    "description": "Чорна футболка з принтом Будди, лотоса та Ом. Яскраві рожеві акценти. Легка тканина. Альтернативний принт.",
+    "price": 450,
+    "image": "/minishorts/photo_49_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_49_2026-06-22_14-35-41.png"
+    ],
+    "category": "top",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "gothic",
+      "alt"
+    ],
+    "stock": 20,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": 15,
+    "mannequinScale": 1.05
+  },
+  {
+    "id": "prod-ms-45",
+    "name": "Футболка з тигром та ліліями",
+    "description": "Темна футболка з принтом тигра та рожевих лілій. Спокійний східний мотив. М’яка тканина. Універсальна модель.",
+    "price": 420,
+    "image": "/minishorts/photo_50_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_50_2026-06-22_14-35-41.png"
+    ],
+    "category": "top",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "street",
+      "alt"
+    ],
+    "stock": 18,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": 15,
+    "mannequinScale": 1.05
+  },
+  {
+    "id": "prod-ms-46",
+    "name": "Футболка Dragon vs Tiger",
+    "description": "Чорна футболка з драконом, тигром та східним написом. Динамічний принт. Якісний друк. Альтернативний топ.",
+    "price": 480,
+    "image": "/minishorts/photo_51_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_51_2026-06-22_14-35-41.png"
+    ],
+    "category": "top",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "gothic",
+      "alt"
+    ],
+    "stock": 15,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": 15,
+    "mannequinScale": 1.05
+  },
+  {
+    "id": "prod-ms-47",
+    "name": "Топ з журавлем",
+    "description": "Темна майка з вишивкою журавля, квітів та ієрогліфів. Східний стиль. Легка тканина. Базова літня модель.",
+    "price": 430,
+    "image": "/minishorts/photo_52_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_52_2026-06-22_14-35-41.png"
+    ],
+    "category": "top",
+    "sizes": [
+      "S",
+      "M"
+    ],
+    "tags": [
+      "alt"
+    ],
+    "stock": 12,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": 15,
+    "mannequinScale": 1.05
+  },
+  {
+    "id": "prod-ms-48",
+    "name": "Чорна футболка з птахами",
+    "description": "Чорна футболка з принтом голубів та квітів. Романтичний мотив. М’яка тканина. Класичний крій.",
+    "price": 410,
+    "image": "/minishorts/photo_53_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_53_2026-06-22_14-35-41.png"
+    ],
+    "category": "top",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "gothic"
+    ],
+    "stock": 17,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": 15,
+    "mannequinScale": 1.05
+  },
+  {
+    "id": "prod-ms-49",
+    "name": "Біла футболка з гейшею",
+    "description": "Біла футболка з японським принтом гейші та метелика. Яскраві акценти. Легка тканина. Альтернативний дизайн.",
+    "price": 390,
+    "image": "/minishorts/photo_54_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_54_2026-06-22_14-35-41.png"
+    ],
+    "category": "top",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "y2k",
+      "alt"
+    ],
+    "stock": 19,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": 15,
+    "mannequinScale": 1.05
+  },
+  {
+    "id": "prod-ms-50",
+    "name": "Джинси з білими лампасами Y-3",
+    "description": "Сині джинси з білими лампасами. Класичний крій. Якісний денім. Сучасний стріт-стиль.",
+    "price": 680,
+    "image": "/minishorts/photo_55_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_55_2026-06-22_14-35-41.png"
+    ],
+    "category": "bottom",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "street",
+      "denim"
+    ],
+    "stock": 10,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": -20,
+    "mannequinScale": 0.95
+  },
+  {
+    "id": "prod-ms-51",
+    "name": "Чорні джинси з лампасами",
+    "description": "Чорні джинси з білими лампасами. Сучасний стріт-стиль. Міцний денім. Універсальна модель.",
+    "price": 650,
+    "image": "/minishorts/photo_56_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_56_2026-06-22_14-35-41.png"
+    ],
+    "category": "bottom",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "street",
+      "gothic"
+    ],
+    "stock": 12,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": -20,
+    "mannequinScale": 0.95
+  },
+  {
+    "id": "prod-ms-52",
+    "name": "Stussy Cargo джинси",
+    "description": "Сині cargo джинси з численними кишенями. Червоний принт Stussy. Вільний крій. Стріт-варіант.",
+    "price": 690,
+    "image": "/minishorts/photo_57_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_57_2026-06-22_14-35-41.png"
+    ],
+    "category": "bottom",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "street",
+      "alt"
+    ],
+    "stock": 8,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": -20,
+    "mannequinScale": 0.95
+  },
+  {
+    "id": "prod-ms-53",
+    "name": "Джинси UK Flag",
+    "description": "Джинси з принтом британського прапора та текстом. Дистрес ефект. Яскравий акцент. Альтернативний стиль.",
+    "price": 670,
+    "image": "/minishorts/photo_58_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_58_2026-06-22_14-35-41.png",
+      "/minishorts/photo_86_2026-06-22_14-35-41.png"
+    ],
+    "category": "bottom",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "gothic",
+      "street"
+    ],
+    "stock": 11,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": -20,
+    "mannequinScale": 0.95
+  },
+  {
+    "id": "prod-ms-54",
+    "name": "Джинси з черепом",
+    "description": "Джинси з великим принтом черепа, хрестами та написами. Готичний дизайн. Дистрес ефект. Яскравий стріт варіант.",
+    "price": 680,
+    "image": "/minishorts/photo_59_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_59_2026-06-22_14-35-41.png"
+    ],
+    "category": "bottom",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "gothic"
+    ],
+    "stock": 9,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": -20,
+    "mannequinScale": 0.95
+  },
+  {
+    "id": "prod-ms-55",
+    "name": "Джинси Dragon & Tiger",
+    "description": "Джинси з вишивкою дракона, тигра та сакури. Яскраві деталі. Східний мотив. Преміум дизайн.",
+    "price": 690,
+    "image": "/minishorts/photo_60_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_60_2026-06-22_14-35-41.png"
+    ],
+    "category": "bottom",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "gothic",
+      "street"
+    ],
+    "stock": 13,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": -20,
+    "mannequinScale": 0.95
+  },
+  {
+    "id": "prod-ms-56",
+    "name": "Джинси з червоним драконом",
+    "description": "Світлі джинси з червоним драконом та китайськими ієрогліфами. Яскравий принт. Вільний крій. Східний стріт-стиль.",
+    "price": 650,
+    "image": "/minishorts/photo_61_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_61_2026-06-22_14-35-41.png"
+    ],
+    "category": "bottom",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "alt",
+      "street"
+    ],
+    "stock": 14,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": -20,
+    "mannequinScale": 0.95
+  },
+  {
+    "id": "prod-ms-57",
+    "name": "Джинси з міфічними звірами",
+    "description": "Джинси з принтами тигра, фенікса, черепахи та дракона. Багатий дизайн. Яскраві кольори. Альтернативний стріт.",
+    "price": 680,
+    "image": "/minishorts/photo_62_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_62_2026-06-22_14-35-41.png"
+    ],
+    "category": "bottom",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "street",
+      "alt"
+    ],
+    "stock": 10,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": -20,
+    "mannequinScale": 0.95
+  },
+  {
+    "id": "prod-ms-58",
+    "name": "Джинси з золотим драконом",
+    "description": "Джинси з золотим драконом та хвилями. Вид спереду та ззаду. Традиційний японський мотив. Якісний друк.",
+    "price": 690,
+    "image": "/minishorts/photo_63_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_63_2026-06-22_14-35-41.png"
+    ],
+    "category": "bottom",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "alt",
+      "street"
+    ],
+    "stock": 11,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": -20,
+    "mannequinScale": 0.95
+  },
+  {
+    "id": "prod-ms-59",
+    "name": "Джинси з коропом Кої",
+    "description": "Джинси з принтом золотого коропа Кої та хвилями. Японська естетика. Детальний принт. Стильний варіант.",
+    "price": 670,
+    "image": "/minishorts/photo_64_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_64_2026-06-22_14-35-41.png",
+      "/minishorts/photo_65_2026-06-22_14-35-41.png"
+    ],
+    "category": "bottom",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "street",
+      "alt"
+    ],
+    "stock": 15,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": -20,
+    "mannequinScale": 0.95
+  },
+  {
+    "id": "prod-ms-60",
+    "name": "Джинси з білим драконом",
+    "description": "Джинси з великим білим драконом. Вид спереду та ззаду. Детальний принт. Східний стріт-стиль.",
+    "price": 680,
+    "image": "/minishorts/photo_66_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_66_2026-06-22_14-35-41.png"
+    ],
+    "category": "bottom",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "gothic",
+      "street"
+    ],
+    "stock": 12,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": -20,
+    "mannequinScale": 0.95
+  },
+  {
+    "id": "prod-ms-61",
+    "name": "Джинси з трибальними візерунками",
+    "description": "Світлі джинси з білим трайбл візерунком та потертостями. Дистрес ефект. Сучасний гранж стиль.",
+    "price": 640,
+    "image": "/minishorts/photo_67_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_67_2026-06-22_14-35-41.png",
+      "/minishorts/photo_68_2026-06-22_14-35-41.png"
+    ],
+    "category": "bottom",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "grunge",
+      "y2k"
+    ],
+    "stock": 14,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": -20,
+    "mannequinScale": 0.95
+  },
+  {
+    "id": "prod-ms-62",
+    "name": "Срібне кільце Eye",
+    "description": "Масивне срібне кільце з візерунком ока та геометрією. Детальний рельєф. Готичний аксесуар. Універсальний розмір.",
+    "price": 320,
+    "image": "/minishorts/photo_69_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_69_2026-06-22_14-35-41.png"
+    ],
+    "category": "accessories",
+    "sizes": [
+      "One Size"
+    ],
+    "tags": [
+      "gothic"
+    ],
+    "stock": 25,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": 0,
+    "mannequinScale": 0.7
+  },
+  {
+    "id": "prod-ms-63",
+    "name": "Кільце TwoJoys зірка",
+    "description": "Срібне кільце у формі зірки. Бренд TwoJeys. Масивний дизайн. Яскравий акцент. Універсальний розмір.",
+    "price": 290,
+    "image": "/minishorts/photo_70_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_70_2026-06-22_14-35-41.png",
+      "/minishorts/photo_71_2026-06-22_14-35-41.png"
+    ],
+    "category": "accessories",
+    "sizes": [
+      "One Size"
+    ],
+    "tags": [
+      "y2k",
+      "alt"
+    ],
+    "stock": 30,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": 0,
+    "mannequinScale": 0.7
+  },
+  {
+    "id": "prod-ms-64",
+    "name": "Кільце з черепом",
+    "description": "Срібне кільце з черепом і кістками. Класичний готичний мотив. Детальна обробка. Універсальний розмір.",
+    "price": 310,
+    "image": "/minishorts/photo_72_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_72_2026-06-22_14-35-41.png"
+    ],
+    "category": "accessories",
+    "sizes": [
+      "One Size"
+    ],
+    "tags": [
+      "gothic"
+    ],
+    "stock": 24,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": 0,
+    "mannequinScale": 0.7
+  },
+  {
+    "id": "prod-ms-65",
+    "name": "Кільце з червоним серцем",
+    "description": "Срібне кільце з червоним серцем та стразами. Романтичний готичний дизайн. Блискучий акцент. Універсальний розмір.",
+    "price": 300,
+    "image": "/minishorts/photo_73_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_73_2026-06-22_14-35-41.png"
+    ],
+    "category": "accessories",
+    "sizes": [
+      "One Size"
+    ],
+    "tags": [
+      "gothic"
+    ],
+    "stock": 22,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": 0,
+    "mannequinScale": 0.7
+  },
+  {
+    "id": "prod-ms-66",
+    "name": "Кільце Devil Heart",
+    "description": "Срібне кільце з чорним серцем, ріжками та хвостом. Темний готичний дизайн. Масивна форма. Яскравий аксесуар.",
+    "price": 320,
+    "image": "/minishorts/photo_74_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_74_2026-06-22_14-35-41.png"
+    ],
+    "category": "accessories",
+    "sizes": [
+      "One Size"
+    ],
+    "tags": [
+      "gothic"
+    ],
+    "stock": 26,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": 0,
+    "mannequinScale": 0.7
+  },
+  {
+    "id": "prod-ms-67",
+    "name": "Кільце з крилами кажана",
+    "description": "Срібне кільце у формі крил кажана. Детальний рельєф. Готичний стиль. Універсальний розмір.",
+    "price": 310,
+    "image": "/minishorts/photo_75_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_75_2026-06-22_14-35-41.png",
+      "/minishorts/photo_76_2026-06-22_14-35-41.png"
+    ],
+    "category": "accessories",
+    "sizes": [
+      "One Size"
+    ],
+    "tags": [
+      "gothic"
+    ],
+    "stock": 20,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": 0,
+    "mannequinScale": 0.7
+  },
+  {
+    "id": "prod-ms-68",
+    "name": "Кулон Eye Wings",
+    "description": "Масивна підвіска з крилами та оком. На ланцюжку. Готичний символ. Детальна обробка. Яскравий аксесуар.",
+    "price": 350,
+    "image": "/minishorts/photo_77_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_77_2026-06-22_14-35-41.png"
+    ],
+    "category": "accessories",
+    "sizes": [
+      "One Size"
+    ],
+    "tags": [
+      "gothic"
+    ],
+    "stock": 15,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": 0,
+    "mannequinScale": 0.7
+  },
+  {
+    "id": "prod-ms-69",
+    "name": "Кулон Skeleton",
+    "description": "Підвіска у формі скелета з розставленими руками. На ланцюжку. Готичний дизайн. Детальна робота.",
+    "price": 340,
+    "image": "/minishorts/photo_78_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_78_2026-06-22_14-35-41.png"
+    ],
+    "category": "accessories",
+    "sizes": [
+      "One Size"
+    ],
+    "tags": [
+      "gothic"
+    ],
+    "stock": 18,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": 0,
+    "mannequinScale": 0.7
+  },
+  {
+    "id": "prod-ms-70",
+    "name": "Орнаментований кулон хрест",
+    "description": "Великий орнаментований готичний хрест на ланцюжку. Детальний рельєф. Масивна підвіска. Класичний готичний аксесуар.",
+    "price": 360,
+    "image": "/minishorts/photo_79_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_79_2026-06-22_14-35-41.png"
+    ],
+    "category": "accessories",
+    "sizes": [
+      "One Size"
+    ],
+    "tags": [
+      "gothic"
+    ],
+    "stock": 12,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": 0,
+    "mannequinScale": 0.7
+  },
+  {
+    "id": "prod-ms-71",
+    "name": "Догтег з черепом",
+    "description": "Металевий армійський жетон з черепом та текстом. На ланцюжку. Готичний мілітарі стиль. Детальний гравіювання.",
+    "price": 280,
+    "image": "/minishorts/photo_80_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_80_2026-06-22_14-35-41.png"
+    ],
+    "category": "accessories",
+    "sizes": [
+      "One Size"
+    ],
+    "tags": [
+      "punk",
+      "gothic"
+    ],
+    "stock": 35,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": 0,
+    "mannequinScale": 0.7
+  },
+  {
+    "id": "prod-ms-72",
+    "name": "Порваний UK Flag светр",
+    "description": "Светр з британським прапором у стилі distressed. Рвані елементи та потертості. Об’ємний крій. Гранж акцент.",
+    "price": 580,
+    "image": "/minishorts/photo_81_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_81_2026-06-22_14-35-41.png"
+    ],
+    "category": "outerwear",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "grunge",
+      "street"
+    ],
+    "stock": 11,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": 15,
+    "mannequinScale": 1.05
+  },
+  {
+    "id": "prod-ms-73",
+    "name": "UK Flag лонгслів",
+    "description": "Сірий лонгслів з британським прапором та мереживом. Довгі рукави. Жіночний силует. Патріотичний акцент.",
+    "price": 490,
+    "image": "/minishorts/photo_82_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_82_2026-06-22_14-35-41.png"
+    ],
+    "category": "top",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "street",
+      "alt"
+    ],
+    "stock": 14,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": 15,
+    "mannequinScale": 1.05
+  },
+  {
+    "id": "prod-ms-74",
+    "name": "Смугастий рваний лонгслів",
+    "description": "Чорно-білий смугастий лонгслів з ефектом брудного та потертостями. Рвані деталі. Гранж естетика. Універсальна модель.",
+    "price": 510,
+    "image": "/minishorts/photo_83_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_83_2026-06-22_14-35-41.png"
+    ],
+    "category": "top",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "grunge"
+    ],
+    "stock": 15,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": 15,
+    "mannequinScale": 1.05
+  },
+  {
+    "id": "prod-ms-75",
+    "name": "Смугастий шарф",
+    "description": "Довгий шарф у сіро-чорну смужку. М’яка тканина. Класичний аксесуар. Добре поєднується з верхнім одягом.",
+    "price": 320,
+    "image": "/minishorts/photo_84_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_84_2026-06-22_14-35-41.png",
+      "/minishorts/photo_85_2026-06-22_14-35-41.png"
+    ],
+    "category": "accessories",
+    "sizes": [
+      "One Size"
+    ],
+    "tags": [
+      "gothic",
+      "alt"
+    ],
+    "stock": 28,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": 0,
+    "mannequinScale": 0.7
+  },
+  {
+    "id": "prod-ms-76",
+    "name": "UK Flag шарф",
+    "description": "Шарф з британським прапором та бахромою. Теплий матеріал. Патріотичний дизайн. Універсальний аксесуар.",
+    "price": 350,
+    "image": "/minishorts/photo_87_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_87_2026-06-22_14-35-41.png"
+    ],
+    "category": "accessories",
+    "sizes": [
+      "One Size"
+    ],
+    "tags": [
+      "street"
+    ],
+    "stock": 18,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": 0,
+    "mannequinScale": 0.7
+  },
+  {
+    "id": "prod-ms-77",
+    "name": "UK Flag рукавички",
+    "description": "В’язані рукавички без пальців з британським прапором. Зручні для осені. Патріотичний акцент. Якісна в’язка.",
+    "price": 280,
+    "image": "/minishorts/photo_88_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_88_2026-06-22_14-35-41.png"
+    ],
+    "category": "accessories",
+    "sizes": [
+      "One Size"
+    ],
+    "tags": [
+      "street"
+    ],
+    "stock": 25,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": 0,
+    "mannequinScale": 0.7
+  },
+  {
+    "id": "prod-ms-78",
+    "name": "Сумка UK Flag",
+    "description": "Текстильна сумка-месенджер з британським прапором. Міцні ремені. Практичний розмір. Стильний стріт аксесуар.",
+    "price": 520,
+    "image": "/minishorts/photo_89_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_89_2026-06-22_14-35-41.png"
+    ],
+    "category": "accessories",
+    "sizes": [
+      "One Size"
+    ],
+    "tags": [
+      "street"
+    ],
+    "stock": 16,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": 0,
+    "mannequinScale": 0.7
+  },
+  {
+    "id": "prod-ms-79",
+    "name": "Чорний ремінь S X",
+    "description": "Чорний шкіряний ремінь з металевими літерами S та X. Міцна пряжка. Сучасний мінімалістичний дизайн. Універсальний аксесуар.",
+    "price": 380,
+    "image": "/minishorts/photo_90_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_90_2026-06-22_14-35-41.png"
+    ],
+    "category": "accessories",
+    "sizes": [
+      "One Size"
+    ],
+    "tags": [
+      "gothic"
+    ],
+    "stock": 20,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": 0,
+    "mannequinScale": 0.7
+  },
+  {
+    "id": "prod-ms-80",
+    "name": "Ключниця No After Party",
+    "description": "Ключниця у формі пакетика з написом No After Party. Металевий карабін. Гуморний аксесуар. Компактна та практична.",
+    "price": 250,
+    "image": "/minishorts/photo_91_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_91_2026-06-22_14-35-41.png"
+    ],
+    "category": "accessories",
+    "sizes": [
+      "One Size"
+    ],
+    "tags": [
+      "alt",
+      "street"
+    ],
+    "stock": 30,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": 0,
+    "mannequinScale": 0.7
+  },
+  {
+    "id": "prod-ms-new-101",
+    "name": "Ремінь камуфляжний RealTree",
+    "description": "Ремінь у камуфляжному принті з деревами. Має міцну текстильну основу та велику металеву пряжку. Підходить для щоденного носіння в стріт-стилі. Довжина регулюється.",
+    "price": 450,
+    "image": "/minishorts/photo_94_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_94_2026-06-22_14-35-41.png"
+    ],
+    "category": "accessories",
+    "sizes": [
+      "One Size"
+    ],
+    "tags": [
+      "street",
+      "grunge",
+      "alt"
+    ],
+    "stock": 10,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": 0,
+    "mannequinScale": 0.7
+  },
+  {
+    "id": "prod-ms-new-102",
+    "name": "Комплект леопардовий",
+    "description": "Повний образ на манекені: леопардовий топ, джинсові шорти та аксесуари. Леопардовий принт домінує. Y2k стріт-стиль. Готовий комплект для фото.",
+    "price": 890,
+    "image": "/minishorts/photo_17_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_17_2026-06-22_14-35-41.png"
+    ],
+    "category": "top",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "y2k",
+      "alt"
+    ],
+    "stock": 10,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": 0,
+    "mannequinScale": 0.7
+  },
+  {
+    "id": "prod-ms-new-103",
+    "name": "Леопардова спідниця з хутром",
+    "description": "Джинсова основа з леопардовим рюшем, хутром та декоративним ременем. Багатошарова модель. Яскравий y2k елемент. Комфортна посадка.",
+    "price": 680,
+    "image": "/minishorts/photo_18_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_18_2026-06-22_14-35-41.png"
+    ],
+    "category": "skirts",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "y2k",
+      "alt"
+    ],
+    "stock": 10,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": 0,
+    "mannequinScale": 0.7
+  },
+  {
+    "id": "prod-ms-new-104",
+    "name": "Принтований лонгслів",
+    "description": "Детальний вид лонгсліву з великим рожевим серцем, крилами та графіті-принтом. Багато дрібних написів. Гранж естетика. М’яка тканина.",
+    "price": 550,
+    "image": "/minishorts/photo_21_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_21_2026-06-22_14-35-41.png"
+    ],
+    "category": "top",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "y2k",
+      "alt"
+    ],
+    "stock": 10,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": 0,
+    "mannequinScale": 0.7
+  },
+  {
+    "id": "prod-ms-new-105",
+    "name": "Леопардовий топ з мереживом",
+    "description": "Леопардовий корсетний топ з мереживом і смугастою вставкою. Щільна посадка. Сексуальний силует. Y2k-готика.",
+    "price": 510,
+    "image": "/minishorts/photo_31_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_31_2026-06-22_14-35-41.png"
+    ],
+    "category": "top",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "gothic",
+      "y2k"
+    ],
+    "stock": 10,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": 0,
+    "mannequinScale": 0.7
+  },
+  {
+    "id": "prod-ms-new-106",
+    "name": "Леопардовий топ",
+    "description": "Леопардовий топ з мереживом. Корсетний силует. Вид ззаду показує посадку. Класичний y2k елемент гардеробу.",
+    "price": 490,
+    "image": "/minishorts/photo_33_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_33_2026-06-22_14-35-41.png"
+    ],
+    "category": "top",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "y2k",
+      "alt"
+    ],
+    "stock": 10,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": 0,
+    "mannequinScale": 0.7
+  },
+  {
+    "id": "prod-ms-new-107",
+    "name": "Рожева міні-сукня",
+    "description": "Облягаюча рожева міні-сукня в зебровий принт. Тонкі бретелі. Сексуальний силует. Ідеально для клубу або пляжу.",
+    "price": 590,
+    "image": "/minishorts/photo_34_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_34_2026-06-22_14-35-41.png"
+    ],
+    "category": "top",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "y2k"
+    ],
+    "stock": 10,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": 0,
+    "mannequinScale": 0.7
+  },
+  {
+    "id": "prod-ms-new-108",
+    "name": "Рожева міні-сукня",
+    "description": "Вид ззаду рожевої зебрової міні-сукні з ременем. Облягаючий крій. Металевий ремінь з заклепками. Y2k вайб.",
+    "price": 590,
+    "image": "/minishorts/photo_35_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_35_2026-06-22_14-35-41.png"
+    ],
+    "category": "top",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "y2k"
+    ],
+    "stock": 10,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": 0,
+    "mannequinScale": 0.7
+  },
+  {
+    "id": "prod-ms-new-109",
+    "name": "Рожевий бікіні з черепами",
+    "description": "Рожевий бікіні з принтом черепів. Регулювальні зав’язки. Яскравий y2k пляжний комплект. Легка тканина.",
+    "price": 420,
+    "image": "/minishorts/photo_42_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_42_2026-06-22_14-35-41.png"
+    ],
+    "category": "swimwear",
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "tags": [
+      "y2k",
+      "alt"
+    ],
+    "stock": 10,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": 0,
+    "mannequinScale": 0.7
+  },
+  {
+    "id": "prod-ms-new-110",
+    "name": "Джинси з віялом та карпом",
+    "description": "Джинси з традиційними японськими мотивами: віяло, карп, квіти. Вид спереду та ззаду. Багатий дизайн.",
+    "price": 950,
+    "image": "/minishorts/photo_65_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_65_2026-06-22_14-35-41.png"
+    ],
+    "category": "bottom",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "tags": [
+      "alt"
+    ],
+    "stock": 10,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": 0,
+    "mannequinScale": 0.7
+  },
+  {
+    "id": "prod-ms-new-111",
+    "name": "Джинси з рожевим трайбл",
+    "description": "Чорні джинси з рожевим трайбл принтом та потертостями. Яскравий контраст. Гранж та альтернативний стиль.",
+    "price": 910,
+    "image": "/minishorts/photo_68_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_68_2026-06-22_14-35-41.png"
+    ],
+    "category": "bottom",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "tags": [
+      "grunge",
+      "alt"
+    ],
+    "stock": 10,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": 0,
+    "mannequinScale": 0.7
+  },
+  {
+    "id": "prod-ms-new-112",
+    "name": "Кільце з синіми зірками",
+    "description": "Срібне кільце з двома синіми емальованими зірками. Яскравий акцент. Масивна форма. Сучасний дизайн.",
+    "price": 380,
+    "image": "/minishorts/photo_71_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_71_2026-06-22_14-35-41.png"
+    ],
+    "category": "accessories",
+    "sizes": [
+      "One Size"
+    ],
+    "tags": [
+      "alt"
+    ],
+    "stock": 10,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": 0,
+    "mannequinScale": 0.7
+  },
+  {
+    "id": "prod-ms-new-113",
+    "name": "Кільце з кажаном",
+    "description": "Масивне срібне кільце у формі голови кажана з крилами. Детальна скульптура. Готичний акцент. Універсальний розмір.",
+    "price": 390,
+    "image": "/minishorts/photo_76_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_76_2026-06-22_14-35-41.png"
+    ],
+    "category": "accessories",
+    "sizes": [
+      "One Size"
+    ],
+    "tags": [
+      "gothic"
+    ],
+    "stock": 10,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": 0,
+    "mannequinScale": 0.7
+  },
+  {
+    "id": "prod-ms-new-114",
+    "name": "Чорно-білий шарф",
+    "description": "Довгий шарф у чорно-білу смужку. М’яка тканина. Універсальний аксесуар. Додає контрасту до образу.",
+    "price": 320,
+    "image": "/minishorts/photo_85_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_85_2026-06-22_14-35-41.png"
+    ],
+    "category": "accessories",
+    "sizes": [
+      "One Size"
+    ],
+    "tags": [
+      "alt"
+    ],
+    "stock": 10,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": 0,
+    "mannequinScale": 0.7
+  },
+  {
+    "id": "prod-ms-new-115",
+    "name": "Джинси з UK прапором",
+    "description": "Темні джинси з нашивкою британського прапора на задній кишені. Класичний крій. Стріт-варіант з акцентом.",
+    "price": 850,
+    "image": "/minishorts/photo_86_2026-06-22_14-35-41.png",
+    "images": [
+      "/minishorts/photo_86_2026-06-22_14-35-41.png"
+    ],
+    "category": "bottom",
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "tags": [
+      "street"
+    ],
+    "stock": 10,
+    "riddickRating": "COLLECTION 2026",
+    "mannequinYOffset": 0,
+    "mannequinScale": 0.7
+  }
+]
