@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/index.ts"
+    },
+    {
+      "source": "/goods/(.*)",
+      "destination": "/api/index.ts"
+    },
+    {
+      "source": "/implants/(.*)",
+      "destination": "/api/index.ts"
+    }
+  ]
+}

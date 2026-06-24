@@ -8,15 +8,88 @@ import Cabinet from './components/Cabinet';
 import CrmDashboard from './components/CrmDashboard';
 import Reviews from './components/Reviews';
 import { Language, translations } from './translations';
-import { ShoppingBag, Laptop, Layers, Users2, Database, ShieldCheck, Heart, Sparkles, User, HelpCircle, Send, Music, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ShoppingBag, Laptop, Layers, Users2, Database, ShieldCheck, Heart, Sparkles, User, HelpCircle, Send, Music, ArrowRight, ChevronLeft, ChevronRight, ArrowUp } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
 export default function App() {
-  const [activeTab, setActiveTab ] = useState<'home' | 'catalog' | 'info' | 'reviews' | 'cart' | 'admin'>('home');
+  const [activeTab, rawSetActiveTab ] = useState<'home' | 'catalog' | 'info' | 'reviews' | 'cart' | 'admin'>('home');
+  const [selectedProductId, setSelectedProductId] = useState<string | null>(null);
   const [isAdminUnlocked, setIsAdminUnlocked] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [isCatalogDropdownOpen, setIsCatalogDropdownOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  // Synchronize with popstate (browser back/forward button, iOS swipe etc)
+  useEffect(() => {
+    // Parse URL on initial load to open correct tab/product
+    const params = new URLSearchParams(window.location.search);
+    const idParam = params.get('id');
+    const tabParam = params.get('tab');
+
+    if (idParam) {
+      rawSetActiveTab('catalog');
+      setSelectedProductId(idParam);
+    } else if (tabParam) {
+      if (['home', 'catalog', 'reviews', 'cart', 'admin'].includes(tabParam)) {
+        rawSetActiveTab(tabParam as any);
+      }
+    }
+
+    const handlePopState = (event: PopStateEvent) => {
+      if (event.state && typeof event.state === 'object') {
+        const { tab, productId } = event.state;
+        if (tab) rawSetActiveTab(tab);
+        setSelectedProductId(productId || null);
+      } else {
+        // Fallback parsing
+        const p = new URLSearchParams(window.location.search);
+        const idVal = p.get('id');
+        const tabVal = p.get('tab');
+        if (idVal) {
+          rawSetActiveTab('catalog');
+          setSelectedProductId(idVal);
+        } else if (tabVal) {
+          rawSetActiveTab(tabVal as any);
+          setSelectedProductId(null);
+        } else {
+          rawSetActiveTab('home');
+          setSelectedProductId(null);
+        }
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  // Sync state & push history
+  const navigateTo = (tab: 'home' | 'catalog' | 'reviews' | 'cart' | 'admin' | 'info', productId: string | null = null) => {
+    rawSetActiveTab(tab as any);
+    setSelectedProductId(productId);
+
+    const params = new URLSearchParams();
+    if (productId) {
+      params.set('id', productId);
+    } else if (tab !== 'home') {
+      params.set('tab', tab);
+    }
+
+    const searchStr = params.toString() ? '?' + params.toString() : '';
+    window.history.pushState({ tab, productId }, '', window.location.pathname + searchStr);
+  };
+
+  const setActiveTab = (tab: 'home' | 'catalog' | 'info' | 'reviews' | 'cart' | 'admin') => {
+    rawSetActiveTab(tab);
+    setSelectedProductId(null);
+
+    const params = new URLSearchParams();
+    if (tab !== 'home') {
+      params.set('tab', tab);
+    }
+    const searchStr = params.toString() ? '?' + params.toString() : '';
+    window.history.pushState({ tab, productId: null }, '', window.location.pathname + searchStr);
+  };
 
   // Default theme & language selector logic
   const [lang, setLang] = useState<Language>(() => {
@@ -30,10 +103,23 @@ export default function App() {
 
   const [theme, setTheme] = useState<'dark' | 'light'>('dark');
 
-  // Scroll to top on every tab/page change or category change
+  // Scroll to top on every tab/page change, category change, or product change
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [activeTab, selectedCategory]);
+  }, [activeTab, selectedCategory, selectedProductId]);
+
+  // Monitor scroll for Scroll-to-Top button visibility
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 300) {
+        setShowScrollTop(true);
+      } else {
+        setShowScrollTop(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const changeLanguage = (newLang: Language) => {
     setLang(newLang);
@@ -486,20 +572,6 @@ export default function App() {
             )}
           </div>
 
-          {/* SHOP INFO / ІНФО */}
-          <button
-            onClick={() => {
-              setActiveTab('info');
-              setIsCatalogDropdownOpen(false);
-            }}
-            className={`py-2 px-5 border text-sm font-bold tracking-widest uppercase transition-all duration-300 ${
-              activeTab === 'info'
-                ? theme === 'light' ? 'bg-black text-white border-black font-extrabold shadow-sm' : 'bg-white text-black border-white font-extrabold shadow-[0_0_12px_rgba(255,255,255,0.2)]'
-                : theme === 'light' ? 'bg-transparent text-stone-600 border-stone-200 hover:border-black hover:text-black' : 'bg-transparent text-zinc-400 border-zinc-900 hover:border-zinc-700 hover:text-white'
-            }`}
-          >
-            {t('tab_info')}
-          </button>
 
           {/* CUSTOMER REVIEWS / ВІДГУКИ */}
           <button
@@ -669,20 +741,6 @@ export default function App() {
                   </div>
                 </div>
 
-                {/* Info */}
-                <button
-                  onClick={() => {
-                    setActiveTab('info');
-                    setIsMobileMenuOpen(false);
-                  }}
-                  className={`text-left px-4 py-3 border uppercase tracking-widest font-black text-xs transition-colors duration-250 cursor-pointer ${
-                    activeTab === 'info' 
-                      ? 'bg-white text-black border-white shadow-md' 
-                      : 'bg-transparent text-zinc-300 border-zinc-900 hover:border-[#ff3c3c]/50'
-                  }`}
-                >
-                  ● {t('tab_info')}
-                </button>
 
                 {/* Reviews */}
                 <button
@@ -873,9 +931,10 @@ export default function App() {
                           <span className="text-[#ff3c3c] font-black glitch-text">エスジービー</span> <br />
                           SGB // SECUM
                         </h1>
-                        <p className="text-xs sm:text-sm md:text-base font-sans text-zinc-300 font-bold tracking-wide uppercase leading-relaxed max-w-lg border-l-2 border-[#ff3c3c] pl-4">
-                          Деконструйована японська естетика. Чорнило, суворий вуличний панк та унікальні крої. Свобода вираження за рамками стандартних шаблонів.
-                        </p>
+                        <div className="text-xs sm:text-sm md:text-base font-sans text-zinc-300 font-bold tracking-wide uppercase leading-relaxed max-w-lg border-l-2 border-[#ff3c3c] pl-4 space-y-3">
+                          <p className="text-white">-піздеееец єто што те самие вещі с пінтереста y2k japanese vintage goth fagot minet 3000 pro aesthetic по самой низкой цене і іх нігде не найті в украине !!??!?!?!</p>
+                          <p className="text-white font-extrabold">-да</p>
+                        </div>
 
                       </div>
                     )}
@@ -1067,6 +1126,21 @@ export default function App() {
                     </p>
                   </div>
 
+                  {/* HIGH-FIDELITY ERGONOMIC WIDE WHITE BUTTON - SHOWN FIRST ON MOBILE */}
+                  <div className="flex justify-center w-full px-4 sm:px-0">
+                    <button
+                      onClick={() => {
+                        setSelectedCategory('all');
+                        setActiveTab('catalog');
+                        setTimeout(() => document.getElementById('catalog-root')?.scrollIntoView({ behavior: 'smooth' }), 100);
+                      }}
+                      className="w-full max-w-2xl bg-white hover:bg-zinc-100 text-black py-4.5 px-6 text-xs sm:text-sm font-sans font-black uppercase tracking-[0.2em] transition-all border border-zinc-200 flex items-center justify-center gap-3 shadow-xl hover:shadow-2xl active:scale-98 cursor-pointer rounded-sm"
+                    >
+                      <span>ДИВИТИСЯ ВСІ ТОВАРИ</span>
+                      <ArrowRight className="w-4.5 h-4.5 text-black transition-transform duration-300 shrink-0" />
+                    </button>
+                  </div>
+
                   {/* 2 Portrait Columns side-by-side - High-fashion specific model photos for category covers */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     
@@ -1118,21 +1192,6 @@ export default function App() {
                       </div>
                     </div>
 
-                  </div>
-
-                  {/* ALL PRODUCTS BURGUNDY BUTTON WITH BLACK BOLD TEXT */}
-                  <div className="pt-2 flex justify-center">
-                    <button
-                      onClick={() => {
-                        setSelectedCategory('all');
-                        setActiveTab('catalog');
-                        setTimeout(() => document.getElementById('catalog-root')?.scrollIntoView({ behavior: 'smooth' }), 100);
-                      }}
-                      className="w-full md:w-auto min-w-[280px] bg-[#800020] hover:bg-[#990a2c] text-black px-8 py-5 text-xs font-mono font-black uppercase tracking-[0.25em] transition-all border-2 border-[#800020] flex items-center justify-center gap-3 shadow-lg active:scale-95 cursor-pointer"
-                    >
-                      <span>ДИВИТИСЬ ВСІ ТОВАРИ</span>
-                      <ChevronRight className="w-4 h-4 text-black shrink-0" />
-                    </button>
                   </div>
 
                 </div>
@@ -1192,91 +1251,6 @@ export default function App() {
               </motion.div>
             )}
 
-            {activeTab === 'info' && (
-              <motion.div
-                key="info"
-                initial={{ opacity: 0, y: 3 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -3 }}
-                transition={{ duration: 0.2 }}
-                className="space-y-8 pb-16 font-mono text-zinc-400 text-xs"
-              >
-                <div className="border border-zinc-900 p-6 md:p-10 bg-black/95 relative space-y-6">
-                  <div className="space-y-1">
-                    <span className="text-zinc-500 text-[10px] tracking-wider uppercase block font-bold">● ІНФОРМАЦІЯ // General Information</span>
-                    <h2 className="text-2xl md:text-3xl text-white font-sans tracking-tight font-extrabold uppercase">
-                      ДЕТАЛІ ЗАМОВЛЕННЯ // SHIPPING & EXCHANGES
-                    </h2>
-                  </div>
-
-                  <div className="h-[2px] bg-zinc-900 w-full" />
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-[11.5px] leading-relaxed uppercase">
-                    <div className="space-y-4">
-                      <h3 className="text-white font-extrabold text-xs tracking-wider border-b border-[#ff3c3c] pb-2">
-                        {lang === 'uk' ? '1. ДОСТАВКА ТА ОПЛАТА // SHIPPING' : lang === 'ru' ? '1. ДОСТАВКА И ОПЛАТА // SHIPPING' : '1. SHIPPING & DELIVERY // SHIPPING'}
-                      </h3>
-                      {lang === 'uk' ? (
-                        <>
-                          <p>• ДОСТАВКА В ТЕЧЕННІ 2-3 ДНІВ ПО УКРАЇНІ.</p>
-                          <p>• ВІДПРАВЛЯЄМО НОВОЮ ПОШТОЮ В БУДЬ-ЯКУ ТОЧКУ УКРАЇНИ.</p>
-                          <p>• ЯКЩО МИ ЗАПІЗНЮЄМОСЯ З ВІДПРАВКОЮ - ДАЄМО СКИДОЧКУ НА НАСТУПНУ ПОКУПКУ.</p>
-                        </>
-                      ) : lang === 'ru' ? (
-                        <>
-                          <p>• ДОСТАВКА В ТЕЧЕНИЕ 2-3 ДНЕЙ ПО УКРАИНЕ.</p>
-                          <p>• ОТПРАВЛЯЕМ НОВОЙ ПОЧТОЙ В ЛЮБУЮ ТОЧКУ УКРАИНЫ.</p>
-                          <p>• ЕСЛИ ЗАДЕРЖИВАЕМСЯ С ОТПРАВКОЙ - ДАЕМ СКИДОЧКУ НА СЛЕДУЮЩУЮ ПОКУПКУ.</p>
-                        </>
-                      ) : (
-                        <>
-                          <p>• DELIVERY WITHIN 2-3 DAYS ACROSS UKRAINE.</p>
-                          <p>• WE SHIP VIA NOVA POSHTA TO ANY RESIDENCE IN UKRAINE.</p>
-                          <p>• IF DISPATCH IS DELAYED, WE PROVIDE A DISCOUNT CODE FOR YOUR NEXT SELECTION.</p>
-                        </>
-                      )}
-                    </div>
-
-                    <div className="space-y-4">
-                      <h3 className="text-white font-extrabold text-xs tracking-wider border-b border-[#ff3c3c] pb-2">
-                        {lang === 'uk' ? '2. ОБМІН ТА ПОВЕРНЕННЯ // EXCHANGES' : lang === 'ru' ? '2. ОБМЕН И ВОЗВРАТ // EXCHANGES' : '2. EXCHANGE PROTOCOL // EXCHANGES'}
-                      </h3>
-                      {lang === 'uk' ? (
-                        <>
-                          <p>• ОБМІН ВЕЩЕЙ ТІЛЬКИ В ТЕЧЕННІ 7 ДНІВ ПІСЛЯ ОТРИМАННЯ.</p>
-                          <p>• ТОВАР ПОВИНЕН ЗБЕРІГАТИ ВСІ БІРКИ ТА МАТИ ТОВАРНИЙ ВИГЛЯД.</p>
-                          <p>• ЗВ'ЯЖІТЬСЯ З НАМИ В ТЕЛЕГРАМ ДЛЯ ШВИДКОГО ОФОРМЛЕННЯ ОБМІНУ.</p>
-                        </>
-                      ) : lang === 'ru' ? (
-                        <>
-                          <p>• ОБМЕН ВЕЩЕЙ ТОЛЬКО В ТЕЧЕНИЕ 7 ДНЕЙ ПОСЛЕ ПОЛУЧЕНИЯ.</p>
-                          <p>• ТОВАР ДОЛЖЕН СОХРАНЯТЬ ВСЕ БИРКИ И ИМЕТЬ ТОВАРНЫЙ ВИД.</p>
-                          <p>• СВЯЖИТЕСЬ С НАМИ В ТЕЛЕГРАМ ДЛЯ БЫСТРОГО ОФОРМЛЕНИЯ ОБМЕНА.</p>
-                        </>
-                      ) : (
-                        <>
-                          <p>• PRODUCT EXCHANGES ONLY WITHIN 7 DAYS AFTER CONFIRMED RECEIPT.</p>
-                          <p>• ALL ORIGINAL BRAND TAGS MUST BE PRESERVED AND ITEM MUST RETAIN A MERCHANTABLE APPERANCE.</p>
-                          <p>• DIRECTLY MESSAGING OUR TELEGRAM CONTACT IS PREFERRED FOR ULTRA-FAST RESOLUTION.</p>
-                        </>
-                      )}
-                    </div>
-                  </div>
-
-                  <div className="border-t border-zinc-900 pt-6 flex flex-col sm:flex-row justify-between items-center gap-4">
-                    <span className="text-[10px] text-zinc-500 uppercase tracking-widest font-semibold">● SGB COUTURE 2026</span>
-                    <a 
-                      href="https://t.me/@SGB_secum" 
-                      target="_blank" 
-                      referrerPolicy="no-referrer"
-                      className="bg-white hover:bg-[#ff3c3c] text-black hover:text-white px-5 py-2.5 font-bold transition-all uppercase tracking-wider text-[11px] block text-center cursor-pointer"
-                    >
-                      НАПИСАТИ В ТЕЛЕГРАМ // TG CONTACT
-                    </a>
-                  </div>
-                </div>
-              </motion.div>
-            )}
 
             {activeTab === 'catalog' && (
               <motion.div
@@ -1295,8 +1269,10 @@ export default function App() {
                   onUnlockAdmin={() => {
                     setIsAdminUnlocked(true);
                     localStorage.setItem('sgb_admin_unlocked', 'true');
-                    setActiveTab('admin');
+                    navigateTo('admin');
                   }}
+                  selectedProductId={selectedProductId}
+                  onSelectProductId={(id) => navigateTo('catalog', id)}
                 />
               </motion.div>
             )}
@@ -1376,6 +1352,22 @@ export default function App() {
           </span>
         </button>
       )}
+
+      {/* SCROLL TO TOP BUTTON */}
+      <AnimatePresence>
+        {showScrollTop && (
+          <motion.button
+            initial={{ opacity: 0, scale: 0.8, y: 10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.8, y: 10 }}
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            className="fixed bottom-24 right-6 md:bottom-8 md:right-8 z-50 h-12 w-12 bg-[#ff3c3c] hover:bg-white text-white hover:text-black border-2 border-transparent hover:border-black flex items-center justify-center shadow-lg active:scale-90 transition-all cursor-pointer rounded-none group"
+            title="Вгору"
+          >
+            <ArrowUp className="w-5 h-5 group-hover:-translate-y-1 transition-transform" />
+          </motion.button>
+        )}
+      </AnimatePresence>
 
     </div>
   );

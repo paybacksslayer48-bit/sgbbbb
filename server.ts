@@ -668,8 +668,9 @@ async function sendTelegramNotification(text: string) {
   }
 }
 
+const app = express();
+
 async function startServer() {
-  const app = express();
   app.use(express.json({ limit: "50mb" }));
   app.use(express.urlencoded({ limit: "50mb", extended: true }));
 
@@ -2138,9 +2139,13 @@ async function startServer() {
     });
   }
 
-  app.listen(PORT, "0.0.0.0", () => {
-    console.log(`VOID // Server powering port ${PORT}`);
-  });
+  if (!process.env.VERCEL) {
+    app.listen(PORT, "0.0.0.0", () => {
+      console.log(`VOID // Server powering port ${PORT}`);
+    });
+  }
 }
 
 startServer();
+
+export default app;

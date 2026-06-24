@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Product, parseProduct } from '../types';
 import { ShoppingCart, ArrowLeft, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Language, translations } from '../translations';
+import { motion, AnimatePresence } from 'motion/react';
 
 export const getProductImageUrl = (p: any): string => {
   if (p.image && (p.image.startsWith("data:") || p.image.startsWith("http") || p.image.startsWith("/"))) {
@@ -125,6 +126,8 @@ interface CatalogProps {
   selectedCategory: string;
   setSelectedCategory: (cat: string) => void;
   onUnlockAdmin?: () => void;
+  selectedProductId?: string | null;
+  onSelectProductId?: (id: string | null) => void;
 }
 
 export default function Catalog({ 
@@ -133,7 +136,9 @@ export default function Catalog({
   onSaveLook, 
   selectedCategory, 
   setSelectedCategory, 
-  onUnlockAdmin 
+  onUnlockAdmin,
+  selectedProductId,
+  onSelectProductId
 }: CatalogProps) {
   const [sClickCount, setSClickCount] = useState(0);
 
@@ -175,6 +180,23 @@ export default function Catalog({
   };
 
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [showSizeChart, setShowSizeChart] = useState<boolean>(false);
+
+  // Synchronize local selectedProduct with parent state selectedProductId
+  useEffect(() => {
+    if (selectedProductId !== undefined) {
+      if (selectedProductId === null) {
+        setSelectedProduct(null);
+      } else {
+        const found = products.find(p => p.id === selectedProductId);
+        if (found) {
+          setSelectedProduct(found);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      }
+    }
+  }, [selectedProductId, products]);
+
   const [selectedSize, setSelectedSize] = useState<string>('');
   const [activeDiscountTooltip, setActiveDiscountTooltip] = useState<string | null>(null);
   const [addedToCart, setAddedToCart] = useState<boolean>(false);
@@ -190,6 +212,8 @@ export default function Catalog({
     if (!selectedProduct) return;
     onAddToCart(selectedProduct, selectedSize);
     setAddedToCart(true);
+    // Scroll window to top when added to cart
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     setTimeout(() => {
       setAddedToCart(false);
     }, 2500);
@@ -197,6 +221,12 @@ export default function Catalog({
 
   const handleSelectProduct = (p: Product) => {
     setSelectedProduct(p);
+    if (onSelectProductId) {
+      onSelectProductId(p.id);
+    }
+    // Scroll window to top when product is selected
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
     const cachedVisitor = localStorage.getItem('sgb_visitor_num');
     const visNum = cachedVisitor ? Number(cachedVisitor) : null;
     fetch(`/api/track/view-product`, { 
@@ -358,7 +388,10 @@ export default function Catalog({
         {/* Navigation back bar */}
         <div className="flex justify-between items-center border-b border-zinc-950 pb-4">
           <button
-            onClick={() => setSelectedProduct(null)}
+            onClick={() => {
+              setSelectedProduct(null);
+              if (onSelectProductId) onSelectProductId(null);
+            }}
             className="group flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-widest text-[#ff3c3c] hover:text-[#ff3c3c]/85 transition-all cursor-pointer"
           >
             <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" /> {t('back_to_archive')}
@@ -440,13 +473,13 @@ export default function Catalog({
             
             <div className="space-y-4 border-b border-zinc-950 pb-6">
               <div className="flex flex-col gap-2">
-                <span className="text-[11px] text-zinc-500 font-mono tracking-[0.35em] uppercase block font-bold">
+                <span className="text-[11px] text-zinc-500 font-sans tracking-[0.35em] uppercase block font-black">
                   ✙ SGB PORTAL // SECUM COUTURE
                 </span>
                 {selectedProduct.collection && (
                   <div className="flex">
-                    <span className="inline-block bg-[#800020] text-black text-[9px] font-mono font-black uppercase tracking-[0.2em] px-2.5 py-1 select-none">
-                      СЕРІЯ: {selectedProduct.collection}
+                    <span className="inline-block bg-[#ff3c3c] text-white text-[10px] font-sans font-black uppercase tracking-[0.25em] px-3.5 py-1.5 select-none">
+                      СЕРІЯ: {selectedProduct.collection.toUpperCase()}
                     </span>
                   </div>
                 )}
@@ -455,7 +488,7 @@ export default function Catalog({
                 {selectedProduct.name}
               </h1>
               <div className="flex flex-wrap items-center gap-3 pt-2">
-                <span className="text-2xl text-white font-mono tracking-widest font-black">
+                <span className="text-2xl text-white font-sans tracking-widest font-black">
                   {selectedProduct.price} UAH
                 </span>
               </div>
@@ -466,23 +499,23 @@ export default function Catalog({
                 <button
                   type="button"
                   onClick={() => setShowDiscountInfo(!showDiscountInfo)}
-                  className="bg-red-600 hover:bg-red-700 text-white font-mono text-[10.5px] font-extrabold uppercase tracking-widest px-4 py-2 flex items-center justify-center gap-2 border border-red-500 rounded transition-all cursor-pointer shadow-lg active:scale-95 whitespace-nowrap"
+                  className="bg-red-600 hover:bg-red-700 text-white font-sans text-xs font-black uppercase tracking-widest px-5 py-3 flex items-center justify-center gap-2 border-2 border-red-500 rounded-none transition-all cursor-pointer shadow-lg active:scale-95 whitespace-nowrap"
                 >
                   🔥 ХОЧУ СКИДКУ
                 </button>
                 {showDiscountInfo && (
-                  <div className="mt-2 border border-red-800 bg-red-950/15 p-3 rounded text-[11px] leading-relaxed text-zinc-300 uppercase font-mono tracking-wider">
-                    <p className="text-white font-bold mb-1">
+                  <div className="mt-3 border-2 border-red-600 bg-red-950/40 p-4 rounded-none text-[11.5px] leading-relaxed text-zinc-200 uppercase font-sans tracking-widest font-black">
+                    <p className="text-white font-black mb-1.5">
                       💥 Скинь в ТГ скриншот товару та розмір і отримай знижку!
                     </p>
-                    <p className="text-zinc-400 text-[10px] mb-2 leading-snug">
+                    <p className="text-red-400 text-[10.5px] mb-3 leading-snug font-black">
                       контактний менеджер зв'яжеться з вами та нарахує дисконт.
                     </p>
                     <a
                       href="https://t.me/SGB_secum"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-block bg-red-600 hover:bg-red-500 text-white px-3 py-1.5 text-[9.5px] uppercase tracking-widest font-black transition-all rounded"
+                      className="inline-block bg-white hover:bg-red-600 text-black hover:text-white px-4 py-2 text-[10px] uppercase tracking-widest font-black transition-all rounded-none"
                     >
                       ✉ НАПИСАТИ @SGB_secum
                     </a>
@@ -491,24 +524,33 @@ export default function Catalog({
               </div>
 
             {/* Spacious description */}
-            <div className="space-y-4 text-zinc-150 leading-relaxed text-lg md:text-xl font-sans border-l-2 border-[#ff3c3c] pl-4 uppercase tracking-wider font-semibold">
+            <div className="space-y-4 text-white leading-relaxed text-lg md:text-xl font-sans border-l-4 border-[#ff3c3c] pl-4 uppercase tracking-wider font-black">
               <p>
                 {selectedProduct.description}
               </p>
             </div>
 
             {/* Active size picker */}
-            <div className="space-y-3">
-              <span className="text-white font-mono font-black tracking-widest text-[10px] uppercase block">{t('choose_size')}:</span>
-              <div className="flex flex-wrap gap-2">
+            <div className="space-y-3 pt-2">
+              <div className="flex items-center justify-between">
+                <span className="text-white font-sans font-black tracking-widest text-xs uppercase block">{t('choose_size')}:</span>
+                <button
+                  type="button"
+                  onClick={() => setShowSizeChart(true)}
+                  className="text-[#ff3c3c] hover:text-white text-[10px] font-black uppercase tracking-widest flex items-center gap-1 border-b border-[#ff3c3c] hover:border-white transition-all pb-0.5 cursor-pointer bg-transparent"
+                >
+                  📏 ТАБЛИЦЯ РОЗМІРІВ // SIZE GUIDE
+                </button>
+              </div>
+              <div className="flex flex-wrap gap-2.5">
                 {selectedProduct.sizes.map(size => (
                   <button
                     key={size}
                     onClick={() => setSelectedSize(size)}
-                    className={`py-3 px-6 border text-xs font-mono tracking-widest uppercase transition-all duration-300 ${
+                    className={`py-4 px-8 border-2 text-sm font-sans tracking-widest uppercase transition-all duration-200 font-black cursor-pointer rounded-none ${
                       selectedSize === size
-                        ? 'bg-[#ff3c3c] text-white border-[#ff3c3c] font-extrabold scale-102 shadow-lg'
-                        : 'bg-black text-zinc-400 border-zinc-900 hover:border-zinc-650 hover:text-white'
+                        ? 'bg-[#ff3c3c] text-white border-[#ff3c3c] font-black shadow-lg shadow-[#ff3c3c]/20 scale-105'
+                        : 'bg-zinc-950 text-zinc-400 border-zinc-850 hover:border-zinc-500 hover:text-white hover:bg-zinc-900 active:scale-95'
                     }`}
                   >
                     {size}
@@ -518,22 +560,119 @@ export default function Catalog({
             </div>
 
             {/* Action buttons list */}
-            <div className="flex flex-col sm:flex-row gap-3 pt-4 font-mono">
+            <div className="flex flex-col sm:flex-row gap-3 pt-6 font-sans">
               <button
                 onClick={handleAddToCartWithFeedback}
-                className={`flex-1 py-4 px-6 text-xs font-extrabold tracking-widest uppercase transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer shadow-md ${
+                className={`flex-1 py-5 px-8 text-sm font-black tracking-widest uppercase transition-all duration-300 flex items-center justify-center gap-2.5 cursor-pointer shadow-xl rounded-none active:scale-98 ${
                   addedToCart 
-                    ? 'bg-[#ff3c3c] hover:bg-[#ff5555] text-white border-[#ff3c3c]' 
-                    : 'bg-white hover:bg-neutral-200 text-black'
+                    ? 'bg-[#ff3c3c] hover:bg-[#ff5555] text-white border-[#ff3c3c] shadow-[#ff3c3c]/20' 
+                    : 'bg-white hover:bg-zinc-100 text-black'
                 }`}
               >
-                <ShoppingCart size={13} /> {addedToCart ? 'ТОВАР ДОДАНО !' : t('add_to_cart')}
+                <ShoppingCart size={16} /> {addedToCart ? 'ТОВАР ДОДАНО !' : t('add_to_cart')}
               </button>
             </div>
 
           </div>
 
         </div>
+
+        {/* SIZE CHART MODAL */}
+        <AnimatePresence>
+          {showSizeChart && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-black/95 backdrop-blur-md z-50 flex items-center justify-center p-4"
+              onClick={() => setShowSizeChart(false)}
+            >
+              <motion.div
+                initial={{ scale: 0.95, y: 15 }}
+                animate={{ scale: 1, y: 0 }}
+                exit={{ scale: 0.95, y: 15 }}
+                transition={{ type: "spring", damping: 25 }}
+                className="bg-[#050505] border-2 border-zinc-800 p-6 max-w-lg w-full relative space-y-6 font-sans text-white select-none shadow-[0_0_50px_rgba(255,60,60,0.15)]"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <button
+                  onClick={() => setShowSizeChart(false)}
+                  className="absolute top-4 right-4 text-zinc-500 hover:text-white font-black text-lg transition-colors cursor-pointer bg-transparent border-0"
+                >
+                  ✕
+                </button>
+
+                <div className="space-y-1 text-center">
+                  <span className="text-zinc-500 text-[9px] tracking-[0.25em] font-black uppercase block">✙ SGB MEASUREMENTS PROTOCOL</span>
+                  <h3 className="text-xl font-black tracking-tight uppercase">
+                    ТАБЛИЦЯ РОЗМІРІВ // SIZE CHART
+                  </h3>
+                </div>
+
+                <div className="border-t border-zinc-900 my-2" />
+
+                <div className="overflow-x-auto">
+                  <table className="w-full text-center border-collapse text-xs uppercase font-black tracking-wider">
+                    <thead>
+                      <tr className="border-b border-zinc-800 text-zinc-500 text-[10px]">
+                        <th className="py-2.5 text-left pl-2">РОЗМІР</th>
+                        <th className="py-2.5">ГРУДИ (см)</th>
+                        <th className="py-2.5">ТАЛІЯ (см)</th>
+                        <th className="py-2.5">СТЕГНА (см)</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-zinc-900">
+                      <tr className="hover:bg-zinc-950/50 transition-colors">
+                        <td className="py-3 text-left pl-2 text-[#ff3c3c]">XS / 42</td>
+                        <td className="py-3 text-zinc-300">80 - 84</td>
+                        <td className="py-3 text-zinc-300">60 - 64</td>
+                        <td className="py-3 text-zinc-300">86 - 90</td>
+                      </tr>
+                      <tr className="hover:bg-zinc-950/50 transition-colors bg-zinc-950/20">
+                        <td className="py-3 text-left pl-2 text-[#ff3c3c]">S / 44</td>
+                        <td className="py-3 text-zinc-300">84 - 88</td>
+                        <td className="py-3 text-zinc-300">64 - 68</td>
+                        <td className="py-3 text-zinc-300">90 - 94</td>
+                      </tr>
+                      <tr className="hover:bg-zinc-950/50 transition-colors">
+                        <td className="py-3 text-left pl-2 text-[#ff3c3c]">M / 46</td>
+                        <td className="py-3 text-zinc-300">88 - 92</td>
+                        <td className="py-3 text-zinc-300">68 - 72</td>
+                        <td className="py-3 text-zinc-300">94 - 98</td>
+                      </tr>
+                      <tr className="hover:bg-zinc-950/50 transition-colors bg-zinc-950/20">
+                        <td className="py-3 text-left pl-2 text-[#ff3c3c]">L / 48</td>
+                        <td className="py-3 text-zinc-300">92 - 96</td>
+                        <td className="py-3 text-zinc-300">72 - 76</td>
+                        <td className="py-3 text-zinc-300">98 - 102</td>
+                      </tr>
+                      <tr className="hover:bg-zinc-950/50 transition-colors">
+                        <td className="py-3 text-left pl-2 text-[#ff3c3c]">XL / 50</td>
+                        <td className="py-3 text-zinc-300">96 - 100</td>
+                        <td className="py-3 text-zinc-300">76 - 80</td>
+                        <td className="py-3 text-zinc-300">102 - 106</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div className="bg-zinc-950 p-4 border border-zinc-900 space-y-2 text-[10.5px] uppercase leading-relaxed text-zinc-400 font-black">
+                  <p className="text-white text-xs mb-1">📐 ЯК ПРАВИЛЬНО ВИМІРЯТИ:</p>
+                  <p><span className="text-zinc-500">ГРУДИ:</span> Вимірюйте по найбільш виступаючим точкам грудей.</p>
+                  <p><span className="text-zinc-500">ТАЛІЯ:</span> Вимірюйте горизонтально навколо найвужчої частини талії.</p>
+                  <p><span className="text-zinc-500">СТЕГНА:</span> Вимірюйте по найбільш виступаючим точкам сідниць.</p>
+                </div>
+
+                <button
+                  onClick={() => setShowSizeChart(false)}
+                  className="w-full py-3 bg-[#ff3c3c] hover:bg-[#ff5555] text-white text-xs tracking-widest uppercase font-black transition-all cursor-pointer rounded-none border-0"
+                >
+                  ЗРОЗУМІЛО // CLOSE
+                </button>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     );
   }
@@ -542,7 +681,7 @@ export default function Catalog({
     <div className="space-y-6" id="catalog-root">
       
       {/* UPGRADED CATEGORIES LINE (LARGER, BOLDER, MORE SPACE) */}
-      <div className="border-b-2 border-zinc-800 pb-6 pt-3 font-mono">
+      <div className="border-b-2 border-zinc-800 pb-6 pt-3 font-sans">
         <div className="flex flex-col gap-5">
           <div className="flex items-center justify-between text-[11px] text-zinc-500 uppercase tracking-[0.25em] font-black pb-1">
             <span>✙ SGB CATALOG SELECTOR</span>
@@ -566,10 +705,10 @@ export default function Catalog({
               <button
                 key={cat.id}
                 onClick={() => setSelectedCategory(cat.id)}
-                className={`py-3.5 px-4 md:py-4 md:px-7 border text-[11.5px] md:text-xs tracking-[0.15em] uppercase transition-all duration-300 font-mono font-black cursor-pointer text-center flex items-center justify-center gap-1.5 rounded-none ${
+                className={`py-4 px-4 md:py-4.5 md:px-8 border-2 text-[11px] md:text-xs tracking-[0.18em] uppercase transition-all duration-200 font-sans font-black cursor-pointer text-center flex items-center justify-center gap-1.5 rounded-none ${
                   selectedCategory === cat.id
-                    ? 'bg-white text-black border-white shadow-[0_0_15px_rgba(255,255,255,0.25)]'
-                    : 'bg-[#800020] text-black border-[#800020] hover:bg-[#990a2c] hover:border-[#990a2c]'
+                    ? 'bg-white text-black border-white shadow-xl active:scale-95'
+                    : 'bg-[#0f0f0f] text-zinc-400 border-zinc-800 hover:text-white hover:border-zinc-500 hover:bg-zinc-900 active:scale-95'
                 }`}
               >
                 <span>{cat.n}</span>
@@ -580,11 +719,11 @@ export default function Catalog({
       </div>
 
       {/* SECONDARY ROW: COLLECTIONS FILTER & SORTING BAR */}
-      <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4 pt-1 pb-4 border-b border-zinc-950 text-xs font-mono font-bold uppercase tracking-wider text-zinc-400">
+      <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4 pt-1 pb-4 border-b border-zinc-950 text-xs font-sans font-black uppercase tracking-wider text-zinc-400">
         
         {/* Collection Selector with elegant pill look */}
-        <div className="flex flex-wrap items-center gap-1.5 bg-[#030303] border border-zinc-900/60 p-1.5 rounded-sm">
-          <span className="text-[10px] text-zinc-500 uppercase tracking-widest pl-2 pr-1.5 select-none font-black">Колекція:</span>
+        <div className="flex flex-wrap items-center gap-2 bg-[#030303] border border-zinc-900/60 p-2 rounded-none">
+          <span className="text-[10.5px] text-zinc-500 uppercase tracking-widest pl-2 pr-1.5 select-none font-black">Колекція:</span>
           {[
             { id: 'all', n: 'Всі' },
             { id: 'swiss', n: 'Swiss Minimalist' },
@@ -593,10 +732,10 @@ export default function Catalog({
             <button
               key={col.id}
               onClick={() => setSelectedCollection(col.id as any)}
-              className={`py-2 px-3.5 rounded-xs transition-all duration-200 text-[10px] uppercase font-black cursor-pointer ${
+              className={`py-2.5 px-4 rounded-none border transition-all duration-200 text-[10.5px] uppercase font-black tracking-widest cursor-pointer ${
                 selectedCollection === col.id
-                  ? 'bg-[#ff3c3c] text-white shadow-md'
-                  : 'text-zinc-500 hover:text-white hover:bg-zinc-900/40'
+                  ? 'bg-[#ff3c3c] text-white border-[#ff3c3c] shadow-lg active:scale-95'
+                  : 'bg-zinc-950 text-zinc-400 border-zinc-900 hover:text-white hover:border-zinc-700 hover:bg-zinc-900 active:scale-95'
               }`}
             >
               {col.n}
@@ -606,12 +745,12 @@ export default function Catalog({
 
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
           {/* Color Filter Dropdown */}
-          <div className="flex items-center justify-between sm:justify-start gap-2.5 bg-[#050505] border border-zinc-900 px-4 py-2 text-zinc-400 rounded-sm">
-            <span className="text-[10px] text-zinc-500 tracking-wider font-extrabold uppercase">{t('filter_color')}:</span>
+          <div className="flex items-center justify-between sm:justify-start gap-3 bg-[#0a0a0a] border-2 border-zinc-800 hover:border-zinc-650 px-4 py-3 text-zinc-300 transition-all rounded-none">
+            <span className="text-[10px] text-zinc-400 tracking-widest font-black uppercase">{t('filter_color')}:</span>
             <select
               value={selectedColor}
               onChange={(e) => setSelectedColor(e.target.value)}
-              className="bg-transparent text-white font-extrabold text-[10.5px] uppercase tracking-widest outline-none border-none py-1 select-none pr-3 cursor-pointer"
+              className="bg-transparent text-white font-black text-[11px] uppercase tracking-widest outline-none border-none py-0.5 select-none pr-2 cursor-pointer font-sans"
             >
               {[
                 { id: 'all', n: t('color_all') },
@@ -623,7 +762,7 @@ export default function Catalog({
                 { id: 'green', n: t('color_green') },
                 { id: 'beige', n: t('color_beige') }
               ].map(colorOpt => (
-                <option key={colorOpt.id} value={colorOpt.id} className="bg-[#050505] text-white">
+                <option key={colorOpt.id} value={colorOpt.id} className="bg-[#050505] text-white font-black">
                   {colorOpt.n}
                 </option>
               ))}
@@ -631,16 +770,16 @@ export default function Catalog({
           </div>
 
           {/* Sorting Dropdown */}
-          <div className="flex items-center justify-between sm:justify-start gap-2.5 bg-[#050505] border border-zinc-900 px-4 py-2 text-zinc-400 rounded-sm">
-            <span className="text-[10px] text-zinc-500 tracking-wider font-extrabold uppercase">Сортувати:</span>
+          <div className="flex items-center justify-between sm:justify-start gap-3 bg-[#0a0a0a] border-2 border-zinc-800 hover:border-zinc-650 px-4 py-3 text-zinc-300 transition-all rounded-none">
+            <span className="text-[10px] text-zinc-400 tracking-widest font-black uppercase font-sans">Сортувати:</span>
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as any)}
-              className="bg-transparent text-white font-extrabold text-[10.5px] uppercase tracking-widest outline-none border-none py-1 select-none pr-3 cursor-pointer"
+              className="bg-transparent text-white font-black text-[11px] uppercase tracking-widest outline-none border-none py-0.5 select-none pr-2 cursor-pointer font-sans"
             >
-              <option value="popularity" className="bg-[#050505] text-white">🔥 Популярність</option>
-              <option value="price-asc" className="bg-[#050505] text-white">💰 Ціна: від дешевих</option>
-              <option value="price-desc" className="bg-[#050505] text-white">💎 Ціна: від дорогих</option>
+              <option value="popularity" className="bg-[#050505] text-white font-black">🔥 Популярність</option>
+              <option value="price-asc" className="bg-[#050505] text-white font-black">💰 Ціна: від дешевих</option>
+              <option value="price-desc" className="bg-[#050505] text-white font-black">💎 Ціна: від дорогих</option>
             </select>
           </div>
         </div>

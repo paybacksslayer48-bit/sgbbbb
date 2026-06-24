@@ -211,13 +211,7 @@ export default function CartAndCheckout({
               <p>2. Надішліть скопійований текст менеджеру в Телеграм <span className="text-[#ff3c3c] font-black">@SGB_secum</span>.</p>
             </div>
 
-            {/* Real-time Order Summary Text Area */}
-            <div className="space-y-2">
-              <span className="text-[8.5px] text-zinc-600 uppercase tracking-widest block font-bold">Специфікація замовлення:</span>
-              <pre className="w-full bg-[#030303] text-zinc-400 border border-zinc-900 text-[10px] p-4 rounded-none font-mono overflow-x-auto whitespace-pre leading-relaxed select-all max-h-[160px] overflow-y-auto">
-                {generateOrderText()}
-              </pre>
-            </div>
+
 
             {/* One-click copier button */}
             <button
